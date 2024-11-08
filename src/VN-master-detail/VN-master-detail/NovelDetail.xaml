@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VN_master_detail.NovelDetail"
+             xmlns:converter="clr-namespace:VN_master_detail.Converters"
+             x:Name="root"
+             Title="NovelDetail">
+    
+    <ContentPage.Resources>
+        <converter:TitleListConverter x:Key="TitlesConverter"/>
+        <converter:SimpleProducerListConverter x:Key="DevConverter"/>
+        <converter:DevStatusEnumConverter x:Key="DevStatusConverter"/>
+        <converter:StringArrayConverter x:Key="StringArrConverter"/>
+    </ContentPage.Resources>    
+
+    <Grid
+        BindingContext="{x:Reference root}">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="6*"></ColumnDefinition>
+            <ColumnDefinition Width="10*"></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <!-- <CarouselView
+            ItemsSource="{Binding images}">
+            <CarouselView.ItemTemplate>
+                <DataTemplate>
+                    <ViewCell>
+                        <Image
+                            Source="{Binding url}"
+                            HeightRequest="{Binding dims[0]}"
+                            WidthRequest="{Binding dims[1]}"/>
+                    </ViewCell>
+                </DataTemplate>
+            </CarouselView.ItemTemplate>
+        </CarouselView> -->
+        <ScrollView
+                Grid.Column="1">
+            <StackLayout
+                Padding="20,60,200,40"
+                BindingContext="{Binding novel}">
+                <Label Text="{Binding Title, StringFormat='Title : {0}'}"
+                       FontSize="30"
+                       LineBreakMode="WordWrap"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding Titles,
+                           StringFormat='Other known Titles : {0}',
+                           Converter={StaticResource TitlesConverter}}"
+                       LineBreakMode="WordWrap"
+                       FontSize="18"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding aliases,
+                           StringFormat='Also known as : {0}',
+                           Converter={StaticResource StringArrConverter}}"
+                       LineBreakMode="WordWrap"/>
+                <Label Text="{Binding Description}"
+                       LineBreakMode="WordWrap"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding Developpers,
+                           StringFormat='This novel was made by : {0}',
+                           Converter={StaticResource DevConverter}}"
+                       FontSize="18"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding devstatus,
+                           StringFormat='This novel currently {0}',
+                           Converter={StaticResource DevStatusConverter}}"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding platforms,
+                           StringFormat='Available on : {0}',
+                           Converter={StaticResource StringArrConverter}}"
+                       Margin="0,10,0,10"/>
+                <Label Text="{Binding languages,
+                           StringFormat='Playable in : {0}',
+                           Converter={StaticResource StringArrConverter}}"
+                       Margin="0,10,0,10"/>
+            </StackLayout>
+        </ScrollView>
+    </Grid>
+</ContentPage>

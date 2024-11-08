@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentView xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VN_master_detail.Components.NovelList"
+             x:Name="root">
+    <ScrollView
+        BindingContext="{x:Reference root}">
+        <FlexLayout 
+            BindableLayout.ItemsSource="{Binding Novels}"
+            Direction="Row"
+            Wrap="Wrap">
+            <BindableLayout.ItemTemplate>
+                <DataTemplate>
+                    <StackLayout
+                        MinimumHeightRequest="250"
+                        MinimumWidthRequest="200"
+                        BackgroundColor="LightGray"
+                        Margin="5"
+                        Padding="10">
+                        <ImageButton
+                            Source="{Binding Image.url}"
+                            Clicked="GameImageClicked"
+                            MaximumWidthRequest="{Binding Image.dims[0]}"
+                            MaximumHeightRequest="{Binding Image.dims[1]}"/>
+                        <Label 
+                            Text="{Binding Title}"
+                            HorizontalOptions="Center"/>
+                        <Label Text="{Binding Description}"
+                            HorizontalOptions="Center"/>
+                        <Label Text="{Binding average}"
+                            HorizontalOptions="Center"/>
+                    </StackLayout>
+                </DataTemplate>
+            </BindableLayout.ItemTemplate>
+        </FlexLayout>
+    </ScrollView>
+</ContentView>

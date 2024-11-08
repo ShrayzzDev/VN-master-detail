@@ -62,4 +62,38 @@
 		<PackageReference Include="Microsoft.Extensions.Logging.Debug" Version="8.0.0" />
 	</ItemGroup>
 
+	<ItemGroup>
+	  <ProjectReference Include="..\DataManagers\DataManagers.csproj" />
+	  <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
+	  <ProjectReference Include="..\Model\Model.csproj" />
+	  <ProjectReference Include="..\Stub\Stub.csproj" />
+	</ItemGroup>
+
+	<ItemGroup>
+	  <Compile Update="Components\SideBar.xaml.cs">
+	    <DependentUpon>SideBar.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="AcceuilPage.xaml.cs">
+	    <DependentUpon>AcceuilPage.xaml</DependentUpon>
+	  </Compile>
+	  <Compile Update="NovelDetail.xaml.cs">
+	    <DependentUpon>NovelDetail.xaml</DependentUpon>
+	  </Compile>
+	</ItemGroup>
+
+	<ItemGroup>
+	  <MauiXaml Update="Components\NovelList.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Components\SideBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="NovelDetail.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Search.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	</ItemGroup>
+
 </Project>
