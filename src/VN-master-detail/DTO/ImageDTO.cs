@@ -8,21 +8,21 @@ namespace DTO
 {
     public class ImageDTO
     {
-        public string id;
+        public string id { get; set; } = "";
 
-        public string url;
+        public string url { get; set; } = "";
 
-        public int[] dims;
+        public int[] dims { get; set; } = [0,0];
 
-        public short sexual;
+        public short sexual { get; set; } = 0;
 
-        public short violence;
+        public short violence { get; set; } = 0;
 
-        public int votecount;
+        public int votecount { get; set; } = 0;
 
-        public string thumbnail;
+        public string thumbnail { get; set; } = "";
 
-        public int[] thumbnail_dims;
+        public int[] thumbnail_dims { get; set; } = [0,0];
 
         public ImageDTO(string id, string url, int[] dims, short sexual, short violence, int votecount, string thumbnail, int[] thumbnail_dims)
         {
@@ -47,5 +47,7 @@ namespace DTO
                    $"Thumbnail: {thumbnail} \n" +
                    $"ThumbnilDims: {thumbnail_dims[0]} x {thumbnail_dims[1]}";
         }
+
+        public ImageDTO() { }
     }
 }

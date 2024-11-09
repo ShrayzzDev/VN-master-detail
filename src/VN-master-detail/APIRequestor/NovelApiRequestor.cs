@@ -18,7 +18,7 @@ namespace APIRequestor
         {
             DetailedNovelDTO? novel = null;
             HttpResponseMessage response = await client.SendAsync(
-                RequestCreator.GetHttpRequest(client.BaseAddress, "/vn",
+                RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
                 HttpRequestBodies.DetailedNovelFields));
             if (response.IsSuccessStatusCode)
             {
@@ -29,22 +29,20 @@ namespace APIRequestor
 
         public async Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
-            List<BasicNovelDTO?>? novels = null;
+            BasicResultsDTO? novels = null;
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
-                $"\"sort\": \"{criteria}\",\n" +
-                $"\"page\": {index}\n," +
-                $"\"result\": {count}," +
-                HttpRequestBodies.BasicNovelFields)
+                $"{{\"sort\": \"{criteria.AsString()}\", " +
+                $"\"page\": {index}, " +
+                $"\"results\": {count}, " +
+                HttpRequestBodies.BasicNovelFields + "}")
             );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
-                novels = await response.Content
-                    .ReadFromJsonAsAsyncEnumerable<BasicNovelDTO>()
-                    .ToListAsync();
-                novels.RemoveAll(item => item == null);
+                novels = await response.Content.ReadFromJsonAsync<BasicResultsDTO>();
             }
-            return novels;
+            return novels?.results;
         }
 
         public async Task<BasicNovelDTO?> GetNovelById(string id)
@@ -54,10 +52,6 @@ namespace APIRequestor
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn", 
                 UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.BasicNovelFields + "}"))
             );
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
-            Console.WriteLine(UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \" = \", \"v17\"], \"fields\": \"title, image.url\"}"));
-            Console.WriteLine(UTF8Converter.GetUTF8String($"{{\"filters\": [\"id\", \"=\", \"{id}\"],\n" +
-                HttpRequestBodies.BasicNovelFields + "\n}"));
             if (response.IsSuccessStatusCode)
             {
                 novel = (await response.Content.ReadFromJsonAsync<BasicResultsDTO>())?.results.First();

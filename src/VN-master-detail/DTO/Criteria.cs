@@ -15,16 +15,16 @@ namespace DTO
 
     public static class CriteriaExtensions
     {
-        public static string ToString(this Criteria criteria)
+        public static string AsString(this Criteria criteria)
         {
             switch (criteria)
             {
                 case Criteria.Name:
-                    return "Name";
+                    return "title";
                 case Criteria.ReleaseDate:
-                    return "release";
+                    return "released";
                 case Criteria.Stars:
-                    return "average";
+                    return "rating";
                 default:
                     throw new NotImplementedException("The criteria passed a parameter is not implemented (ToString)");
             }

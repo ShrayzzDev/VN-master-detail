@@ -15,7 +15,7 @@ namespace DTO.Extensions
             return new DetailedNovel(
                 dto.id,
                 dto.image?.ToModel(),
-                dto.Titles.ToModels(),
+                dto.titles.ToModels(),
                 dto.description,
                 dto.title,
                 dto.developers.ToModels(),

@@ -8,11 +8,13 @@ namespace DTO.Title
 {
     public class SimpleTitleDTO
     {
-        public string latin;
+        public string? latin { get; set; } = null;
 
-        public string title;
+        public string? title { get; set; } = null;
 
-        public SimpleTitleDTO(string latin, string title)
+        public SimpleTitleDTO() { }
+
+        public SimpleTitleDTO(string? latin, string? title)
         {
             this.latin = latin;
             this.title = title;

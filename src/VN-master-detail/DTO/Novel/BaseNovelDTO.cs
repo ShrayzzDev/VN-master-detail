@@ -11,26 +11,25 @@ namespace DTO.Novel
 {
     public class BaseNovelDTO
     {
-        public string id { get; set; }
-        public SimpleProducerDTO[] developers { get; set; }
+        public string id { get; set; } = "";
+        public SimpleProducerDTO[] developers { get; set; } = [];
 
-        public ImageDTO? image { get; set; }
+        public ImageDTO? image { get; set; } = new();
 
-        public string description { get; set; }
+        public string description { get; set; } = "";
 
         /// <summary>
         /// Main title of the novel
         /// </summary>
-        public string title { get; set; }
+        public string title { get; set; } = "";
 
         /// <summary>
         /// Average note given by the users
         /// Between 10 and 100 
         /// </summary>
-        public int? average;
+        public float? average { get; set; } = 0;
 
-        [JsonConstructor]
-        public BaseNovelDTO(string id, ImageDTO? image, string description, string title, int? average, SimpleProducerDTO[] developpers)
+        public BaseNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers)
         {
             this.id = id;
             this.image = image;
@@ -49,5 +48,6 @@ namespace DTO.Novel
             average = other.average;
             developers = other.developers;
         }
+        public BaseNovelDTO() { }
     }
 }

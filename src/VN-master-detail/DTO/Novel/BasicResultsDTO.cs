@@ -11,9 +11,8 @@ namespace DTO.Novel
     {
         public List<BasicNovelDTO> results {  get; set; }
 
-        public bool more;
+        public bool more { get; set; }
 
-        [JsonConstructor]
         public BasicResultsDTO(List<BasicNovelDTO> results, bool more)
         {
             this.results = results;

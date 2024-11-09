@@ -9,13 +9,13 @@ namespace DTO.Producer
 {
     public class SimpleProducerDTO
     {
-        public string id;
+        public string id { get; set; } = "";
 
-        public string name;
+        public string name { get; set; } = "";
 
-        public string type;
+        public string type { get; set; } = "";
 
-        public string description;
+        public string description { get; set; } = "";
 
         public SimpleProducerDTO(string id, string name, string type, string description)
         {
@@ -32,5 +32,7 @@ namespace DTO.Producer
                    $"Type: {type}\n" +
                    $"Description: {description}\n";
         }
+
+        public SimpleProducerDTO() { }
     }
 }

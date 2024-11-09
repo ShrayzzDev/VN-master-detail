@@ -1,6 +1,7 @@
 ﻿
 using APIRequestor;
 using DTO;
+using DTO.Novel;
 using Interfaces;
 using Stub;
 using Utils;
@@ -24,10 +25,15 @@ while (choice != "99")
             Console.WriteLine("Which game ? (whithout starting v) ");
             value = "v" + Console.ReadLine();
             var idGame = await nRequestor.GetNovelById(value);
-            if (idGame != null)
+            if (idGame is not null)
             {
                 Console.WriteLine(idGame.ToString());
             }
+            break;
+
+        case "2":
+            var novels = await nRequestor.GetNovelByOrder(1, 10, Criteria.Stars);
+            novels?.ToString();
             break;
 
         case "99":

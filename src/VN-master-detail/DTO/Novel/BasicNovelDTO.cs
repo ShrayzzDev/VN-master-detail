@@ -20,20 +20,20 @@ namespace DTO.Novel
         /// Other titles. Always contains
         /// at least the main one.
         /// </summary>
-        public SimpleTitleDTO[] Titles;
+        public SimpleTitleDTO[] titles { get; set; } = [];
 
-        [JsonConstructor]
-        public BasicNovelDTO(string id, ImageDTO? image, SimpleTitleDTO[] titles, string description, string title, SimpleProducerDTO[] developpers, int? average)
+        public BasicNovelDTO(string id, ImageDTO? image, SimpleTitleDTO[] titles, string description, string title, SimpleProducerDTO[] developpers, float? average)
             : base(id, image, description, title, average, developpers)
         {
-            Titles = titles;
+            this.titles = titles;
         }
 
         public BasicNovelDTO(BasicNovelDTO other)
             : base(other)
         {
-            Titles = other.Titles;
+            titles = other.titles;
         }
+        public BasicNovelDTO() { }
 
         public override string ToString()
         {

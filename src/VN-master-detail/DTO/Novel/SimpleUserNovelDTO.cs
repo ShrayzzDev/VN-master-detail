@@ -29,7 +29,7 @@ namespace DTO.Novel
 
         public BaseNovelDTO vn;
 
-        public SimpleUserNovelDTO(string id, ImageDTO? image, string description, string title, int? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
+        public SimpleUserNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
         {
             this.added = added;
             this.voted = voted;
