@@ -1,4 +1,7 @@
-﻿using Microsoft.Extensions.Logging;
+﻿using Interfaces;
+using Microsoft.Extensions.Logging;
+using Stub;
+using ViewModel;
 
 namespace VN_master_detail
 {
@@ -15,6 +18,12 @@ namespace VN_master_detail
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
+            builder.Services.AddScoped<BasicNovelListVM>();
+
+            builder.Services.AddScoped<AcceuilPage>();
+
+            builder.Services.AddScoped<IDataManager, DataManager>();
+            builder.Services.AddScoped<INovelRequestor, NovelStub>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

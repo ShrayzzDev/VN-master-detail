@@ -1,5 +1,5 @@
-using Model.Novel;
-using System.Collections.ObjectModel;
+using NullInterfaces;
+using ViewModel;
 
 namespace VN_master_detail.Components;
 
@@ -7,13 +7,13 @@ public partial class NovelList : ContentView
 {
 	public static readonly BindableProperty NovelsProperty =
 		BindableProperty.Create(nameof(Novels),
-			typeof(ObservableCollection<BasicNovel>),
+			typeof(BasicNovelListVM),
 			typeof(NovelList),
-			new ObservableCollection<BasicNovel>()); 
+			new BasicNovelListVM(new NullDataManager())); 
 
-	public ObservableCollection<BasicNovel> Novels
+	public BasicNovelListVM Novels
 	{
-		get => (ObservableCollection<BasicNovel>)GetValue(NovelsProperty);
+		get => (BasicNovelListVM)GetValue(NovelsProperty);
 		set => SetValue(NovelsProperty, value);
 	}
 
@@ -21,8 +21,4 @@ public partial class NovelList : ContentView
 	{
 		InitializeComponent();
 	}
-
-    private void GameImageClicked(object sender, EventArgs e)
-    {
-    }
 }

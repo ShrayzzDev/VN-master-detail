@@ -3,32 +3,19 @@ using Interfaces;
 using Model.Novel;
 using Stub;
 using System.Collections.ObjectModel;
+using ViewModel;
 
 namespace VN_master_detail
 {
     public partial class AcceuilPage : ContentPage
     {
-        private IDataManager manager = (App.Current as App).DataManager;
-
-        public readonly ObservableCollection<BasicNovel?> Novels;
-
-        public AcceuilPage()
+        public BasicNovelListVM Novels { get; set; }
+        public AcceuilPage(BasicNovelListVM list)
         {
             InitializeComponent();
-            var task = GetTest();
-            Novels = new ObservableCollection<BasicNovel?>(task.Result);
+            Novels = list;
+            Novels.GetNovels.Execute(null);
             BindingContext = Novels;
-        }
-
-        private async Task<ObservableCollection<BasicNovel?>> GetTest()
-        {
-            var novel = await manager.GetNovelById("v1");
-            var list = new ObservableCollection<BasicNovel?>() { novel };
-            for (int i = 0; i < 100; ++i)
-            {
-                list.Add(novel);
-            }
-            return list;
         }
     }
 
