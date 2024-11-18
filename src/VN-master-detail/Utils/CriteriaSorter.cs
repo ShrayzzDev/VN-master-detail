@@ -19,21 +19,17 @@ namespace Utils
         /// <exception cref="NotImplementedException"></exception>
         public static IEnumerable<BasicNovelDTO> SortByCriteria(this IEnumerable<BasicNovelDTO> toSort, Criteria criteria)
         {
-            IEnumerable<BasicNovelDTO> list;
             switch (criteria)
             {
                 case Criteria.Name:
-                    list = toSort.OrderBy(n => n.title);
-                    break;
+                    return toSort.OrderBy(n => n.title);
 
                 case Criteria.Stars:
-                    list = toSort.OrderBy(n => n.average);
-                    break;
+                    return toSort.OrderBy(n => n.average);
 
                 default:
                     throw new NotImplementedException("This sorting criteria is not implemented yet");
             }
-            return toSort;
         }
     }
 }
