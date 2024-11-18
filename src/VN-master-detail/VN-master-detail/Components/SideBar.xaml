@@ -16,17 +16,9 @@
             JustifyContent="SpaceEvenly"
             BindingContext="{x:Reference root}">
             <Button
-                Text="Recherche"
-                BackgroundColor="{Binding SearchBtnColor}"
-                Clicked="SearchBtnClicked"/>
+                Text="Recherche"/>
             <Button
-                Text="Acceuil"
-                BackgroundColor="{Binding AcceuilBtnColor}"
-                Clicked="AcceuilBtnClicked"/>
-            <Button
-                Text="TestDetailBtn"
-                BackgroundColor="DarkRed"
-                Clicked="TestDetailBtn"/>
+                Text="Acceuil"/>
         </FlexLayout>
     </Grid>
 </ContentView>
