@@ -1,4 +1,5 @@
-﻿using DTO.Extensions;
+﻿using DTO;
+using DTO.Extensions;
 using Interfaces;
 using Model.Novel;
 using System;
@@ -29,5 +30,8 @@ namespace Stub
 
         public async Task<BasicNovel?> GetNovelById(string id)
             => (await _novelRequestor.GetNovelById(id))?.ToModel();
+
+        public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria)
+            => (await _novelRequestor.GetNovelByOrder(index, count, criteria)).ToModels();
     }
 }
