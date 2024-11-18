@@ -36,6 +36,9 @@ namespace Model
             this.thumbnail_dims = thumbnail_dims;
         }
 
+        public Image()
+            : this("", "", [0, 0], 0, 0, 0, "", [0, 0]) { }
+
         public override string ToString()
         {
             return $"Id: {id} \n" +

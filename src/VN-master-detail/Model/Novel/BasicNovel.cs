@@ -9,9 +9,9 @@ namespace Model.Novel
         /// Other titles. Always contains
         /// at least the main one.
         /// </summary>
-        public List<SimpleTitle> Titles { get; set; } = new List<SimpleTitle>();
+        public List<SimpleTitle> Titles { get; set; }
 
-        public BasicNovel(string id, Image? image, List<SimpleTitle> titles, string description, string title, SimpleProducer[] developpers, int? average)
+        public BasicNovel(string id, Image? image, List<SimpleTitle> titles, string description, string title, SimpleProducer[] developpers, float? average)
             : base(id, image, description, title, average, developpers)
         {
             Titles = titles;
@@ -22,6 +22,9 @@ namespace Model.Novel
         {
             Titles = other.Titles;
         }
+
+        public BasicNovel()
+            : this("", new Image(), [], "", "", [], 0) { }
 
         public override string ToString()
         {
