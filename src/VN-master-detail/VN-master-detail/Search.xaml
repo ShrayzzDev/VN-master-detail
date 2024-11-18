@@ -2,8 +2,18 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:VN_master_detail.Components"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Class="VN_master_detail.Search"
-             Title="Search">
+             Title="Search"
+             x:Name="root"
+             BindingContext="{x:Reference root}">
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            Command="{Binding Novels.GetNovels}"
+            EventName="Appearing"/>
+    </ContentPage.Behaviors>
+    
     <Grid
         Margin="5">
         <Grid.RowDefinitions>
@@ -21,7 +31,7 @@
                 <Entry
                     Placeholder="Visual Novels"/>
                 <components:NovelList
-                    Novels="{Binding}"/>
+                    Novels="{Binding Novels.List}"/>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

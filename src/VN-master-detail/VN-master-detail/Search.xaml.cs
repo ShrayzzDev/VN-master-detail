@@ -1,21 +1,16 @@
-using DTO.Extensions;
-using Interfaces;
-using Model.Novel;
-using Stub;
-using System.Collections.ObjectModel;
+using ViewModel;
 
-namespace VN_master_detail;
-
-public partial class Search : ContentPage
+namespace VN_master_detail
 {
-    private IDataManager manager = (App.Current as App).DataManager;
+    public partial class Search : ContentPage
+    {
+        public BasicNovelListVM Novels { get; set; }
 
-    public readonly ObservableCollection<BasicNovel?> Novels;
-
-    public Search()
-	{
-		InitializeComponent();
-        Novels = new ObservableCollection<BasicNovel?>();
-        BindingContext = Novels;
+        public Search(BasicNovelListVM novels)
+        {
+            Novels = novels;
+            BindingContext = this;
+            InitializeComponent();
+        }
     }
 }

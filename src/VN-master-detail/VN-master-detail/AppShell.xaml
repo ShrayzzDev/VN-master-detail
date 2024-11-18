@@ -9,8 +9,13 @@
     Title="VN_master_detail">
 
     <ShellContent
-        Title="Home"
+        Title="home"
         ContentTemplate="{DataTemplate local:AcceuilPage}"
-        Route="AcceuilPage"/>
+        Route="Home"/>
+
+    <ShellContent
+        Title="search"
+        ContentTemplate="{DataTemplate local:Search}"
+        Route="Search"/>
 
 </Shell>

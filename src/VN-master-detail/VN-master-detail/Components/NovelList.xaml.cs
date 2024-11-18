@@ -1,4 +1,5 @@
 using NullInterfaces;
+using System.Collections.ObjectModel;
 using ViewModel;
 
 namespace VN_master_detail.Components;
@@ -7,13 +8,13 @@ public partial class NovelList : ContentView
 {
 	public static readonly BindableProperty NovelsProperty =
 		BindableProperty.Create(nameof(Novels),
-			typeof(BasicNovelListVM),
+			typeof(ReadOnlyObservableCollection<BasicNovelVM>),
 			typeof(NovelList),
-			new BasicNovelListVM(new NullDataManager())); 
+			new ReadOnlyObservableCollection<BasicNovelVM>([])); 
 
-	public BasicNovelListVM Novels
+	public ReadOnlyObservableCollection<BasicNovelVM> Novels
 	{
-		get => (BasicNovelListVM)GetValue(NovelsProperty);
+		get => (ReadOnlyObservableCollection<BasicNovelVM>)GetValue(NovelsProperty);
 		set => SetValue(NovelsProperty, value);
 	}
 

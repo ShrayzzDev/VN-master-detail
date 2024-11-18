@@ -6,7 +6,7 @@
     <ScrollView
         BindingContext="{x:Reference root}">
         <FlexLayout 
-            BindableLayout.ItemsSource="{Binding Novels.List}"
+            BindableLayout.ItemsSource="{Binding Novels}"
             Direction="Row"
             Wrap="Wrap">
             <BindableLayout.ItemTemplate>
