@@ -9,6 +9,8 @@ namespace Stub
 {
     public class NovelStub : INovelRequestor
     {
+        private static string STUB_URL = "https://secure.gravatar.com/avatar/a9383e7f1c8be8a5ce99fb826f26fdce013a344e96e22f8b379cd02cd33f44d2?s=80&d=identicon";
+
         private List<DetailedNovelDTO> _DetailedNovels = new List<DetailedNovelDTO>();
 
         private List<BasicNovelDTO> _BasicNovels = new List<BasicNovelDTO>();
@@ -16,27 +18,27 @@ namespace Stub
         public NovelStub()
         {
             _BasicNovels.Add(new BasicNovelDTO("v1",
-                new ImageDTO("1", "https://secure.gravatar.com/avatar/a9383e7f1c8be8a5ce99fb826f26fdce013a344e96e22f8b379cd02cd33f44d2?s=80&d=identicon", new int[] { 50, 50 }, 0, 0, 11, "url.fr", new int[] { 400, 400 }),
-                new SimpleTitleDTO[] { new SimpleTitleDTO("latin", "title") },
+                new ImageDTO("1", STUB_URL, [50, 50], 0, 0, 11, "url.fr", [400, 400]),
+                [new SimpleTitleDTO("latin", "title")],
                 "One of the greatest VN out there, you should play it fr.",
                 "Katawa Shoujo",
-                new SimpleProducerDTO[] { new SimpleProducerDTO("prodid", "name", "type", "description") },
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
             _DetailedNovels.Add(new DetailedNovelDTO("v1",
-                new ImageDTO("imageid", "dotnet_bot.png", new int[] { 50, 50 }, 0, 0, 11, "url.fr", new int[] { 400, 400 }),
+                new ImageDTO("imageid", "dotnet_bot.png", [50, 50], 0, 0, 11, "url.fr", [400, 400]),
                 "One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr.",
                 "Katawa Shoujo",
-                new SimpleTitleDTO[] { new SimpleTitleDTO("katawa shoujo", "Katawa Shoujo"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One") },
-                new SimpleProducerDTO[] { new SimpleProducerDTO("prodid", "name", "type", "description") },
+                [new SimpleTitleDTO("katawa shoujo", "Katawa Shoujo"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One")],
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100,
                 "ks",
-                new string[] { "ks", "Disabilty Girl" },
+                ["ks", "Disabilty Girl"],
                 "English",
                 0,
                 "04/01/12",
-                new string[] { "english", "french", "italian", "spanish", "japanese" },
-                new string[] { "PC" },
+                ["english", "french", "italian", "spanish", "japanese"],
+                ["PC"],
                 2,
                 30 * 60,
                 2000000,
@@ -44,21 +46,22 @@ namespace Stub
             ));
         }
 
-        public async Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
+        public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
         {
-            return _DetailedNovels
-                .Where(n => n.id.Equals(id))
-                .FirstOrDefault();
+            return Task.Run(() =>_DetailedNovels
+                .Find(n => n.id.Equals(id)));
         }
 
-        public async Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
+        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
-            return _BasicNovels.SortByCriteria(criteria);
+            return Task.Run(() => _BasicNovels
+                .SortByCriteria(criteria));
         }
 
-        public async Task<BasicNovelDTO?> GetNovelById(string id)
+        public Task<BasicNovelDTO?> GetNovelById(string id)
         {
-            return _BasicNovels.Where(n => n.id.Equals(id)).FirstOrDefault();
+            return Task.Run(() => _BasicNovels
+                .Find(n => n.id.Equals(id)));
         }
 
         public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByCriteria(int index, int count, string which, string value)
