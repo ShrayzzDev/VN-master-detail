@@ -2,7 +2,8 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              xmlns:components="clr-namespace:VN_master_detail.Components"
-             x:Class="VN_master_detail.AcceuilPage">
+             x:Class="VN_master_detail.AcceuilPage"
+             x:Name="root">
 
     <Grid
         Margin="5">
@@ -16,9 +17,11 @@
         <components:SideBar
             AcceuilBtnColor="DarkCyan"/>
         <ScrollView
-            Grid.Column="1">
+            Grid.Column="1"
+            BindingContext="{x:Reference root}">
             <components:NovelList
-                Novels="{Binding List}"/>
+                Novels="{Binding Novels.List}"
+                Test="HATSUNE MIKU !!!!!"/>
         </ScrollView>
     </Grid>
 

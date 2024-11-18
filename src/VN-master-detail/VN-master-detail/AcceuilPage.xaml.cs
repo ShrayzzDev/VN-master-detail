@@ -15,7 +15,7 @@ namespace VN_master_detail
             InitializeComponent();
             Novels = list;
             Novels.GetNovels.Execute(null);
-            BindingContext = Novels;
+            BindingContext = this;
         }
     }
 

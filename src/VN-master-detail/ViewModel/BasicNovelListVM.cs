@@ -13,9 +13,9 @@ namespace ViewModel
 {
     public class BasicNovelListVM : ObservableObject
     {
-        private readonly ObservableCollection<BasicNovelVM> _list = new();
+        private readonly ObservableCollection<BasicNovelVM> _list = [];
 
-        public ReadOnlyObservableCollection<BasicNovelVM> List { get; }
+        public ReadOnlyObservableCollection<BasicNovelVM> List { get; private init; }
 
         private readonly IDataManager _manager;
 
