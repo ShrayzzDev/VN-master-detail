@@ -25,15 +25,15 @@ namespace Model.Novel
         /// Average note given by the users
         /// Between 10 and 100 
         /// </summary>
-        public int average { get; set; }
+        public float Average { get; set; }
 
-        public BaseNovel(string id, Image? image, string description, string title, int? average, SimpleProducer[] developpers)
+        public BaseNovel(string id, Image? image, string description, string title, float? average, SimpleProducer[] developpers)
         {
             Id = id;
             Image = image;
             Description = description;
             Title = title;
-            this.average = average == null ? 0 : average.Value;
+            this.Average = average == null ? 0 : average.Value;
             Developpers = developpers;
         }
 
@@ -43,7 +43,7 @@ namespace Model.Novel
             Image = other.Image;
             Description = other.Description;
             Title = other.Title;
-            average = other.average;
+            Average = other.Average;
             Developpers = other.Developpers;
         }
     }

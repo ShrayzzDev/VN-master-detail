@@ -76,7 +76,7 @@ namespace Model.Novel
                              string description,
                              string title,
                              SimpleProducer[] producers,
-                             int? average,
+                             float? average,
                              string? alttitle,
                              string[] aliases,
                              string olang,
