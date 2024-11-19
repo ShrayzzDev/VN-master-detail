@@ -13,15 +13,20 @@ namespace VN_master_detail.ViewModel
     {
         private static UserVM _user;
 
+        private INavigation _navigation;
+
+        public ICommand GoToDetail { get; private set; }
+
         public ICommand GoToHome { get; private set; }
 
         public ICommand GoToSearch { get; private set; }
 
         public ICommand GoToLogin { get; private set; }
 
-        public NavigationVM(UserVM? user)
+        public NavigationVM(UserVM? user, INavigation navigation)
         {
             if (user != null) _user = user;
+            _navigation = navigation;
             InitCommand();
         }
 
@@ -41,6 +46,10 @@ namespace VN_master_detail.ViewModel
                     if (!await _user.IsLoggedIn()) await Shell.Current.GoToAsync("//Login");
                     else await Shell.Current.GoToAsync("//Profile");
                 }
+            );
+
+            GoToDetail = new AsyncRelayCommand<string>(
+                async (id) => await _navigation.PushAsync(new NovelDetail(id))
             );
         }
     }

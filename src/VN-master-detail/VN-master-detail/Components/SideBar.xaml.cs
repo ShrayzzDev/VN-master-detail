@@ -25,7 +25,7 @@ public partial class SideBar : ContentView
     }
     public SideBar()
 	{
-        NavigationVM = new NavigationVM(null);
+        NavigationVM = new NavigationVM(null, Navigation);
 		InitializeComponent();
     }
 }

@@ -30,12 +30,7 @@ public partial class NovelDetail : ContentPage
 
 	public NovelDetail(string id)
     {
-		if (novel.Image != null)
-			images.Add(novel.Image);
-		// TEST
-		images.Add(new Model.Image("2", "dotnet_bot.png", new int[] { 50, 50 }, 0, 0, 10, "thumbnail", new int[] {0, 0}));
-        // TEST
-        images = [.. images.OrderBy(i => i.votecount)];
+		Debug.Print(id);
         InitializeComponent();
     }
 }

@@ -1,6 +1,7 @@
 using NullInterfaces;
 using System.Collections.ObjectModel;
 using ViewModel;
+using VN_master_detail.ViewModel;
 
 namespace VN_master_detail.Components;
 
@@ -18,8 +19,11 @@ public partial class NovelList : ContentView
 		set => SetValue(NovelsProperty, value);
 	}
 
+	public NavigationVM NavigationVM { get; set; }
+
 	public NovelList()
 	{
+		NavigationVM = new NavigationVM(null, Navigation);
 		InitializeComponent();
 	}
 }

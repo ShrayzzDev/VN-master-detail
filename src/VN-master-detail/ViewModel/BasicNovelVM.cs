@@ -8,6 +8,11 @@ namespace ViewModel
     {
         internal BasicNovel? _novel;
 
+        public string Id
+        {
+            get => _novel == null ? string.Empty : _novel.Id;
+        }
+
         public string Title
         {
             get => _novel == null ? string.Empty : _novel.Title;

@@ -13,7 +13,7 @@ namespace VN_master_detail
                            UserVM user)
         {
             Novels = novels;
-            NavigationVM = new NavigationVM(user);
+            NavigationVM = new NavigationVM(user, Navigation);
             BindingContext = this;
             InitializeComponent();
         }

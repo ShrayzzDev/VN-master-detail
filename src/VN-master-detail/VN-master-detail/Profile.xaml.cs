@@ -9,7 +9,7 @@ public partial class Profile : ContentPage
 
 	public Profile(UserVM user)
 	{
-		ProfileVM = new ProfileVM(user, new NavigationVM(user));
+		ProfileVM = new ProfileVM(user, new NavigationVM(user, Navigation));
 		InitializeComponent();
 	}
 }
