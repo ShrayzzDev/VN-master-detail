@@ -1,11 +1,10 @@
-using System.Diagnostics;
 using VN_master_detail.ViewModel;
 
 namespace VN_master_detail.Components;
 
 public partial class SideBar : ContentView
 {
-    public NavigationVM NavigationVM { get; private set; } = new();
+    public NavigationVM NavigationVM { get; private set; }
 
     public static readonly BindableProperty SearchBtnColorProperty =
         BindableProperty.Create(nameof(SearchBtnColor), typeof(Color), typeof(SideBar), Colors.MediumPurple);
@@ -26,6 +25,7 @@ public partial class SideBar : ContentView
     }
     public SideBar()
 	{
+        NavigationVM = new NavigationVM(null);
 		InitializeComponent();
     }
 }

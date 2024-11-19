@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VN_master_detail.Login"
+             Title="Login"
+             x:Name="root">
+    
+    <VerticalStackLayout
+        VerticalOptions="Center"
+        HorizontalOptions="Center"
+        BindingContext="{x:Reference root}">
+        <Label
+            Text="Enter your API Token here : "
+            FontSize="35"
+            Margin="10"/>
+        <Entry
+            Placeholder="API Token"
+            WidthRequest="600"
+            Text="{Binding LoginVM.ApiKey}"
+            Margin="10"/>
+        <Button
+            Text="Login"
+            Command="{Binding LoginVM.Login}"
+            Margin="10"/>
+    </VerticalStackLayout>
+</ContentPage>

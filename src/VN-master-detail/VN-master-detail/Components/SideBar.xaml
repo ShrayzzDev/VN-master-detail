@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.Components.SideBar"
              x:Name="root">
-    <Grid>
+    <Grid
+        BindingContext="{x:Reference root}">
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
@@ -13,8 +14,7 @@
         </Grid.RowDefinitions>
         <FlexLayout
             Direction="Column"
-            JustifyContent="SpaceEvenly"
-            BindingContext="{x:Reference root}">
+            JustifyContent="SpaceEvenly">
             <Button
                 Text="Recherche"
                 Command="{Binding NavigationVM.GoToSearch}"/>
@@ -22,5 +22,9 @@
                 Text="Acceuil"
                 Command="{Binding NavigationVM.GoToHome}"/>
         </FlexLayout>
+        <ImageButton
+            Grid.Row="1"
+            Source="dotnet_bot.png"
+            Command="{Binding NavigationVM.GoToLogin}"/>
     </Grid>
 </ContentView>

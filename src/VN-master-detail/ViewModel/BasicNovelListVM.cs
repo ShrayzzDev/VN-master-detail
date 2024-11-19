@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Interfaces;
+using Model;
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
@@ -17,11 +18,11 @@ namespace ViewModel
 
         public ReadOnlyObservableCollection<BasicNovelVM> List { get; private init; }
 
-        private readonly IDataManager _manager;
+        private readonly IDataManager<User> _manager;
 
         public ICommand GetNovels { get; set; }
 
-        public BasicNovelListVM(IDataManager manager)
+        public BasicNovelListVM(IDataManager<User> manager)
         {
             List = new(_list);
             _manager = manager;

@@ -68,6 +68,7 @@
 	  <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
 	  <ProjectReference Include="..\Model\Model.csproj" />
 	  <ProjectReference Include="..\NullInterfaces\NullInterfaces.csproj" />
+	  <ProjectReference Include="..\SharedExtensions\SharedExtensions.csproj" />
 	  <ProjectReference Include="..\Stub\Stub.csproj" />
 	  <ProjectReference Include="..\ViewModel\ViewModel.csproj" />
 	</ItemGroup>
@@ -79,6 +80,9 @@
 	  <Compile Update="AcceuilPage.xaml.cs">
 	    <DependentUpon>AcceuilPage.xaml</DependentUpon>
 	  </Compile>
+	  <Compile Update="Login.xaml.cs">
+	    <DependentUpon>Login.xaml</DependentUpon>
+	  </Compile>
 	  <Compile Update="NovelDetail.xaml.cs">
 	    <DependentUpon>NovelDetail.xaml</DependentUpon>
 	  </Compile>
@@ -89,6 +93,9 @@
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="Components\SideBar.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
+	  <MauiXaml Update="Login.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
 	  <MauiXaml Update="NovelDetail.xaml">

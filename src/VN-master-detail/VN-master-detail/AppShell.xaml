@@ -18,4 +18,9 @@
         ContentTemplate="{DataTemplate local:Search}"
         Route="Search"/>
 
+    <ShellContent
+        Title="login"
+        ContentTemplate="{DataTemplate local:Login}"
+        Route="Login"/>
+
 </Shell>

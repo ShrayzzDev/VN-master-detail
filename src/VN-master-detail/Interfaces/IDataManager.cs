@@ -13,8 +13,13 @@ namespace Interfaces
     /// Defines methods on how to access data.
     /// Return Model classes
     /// </summary>
-    public interface IDataManager
+    public interface IDataManager<TUser> where TUser : class
     {
+        /// <summary>
+        /// Currently connected user
+        /// </summary>
+        TUser? ConnectedUser { get; }
+
         /// <summary>
         /// Retrieves a basic novel from it's Id
         /// </summary>
@@ -37,5 +42,24 @@ namespace Interfaces
         /// <param name="id">id of searched novel</param>
         /// <returns>The novel. Null if not found.</returns>
         public Task<DetailedNovel?> GetDetailedNovelById(string id);
+
+        /// <summary>
+        /// Logs the user.
+        /// </summary>
+        /// <param name="apiKey"></param>
+        /// <returns>If successfull.</returns>
+        public Task<bool> Login(string apiKey);
+
+        /// <summary>
+        /// Checks if an user is currently logged in
+        /// </summary>
+        /// <returns>If logged.</returns>
+        public Task<bool> IsLoggedIn();
+
+        /// <summary>
+        /// Logs the user out
+        /// </summary>
+        /// <returns>Nothing</returns>
+        public Task Logout();
     }
 }

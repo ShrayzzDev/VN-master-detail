@@ -1,14 +1,11 @@
 ﻿using DTO;
 using DTO.Extensions;
 using Interfaces;
+using Model;
 using Model.Novel;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+using System.Diagnostics;
 
-namespace Stub
+namespace DataManagers
 {
     /// <summary>
     /// Serves as a layer to simplify
@@ -16,13 +13,21 @@ namespace Stub
     /// For more details on each work, 
     /// see each requestor definition.
     /// </summary>
-    public class DataManager : IDataManager
+    public class DataManager : IDataManager<User>
     {
+        private User? _user = new User();
+
+        public User? ConnectedUser => _user;
+
         private readonly INovelRequestor _novelRequestor;
 
-        public DataManager(INovelRequestor novelRequestor)
+        private readonly IUserRequestor _userRequestor;
+
+        public DataManager(INovelRequestor novelRequestor,
+            IUserRequestor userRequestor)
         {
             _novelRequestor = novelRequestor;
+            _userRequestor = userRequestor;
         }
 
         public async Task<DetailedNovel?> GetDetailedNovelById(string id)
@@ -33,5 +38,17 @@ namespace Stub
 
         public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria)
             => (await _novelRequestor.GetNovelByOrder(index, count, criteria)).ToModels();
+
+        public async Task<bool> Login(string apiKey)
+        {
+            _user = (await _userRequestor.Login(apiKey))?.ToModel();
+            return _user != null;
+        }
+
+        public Task Logout()
+            => Task.Run(() => _user = null);
+
+        public Task<bool> IsLoggedIn()
+            => Task.Run(() => _user == null);
     }
 }

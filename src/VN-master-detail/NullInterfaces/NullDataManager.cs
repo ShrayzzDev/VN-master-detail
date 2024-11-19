@@ -1,5 +1,6 @@
 ﻿using DTO;
 using Interfaces;
+using Model;
 using Model.Novel;
 
 namespace NullInterfaces
@@ -8,8 +9,10 @@ namespace NullInterfaces
     /// Implements IDataManager but does nothing.
     /// Used for default initializations.
     /// </summary>
-    public class NullDataManager : IDataManager
+    public class NullDataManager : IDataManager<User>
     {
+        public User? ConnectedUser => null;
+
         /// <inheritdoc/>
         public Task<DetailedNovel?> GetDetailedNovelById(string id)
         {
@@ -26,6 +29,21 @@ namespace NullInterfaces
         public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria)
         {
             return Task.FromResult((IEnumerable<BasicNovel>)[]);
+        }
+
+        public Task<bool> IsLoggedIn()
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task<bool> Login(string apiKey)
+        {
+            return Task.FromResult(false);
+        }
+
+        public Task Logout()
+        {
+            return Task.FromResult(false);
         }
     }
 }
