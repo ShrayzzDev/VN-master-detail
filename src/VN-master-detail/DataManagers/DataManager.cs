@@ -15,7 +15,7 @@ namespace DataManagers
     /// </summary>
     public class DataManager : IDataManager<User>
     {
-        private User? _user = new User();
+        private User? _user = null;
 
         public User? ConnectedUser => _user;
 
@@ -49,6 +49,6 @@ namespace DataManagers
             => Task.Run(() => _user = null);
 
         public Task<bool> IsLoggedIn()
-            => Task.Run(() => _user == null);
+            => Task.Run(() => _user != null);
     }
 }
