@@ -34,5 +34,8 @@ namespace ViewModel
 
         public Task<bool> IsLoggedIn()
             => _dataManager.IsLoggedIn();
+
+        public Task Logout()
+            => _dataManager.Logout();
     }
 }

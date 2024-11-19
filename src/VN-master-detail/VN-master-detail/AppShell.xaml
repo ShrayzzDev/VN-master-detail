@@ -23,4 +23,9 @@
         ContentTemplate="{DataTemplate local:Login}"
         Route="Login"/>
 
+    <ShellContent
+        Title="profile"
+        ContentTemplate="{DataTemplate local:Profile}"
+        Route="Profile"/>
+
 </Shell>

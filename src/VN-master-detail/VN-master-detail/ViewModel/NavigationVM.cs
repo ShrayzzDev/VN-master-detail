@@ -39,6 +39,7 @@ namespace VN_master_detail.ViewModel
                 async () =>
                 {
                     if (!await _user.IsLoggedIn()) await Shell.Current.GoToAsync("//Login");
+                    else await Shell.Current.GoToAsync("//Profile");
                 }
             );
         }

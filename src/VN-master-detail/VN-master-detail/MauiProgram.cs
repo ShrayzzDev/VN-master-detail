@@ -25,10 +25,11 @@ namespace VN_master_detail
             builder.Services.AddScoped<UserVM>();
 
             builder.Services.AddScoped<AcceuilPage>();
+            builder.Services.AddScoped<Profile>();
             builder.Services.AddScoped<Search>();
             builder.Services.AddScoped<Login>();
 
-            builder.Services.AddScoped<IDataManager<User>, DataManagers.DataManager>();
+            builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
             builder.Services.AddScoped<INovelRequestor, NovelStub>();
             builder.Services.AddScoped<IUserRequestor, UserStub>();
 #if DEBUG

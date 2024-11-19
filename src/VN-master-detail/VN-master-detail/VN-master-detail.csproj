@@ -101,6 +101,9 @@
 	  <MauiXaml Update="NovelDetail.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>
+	  <MauiXaml Update="Profile.xaml">
+	    <Generator>MSBuild:Compile</Generator>
+	  </MauiXaml>
 	  <MauiXaml Update="Search.xaml">
 	    <Generator>MSBuild:Compile</Generator>
 	  </MauiXaml>

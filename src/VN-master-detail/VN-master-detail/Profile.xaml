@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VN_master_detail.Profile"
+             Title="Profile"
+             x:Name="root"
+             BindingContext="{x:Reference root}">
+    <HorizontalStackLayout
+        HorizontalOptions="Center"
+        BindingContext="{Binding ProfileVM}">
+        <ImageButton
+            Source="dotnet_bot.png"
+            HeightRequest="40"
+            Command="{Binding Navigation.GoToHome}"/>
+        <VerticalStackLayout
+            HorizontalOptions="Center"
+            VerticalOptions="Center">
+            <Label
+                Text="{Binding User.Username, StringFormat='Username: {0}'}"
+                FontSize="25"/>
+            <Button
+                BackgroundColor="Red"
+                Text="Log out"
+                FontSize="18"
+                Command="{Binding Logout}"/>
+        </VerticalStackLayout>
+    </HorizontalStackLayout>
+</ContentPage>
