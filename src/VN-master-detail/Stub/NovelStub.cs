@@ -11,9 +11,9 @@ namespace Stub
     {
         private static string STUB_URL = "https://secure.gravatar.com/avatar/a9383e7f1c8be8a5ce99fb826f26fdce013a344e96e22f8b379cd02cd33f44d2?s=80&d=identicon";
 
-        private List<DetailedNovelDTO> _DetailedNovels = new List<DetailedNovelDTO>();
+        private readonly List<DetailedNovelDTO> _DetailedNovels = new List<DetailedNovelDTO>();
 
-        private List<BasicNovelDTO> _BasicNovels = new List<BasicNovelDTO>();
+        private readonly List<BasicNovelDTO> _BasicNovels = new List<BasicNovelDTO>();
 
         public NovelStub()
         {
