@@ -6,8 +6,6 @@ namespace VN_master_detail;
 
 public partial class NovelDetail : ContentPage
 {
-	private IDataManager manager = (App.Current as App).DataManager;
-
 	public static readonly BindableProperty NovelProperty =
 		BindableProperty.Create(nameof(novel), typeof(DetailedNovel), typeof(NovelDetail), new DetailedNovel());
 	
@@ -32,7 +30,6 @@ public partial class NovelDetail : ContentPage
 
 	public NovelDetail(string id)
     {
-        RetrieveNovel(id);
 		if (novel.Image != null)
 			images.Add(novel.Image);
 		// TEST
@@ -40,19 +37,5 @@ public partial class NovelDetail : ContentPage
         // TEST
         images = [.. images.OrderBy(i => i.votecount)];
         InitializeComponent();
-    }
-
-	public void RetrieveNovel(string id)
-	{
-		var task = manager.GetDetailedNovelById(id);
-		if (!task.IsCompleted) task.RunSynchronously();
-		var retrieved = task.Result;
-
-		if (retrieved == null)
-        {
-			Navigation.PopAsync();
-			return;
-        }
-        novel = retrieved;
     }
 }
