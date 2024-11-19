@@ -16,9 +16,11 @@
             JustifyContent="SpaceEvenly"
             BindingContext="{x:Reference root}">
             <Button
-                Text="Recherche"/>
+                Text="Recherche"
+                Command="{Binding NavigationVM.GoToSearch}"/>
             <Button
-                Text="Acceuil"/>
+                Text="Acceuil"
+                Command="{Binding NavigationVM.GoToHome}"/>
         </FlexLayout>
     </Grid>
 </ContentView>
