@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Mvvm.Input;
 using System;
 using System.Collections.Generic;
+using System.Diagnostics;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -49,7 +50,12 @@ namespace VN_master_detail.ViewModel
             );
 
             GoToDetail = new AsyncRelayCommand<string>(
-                async (id) => await _navigation.PushAsync(new NovelDetail(id))
+                async (id) => 
+                {
+                    if (id == null) return;
+                    // I am very ashamed of that but i also am very tired of thinking this through.
+                    await _navigation.PushAsync(new NovelDetail(id, new DetailedNovelVM(_user._dataManager)));
+                }
             );
         }
     }

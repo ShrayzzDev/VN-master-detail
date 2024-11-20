@@ -12,7 +12,7 @@ namespace ViewModel
 {
     public class UserVM : ObservableObject
     {
-        private readonly IDataManager<User> _dataManager;
+        public readonly IDataManager<User> _dataManager;
 
         public string Username
         {

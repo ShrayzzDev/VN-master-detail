@@ -3,8 +3,17 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.NovelDetail"
              xmlns:converter="clr-namespace:VN_master_detail.Converters"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="root"
-             Title="NovelDetail">
+             Title="NovelDetail"
+             BindingContext="{x:Reference root}">
+    
+    <ContentPage.Behaviors>
+        <toolkit:EventToCommandBehavior
+            Command="{Binding Novel.RetrieveNovel}"
+            CommandParameter="{Binding NovelId}"
+            EventName="Appearing"/>
+    </ContentPage.Behaviors>
     
     <ContentPage.Resources>
         <converter:TitleListConverter x:Key="TitlesConverter"/>
@@ -13,8 +22,7 @@
         <converter:StringArrayConverter x:Key="StringArrConverter"/>
     </ContentPage.Resources>    
 
-    <Grid
-        BindingContext="{x:Reference root}">
+    <Grid>
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -39,7 +47,7 @@
                 Grid.Column="1">
             <StackLayout
                 Padding="20,60,200,40"
-                BindingContext="{Binding novel}">
+                BindingContext="{Binding Novel}">
                 <Label Text="{Binding Title, StringFormat='Title : {0}'}"
                        FontSize="30"
                        LineBreakMode="WordWrap"
@@ -50,7 +58,7 @@
                        LineBreakMode="WordWrap"
                        FontSize="18"
                        Margin="0,10,0,10"/>
-                <Label Text="{Binding aliases,
+                <Label Text="{Binding Aliases,
                            StringFormat='Also known as : {0}',
                            Converter={StaticResource StringArrConverter}}"
                        LineBreakMode="WordWrap"/>
@@ -62,15 +70,15 @@
                            Converter={StaticResource DevConverter}}"
                        FontSize="18"
                        Margin="0,10,0,10"/>
-                <Label Text="{Binding devstatus,
+                <Label Text="{Binding DevStatus,
                            StringFormat='This novel currently {0}',
                            Converter={StaticResource DevStatusConverter}}"
                        Margin="0,10,0,10"/>
-                <Label Text="{Binding platforms,
+                <Label Text="{Binding Platforms,
                            StringFormat='Available on : {0}',
                            Converter={StaticResource StringArrConverter}}"
                        Margin="0,10,0,10"/>
-                <Label Text="{Binding languages,
+                <Label Text="{Binding Languages,
                            StringFormat='Playable in : {0}',
                            Converter={StaticResource StringArrConverter}}"
                        Margin="0,10,0,10"/>
