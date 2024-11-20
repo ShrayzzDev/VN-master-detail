@@ -24,6 +24,9 @@ namespace Model.Producer
             this.description = description;
         }
 
+        public SimpleProducer() 
+            : this("", "", "", "") { }
+
         public override string ToString()
         {
             return $"Id: {id}\n" +

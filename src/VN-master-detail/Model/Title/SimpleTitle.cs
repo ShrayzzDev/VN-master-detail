@@ -1,10 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Model.Title
+﻿namespace Model.Title
 {
     public class SimpleTitle
     {
@@ -17,5 +11,8 @@ namespace Model.Title
             this.latin = latin;
             this.title = title;
         }
+
+        public SimpleTitle()
+            : this("", "") { }
     }
 }
