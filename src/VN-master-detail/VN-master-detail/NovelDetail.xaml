@@ -20,9 +20,10 @@
         <converter:SimpleProducerListConverter x:Key="DevConverter"/>
         <converter:DevStatusEnumConverter x:Key="DevStatusConverter"/>
         <converter:StringArrayConverter x:Key="StringArrConverter"/>
-    </ContentPage.Resources>    
+    </ContentPage.Resources>
 
-    <Grid>
+    <Grid
+        BindingContext="{Binding Novel}">
         <Grid.RowDefinitions>
             <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
@@ -30,24 +31,16 @@
             <ColumnDefinition Width="6*"></ColumnDefinition>
             <ColumnDefinition Width="10*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <!-- <CarouselView
-            ItemsSource="{Binding images}">
-            <CarouselView.ItemTemplate>
-                <DataTemplate>
-                    <ViewCell>
-                        <Image
-                            Source="{Binding url}"
-                            HeightRequest="{Binding dims[0]}"
-                            WidthRequest="{Binding dims[1]}"/>
-                    </ViewCell>
-                </DataTemplate>
-            </CarouselView.ItemTemplate>
-        </CarouselView> -->
+        <Image
+            Source="{Binding Image.Url}"
+            HeightRequest="{Binding Image.Dims[0]}"
+            WidthRequest="{Binding Image.Dims[1]}"
+            VerticalOptions="Center"
+            HorizontalOptions="Center"/>
         <ScrollView
                 Grid.Column="1">
             <StackLayout
-                Padding="20,60,200,40"
-                BindingContext="{Binding Novel}">
+                Padding="20,60,200,40">
                 <Label Text="{Binding Title, StringFormat='Title : {0}'}"
                        FontSize="30"
                        LineBreakMode="WordWrap"

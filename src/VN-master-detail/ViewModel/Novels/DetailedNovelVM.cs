@@ -38,7 +38,6 @@ namespace ViewModel.Novels
             set => SetProperty(_novel.Title, value, callback: (value) => { Novel.Title = value; });
         }
 
-        // TODO : Needs a VM !!!!!
         public List<SimpleTitleVM> Titles
         {
             get
@@ -50,7 +49,6 @@ namespace ViewModel.Novels
             }
         }
 
-        // TODO : Needs a VM too !!!!!
         public SimpleProducerVM[] Developpers
         {
             get
@@ -88,6 +86,11 @@ namespace ViewModel.Novels
         public string[] Languages
         {
             get => _novel.languages;
+        }
+
+        public ImageVM Image
+        {
+            get => new() { image = _novel.Image };
         }
 
         public ICommand RetrieveNovel { get; set; }
