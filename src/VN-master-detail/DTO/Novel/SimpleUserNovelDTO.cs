@@ -8,33 +8,31 @@ using System.Threading.Tasks;
 
 namespace DTO.Novel
 {
-    public class SimpleUserNovelDTO
+    public class SimpleUserNovelDTO : BaseNovelDTO
     {
         /// <summary>
         /// When was the novel added to the list.
         /// NOTE : This is an Unix Timestamp.
         /// </summary>
-        public int added;
+        public int added { get; set; }
 
         /// <summary>
         /// When the user voted.
         /// Null if not.
         /// </summary>
-        public int? voted;
+        public int? voted { get; private set; }
 
         /// <summary>
         /// Between 10-100
         /// </summary>
-        public int? vote;
-
-        public BaseNovelDTO vn;
+        public int? vote { get; private set; }
 
         public SimpleUserNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
+            : base(id, image, description, title, average, developpers)
         {
             this.added = added;
             this.voted = voted;
             this.vote = vote;
-            vn = new BaseNovelDTO(id, image, description, title, average, developpers);
         }
     }
 }
