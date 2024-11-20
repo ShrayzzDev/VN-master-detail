@@ -24,9 +24,9 @@
                                 CommandParameter="{Binding Id}"/>
                         </StackLayout.GestureRecognizers>
                         <ImageButton
-                            Source="{Binding Image.Url}"
-                            MaximumWidthRequest="{Binding Image.Dims[0]}"
-                            MaximumHeightRequest="{Binding Image.Dims[1]}"/>
+                            Source="{Binding Image.ThumbnailUrl}"
+                            MaximumWidthRequest="{Binding Image.ThumbnailDims[0]}"
+                            MaximumHeightRequest="{Binding Image.ThumbnailDims[1]}"/>
                         <Label 
                             Text="{Binding Title}"
                             HorizontalOptions="Center"/>

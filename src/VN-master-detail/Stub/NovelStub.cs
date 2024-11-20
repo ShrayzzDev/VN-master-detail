@@ -11,22 +11,22 @@ namespace Stub
     {
         private static string STUB_URL = "https://secure.gravatar.com/avatar/a9383e7f1c8be8a5ce99fb826f26fdce013a344e96e22f8b379cd02cd33f44d2?s=80&d=identicon";
 
-        private readonly List<DetailedNovelDTO> _DetailedNovels = new List<DetailedNovelDTO>();
+        private readonly List<DetailedNovelDTO> _DetailedNovels = [];
 
-        private readonly List<BasicNovelDTO> _BasicNovels = new List<BasicNovelDTO>();
+        private readonly List<BasicNovelDTO> _BasicNovels = [];
 
         public NovelStub()
         {
             _BasicNovels.Add(new BasicNovelDTO("v1",
-                new ImageDTO("1", STUB_URL, [50, 50], 0, 0, 11, "url.fr", [400, 400]),
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                 [new SimpleTitleDTO("latin", "title")],
                 "One of the greatest VN out there, you should play it fr.",
-                "Katawa Shoujo",
+                "Katawa Shoujo",    
                 [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
             _DetailedNovels.Add(new DetailedNovelDTO("v1",
-                new ImageDTO("imageid", "dotnet_bot.png", [50, 50], 0, 0, 11, "url.fr", [400, 400]),
+                new ImageDTO("imageid", "dotnet_bot.png", [400, 400], 0, 0, 11, "dotnet_bot.png", [50, 50]),
                 "One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr.",
                 "Katawa Shoujo",
                 [new SimpleTitleDTO("katawa shoujo", "Katawa Shoujo"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One"), new SimpleTitleDTO("idk", "Another One")],

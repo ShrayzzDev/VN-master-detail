@@ -20,5 +20,15 @@ namespace ViewModel
         {
             get => image == null ? [0, 0] : image.dims;
         }
+
+        public string ThumbnailUrl
+        {
+            get => image == null ? "" : image.thumbnail;
+        }
+
+        public int[] ThumbnailDims
+        {
+            get => image == null ? [0, 0] : image.thumbnail_dims;
+        }
     }
 }
