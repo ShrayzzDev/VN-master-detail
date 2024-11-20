@@ -29,6 +29,7 @@ namespace ViewModel.Novels
                 OnPropertyChanged(nameof(DevStatus));
                 OnPropertyChanged(nameof(Platforms));
                 OnPropertyChanged(nameof(Languages));
+                OnPropertyChanged(nameof(Image));
             }
         }
 
