@@ -12,17 +12,19 @@ using System.Windows.Input;
 
 namespace ViewModel.Novels
 {
-    public class BasicNovelListVM : ObservableObject
+    public class BaseNovelListVM : ObservableObject
     {
-        private readonly ObservableCollection<BasicNovelVM> _list = [];
+        private readonly ObservableCollection<BaseNovelVM> _list = [];
 
-        public ReadOnlyObservableCollection<BasicNovelVM> List { get; private init; }
+        public ReadOnlyObservableCollection<BaseNovelVM> List { get; private init; }
 
         private readonly IDataManager<User> _manager;
 
-        public ICommand GetNovels { get; set; }
+        public ICommand GetNovels { get; private set; }
 
-        public BasicNovelListVM(IDataManager<User> manager)
+        public ICommand GetUserNovels { get; private set; }
+
+        public BaseNovelListVM(IDataManager<User> manager)
         {
             List = new(_list);
             _manager = manager;
@@ -38,7 +40,19 @@ namespace ViewModel.Novels
                     var retrieved = await _manager.GetNovels(0, 10, DTO.Criteria.Name);
                     foreach (var novel in retrieved)
                     {
-                        _list.Add(new BasicNovelVM() { _novel = novel });
+                        _list.Add(new BaseNovelVM() { _novel = novel });
+                    }
+                }
+            );
+
+            GetUserNovels = new AsyncRelayCommand(
+                async () =>
+                {
+                    _list.Clear();
+                    var retrived = await _manager.GetNovelsForUser(0, 10);
+                    foreach(var novel in retrived)
+                    {
+                        _list.Add(new BaseNovelVM() { _novel = novel });
                     }
                 }
             );

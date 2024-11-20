@@ -4,9 +4,9 @@ using Model;
 
 namespace ViewModel.Novels
 {
-    public class BasicNovelVM : ObservableObject
+    public class BaseNovelVM : ObservableObject
     {
-        internal BasicNovel? _novel;
+        internal BaseNovel? _novel;
 
         public string Id
         {
@@ -25,12 +25,17 @@ namespace ViewModel.Novels
 
         public float Average
         {
-            get => _novel == null ? 0 : _novel.Average;
+            get
+            {
+                if (_novel == null) return 0;
+                if (_novel is SimpleUserNovel userNovel) return userNovel.Vote == null ? 0 : userNovel.Vote.Value;
+                return _novel.Average;
+            }
         }
 
         public ImageVM Image
         {
-            get => new ImageVM() { image = _novel == null ? new Image() : _novel.Image };
+            get => new() { image = _novel == null ? new Image() : _novel.Image };
         }
     }
 }

@@ -10,7 +10,7 @@
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
-            Command="{Binding Novels.GetNovels}"
+            Command="{Binding Novels.GetUserNovels}"
             EventName="Appearing"/>
     </ContentPage.Behaviors>
 

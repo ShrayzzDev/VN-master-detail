@@ -1,6 +1,7 @@
 ﻿using DTO;
 using DTO.Novel;
 using Interfaces;
+using Model.Novel;
 using System;
 using System.Collections.Generic;
 using System.Net;
@@ -79,7 +80,7 @@ namespace APIRequestor
             return novels;
         }
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelForUser(string userId)
+        public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId)
         {
             throw new NotImplementedException();
         }

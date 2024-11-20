@@ -42,6 +42,7 @@ namespace DataManagers
         public async Task<bool> Login(string apiKey)
         {
             _user = (await _userRequestor.Login(apiKey))?.ToModel();
+            if (_user != null) _user.ApiKey = apiKey;
             return _user != null;
         }
 
@@ -50,5 +51,12 @@ namespace DataManagers
 
         public Task<bool> IsLoggedIn()
             => Task.Run(() => _user != null);
+
+        public async Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
+        {
+            if (_user == null) return new List<SimpleUserNovel>();
+            var retrieved = await _novelRequestor.GetNovelForUser(index, count, _user.UserId);
+            return retrieved == null ? new List<SimpleUserNovel>() : retrieved.ToModels();
+        } 
     }
 }

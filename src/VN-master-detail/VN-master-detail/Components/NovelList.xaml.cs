@@ -9,13 +9,13 @@ public partial class NovelList : ContentView
 {
 	public static readonly BindableProperty NovelsProperty =
 		BindableProperty.Create(nameof(Novels),
-			typeof(ReadOnlyObservableCollection<BasicNovelVM>),
+			typeof(ReadOnlyObservableCollection<BaseNovelVM>),
 			typeof(NovelList),
-			new ReadOnlyObservableCollection<BasicNovelVM>([])); 
+			new ReadOnlyObservableCollection<BaseNovelVM>([])); 
 
-	public ReadOnlyObservableCollection<BasicNovelVM> Novels
+	public ReadOnlyObservableCollection<BaseNovelVM> Novels
 	{
-		get => (ReadOnlyObservableCollection<BasicNovelVM>)GetValue(NovelsProperty);
+		get => (ReadOnlyObservableCollection<BaseNovelVM>)GetValue(NovelsProperty);
 		set => SetValue(NovelsProperty, value);
 	}
 

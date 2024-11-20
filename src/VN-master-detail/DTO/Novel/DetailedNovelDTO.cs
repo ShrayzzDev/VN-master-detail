@@ -14,17 +14,17 @@ namespace DTO.Novel
         /// <summary>
         /// Other title.
         /// </summary>
-        public string? alttitle;
+        public string? alttitle { get; set; }
 
         /// <summary>
         /// Other known names for the novel.
         /// </summary>
-        public string[] aliases;
+        public string[] aliases { get; set; }
 
         /// <summary>
         /// Langage the novel was originaly writen in
         /// </summary>
-        public string olang;
+        public string olang { get; set; }
 
         /// <summary>
         /// Status of the developpement
@@ -32,44 +32,44 @@ namespace DTO.Novel
         /// 1: In Dev
         /// 2: Canceled
         /// </summary>
-        public int devstatus;
+        public int devstatus { get; set; }
 
         /// <summary>
         /// When was it released
         /// </summary>
-        public string released;
+        public string released { get; set; }
 
         /// <summary>
         /// Which langages are supported
         /// </summary>
-        public string[] languages;
+        public string[] languages { get; set; }
 
         /// <summary>
         /// Where is the game available
         /// </summary>
-        public string[] platforms;
+        public string[] platforms { get; set; }
 
         /// <summary>
         /// Between 1 to 5
         /// 1 being very short
         /// 5 being very long
         /// </summary>
-        public int length;
+        public int length { get; set; }
 
         /// <summary>
         /// Average submitted play time in minutes
         /// </summary>
-        public int? length_minutes;
+        public int? length_minutes { get; set; }
 
         /// <summary>
         /// Number of submitted play times
         /// </summary>
-        public int length_votes;
+        public int length_votes { get; set; }
 
         /// <summary>
         /// Number of votes
         /// </summary>
-        public int votecount;
+        public int votecount { get; set; }
 
         public DetailedNovelDTO(string id,
                              ImageDTO? image, 

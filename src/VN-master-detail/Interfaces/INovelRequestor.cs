@@ -52,8 +52,10 @@ namespace Interfaces
         /// <summary>
         /// Retrieves the list of VN on an user 
         /// </summary>
+        /// <param name="index">Page</param>
+        /// <param name="count">Number of element per pages</param>
         /// <param name="userId">Id of the user</param>
         /// <returns></returns>
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelForUser(string userId);
+        public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId);
     }
 }

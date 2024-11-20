@@ -13,7 +13,7 @@ namespace Stub
     {
         private Dictionary<string, UserDTO> _users = new()
         {
-            {"jean-jean-jean-jean", new UserDTO("Jean","jean-jean-jean-jean",[]) }
+            {"jean-jean-jean-jean", new UserDTO("Jean","u1",[]) }
         };
 
 

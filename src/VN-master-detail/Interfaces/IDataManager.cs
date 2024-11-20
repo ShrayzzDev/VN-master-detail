@@ -37,6 +37,15 @@ namespace Interfaces
         public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria);
 
         /// <summary>
+        /// Retrieves a list of novels in the user's personal list.
+        /// </summary>
+        /// <param name="index">Page number</param>
+        /// <param name="count">Amount of novel in the page</param>
+        /// <param name="userId">Id of the user</param>
+        /// <returns>The list. May be empty.</returns>
+        public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count);
+
+        /// <summary>
         /// Retrieves a detailed novel from it's Id
         /// </summary>
         /// <param name="id">id of searched novel</param>

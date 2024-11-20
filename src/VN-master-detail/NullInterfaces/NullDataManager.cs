@@ -31,6 +31,11 @@ namespace NullInterfaces
             return Task.FromResult((IEnumerable<BasicNovel>)[]);
         }
 
+        public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> IsLoggedIn()
         {
             return Task.FromResult(false);

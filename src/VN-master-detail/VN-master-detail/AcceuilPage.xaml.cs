@@ -6,11 +6,11 @@ namespace VN_master_detail
 {
     public partial class AcceuilPage : ContentPage
     {
-        public BasicNovelListVM Novels { get; private set; }
+        public BaseNovelListVM Novels { get; private set; }
 
         public NavigationVM NavigationVM;
 
-        public AcceuilPage(BasicNovelListVM novels,
+        public AcceuilPage(BaseNovelListVM novels,
                            UserVM user)
         {
             Novels = novels;

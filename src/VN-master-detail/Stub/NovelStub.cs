@@ -11,21 +11,23 @@ namespace Stub
     {
         private static string STUB_URL = "https://secure.gravatar.com/avatar/a9383e7f1c8be8a5ce99fb826f26fdce013a344e96e22f8b379cd02cd33f44d2?s=80&d=identicon";
 
-        private readonly List<DetailedNovelDTO> _DetailedNovels = [];
+        private readonly List<DetailedNovelDTO> _detailedNovels = [];
 
-        private readonly List<BasicNovelDTO> _BasicNovels = [];
+        private readonly List<BasicNovelDTO> _basicNovels = [];
+
+        private readonly Dictionary<string, List<SimpleUserNovelDTO>> _userNovels = new();
 
         public NovelStub()
         {
-            _BasicNovels.Add(new BasicNovelDTO("v1",
+            _basicNovels.Add(new BasicNovelDTO("v1",
                 new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                 [new SimpleTitleDTO("latin", "title")],
                 "One of the greatest VN out there, you should play it fr.",
-                "Katawa Shoujo",    
+                "Katawa Shoujo",
                 [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
-            _DetailedNovels.Add(new DetailedNovelDTO("v1",
+            _detailedNovels.Add(new DetailedNovelDTO("v1",
                 new ImageDTO("imageid", "dotnet_bot.png", [400, 400], 0, 0, 11, "dotnet_bot.png", [50, 50]),
                 "One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr.",
                 "Katawa Shoujo",
@@ -44,23 +46,35 @@ namespace Stub
                 2000000,
                 500000
             ));
+            _userNovels.Add("u1", [
+                new SimpleUserNovelDTO("v1",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Katawa Shoujo",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                )
+            ]);
         }
 
         public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
         {
-            return Task.Run(() =>_DetailedNovels
+            return Task.Run(() =>_detailedNovels
                 .Find(n => n.id.Equals(id)));
         }
 
         public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
-            return Task.Run(() => _BasicNovels
+            return Task.Run(() => _basicNovels
                 .SortByCriteria(criteria));
         }
 
         public Task<BasicNovelDTO?> GetNovelById(string id)
         {
-            return Task.Run(() => _BasicNovels
+            return Task.Run(() => _basicNovels
                 .Find(n => n.id.Equals(id)));
         }
 
@@ -69,9 +83,14 @@ namespace Stub
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelForUser(string userId)
+        public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId)
         {
-            throw new NotImplementedException();
+            return Task.Run(() =>
+            {
+                if (_userNovels.TryGetValue(userId, out var novels))
+                    return novels.Skip(index * count).Take(count);
+                return (IEnumerable<SimpleUserNovelDTO?>?)null;
+            });
         }
     }
 }
