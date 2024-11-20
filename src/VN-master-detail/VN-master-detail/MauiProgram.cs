@@ -4,6 +4,7 @@ using Microsoft.Extensions.Logging;
 using Model;
 using Stub;
 using ViewModel;
+using ViewModel.Novels;
 
 namespace VN_master_detail
 {

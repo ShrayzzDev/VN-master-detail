@@ -7,7 +7,7 @@ using Model.Producer;
 using Model.Title;
 using System.Windows.Input;
 
-namespace ViewModel
+namespace ViewModel.Novels
 {
     public class DetailedNovelVM : ObservableObject
     {
@@ -37,17 +37,32 @@ namespace ViewModel
             get => _novel.Title;
             set => SetProperty(_novel.Title, value, callback: (value) => { Novel.Title = value; });
         }
-        
+
         // TODO : Needs a VM !!!!!
-        public List<SimpleTitle> Titles
+        public List<SimpleTitleVM> Titles
         {
-            get => _novel.Titles;
+            get
+            {
+                var model = _novel.Titles;
+                var titles = new List<SimpleTitleVM>(model.Count);
+                model.ForEach((elem) => titles.Add(new SimpleTitleVM() { simpleTitle = elem }));
+                return titles;
+            }
         }
 
         // TODO : Needs a VM too !!!!!
-        public SimpleProducer[] Developpers
+        public SimpleProducerVM[] Developpers
         {
-            get => _novel.Developpers;
+            get
+            {
+                var model = _novel.Developpers;
+                var devs = new SimpleProducerVM[model.Length];
+                for (int i = 0; i < model.Length; ++i)
+                {
+                    devs[i] = new SimpleProducerVM() { _producer = model[i] };
+                }
+                return devs;
+            }
         }
 
         public string[] Aliases

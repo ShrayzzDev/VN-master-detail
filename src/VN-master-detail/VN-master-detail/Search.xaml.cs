@@ -1,4 +1,4 @@
-using ViewModel;
+using ViewModel.Novels;
 
 namespace VN_master_detail
 {

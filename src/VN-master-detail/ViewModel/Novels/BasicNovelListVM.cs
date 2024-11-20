@@ -10,7 +10,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Input;
 
-namespace ViewModel
+namespace ViewModel.Novels
 {
     public class BasicNovelListVM : ObservableObject
     {
@@ -36,7 +36,7 @@ namespace ViewModel
                 {
                     _list.Clear();
                     var retrieved = await _manager.GetNovels(0, 10, DTO.Criteria.Name);
-                    foreach(var novel in retrieved)
+                    foreach (var novel in retrieved)
                     {
                         _list.Add(new BasicNovelVM() { _novel = novel });
                     }

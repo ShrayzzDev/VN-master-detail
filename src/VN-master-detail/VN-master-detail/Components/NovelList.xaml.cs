@@ -1,6 +1,6 @@
 using NullInterfaces;
 using System.Collections.ObjectModel;
-using ViewModel;
+using ViewModel.Novels;
 using VN_master_detail.ViewModel;
 
 namespace VN_master_detail.Components;

@@ -2,7 +2,7 @@
 using Model.Novel;
 using Model;
 
-namespace ViewModel
+namespace ViewModel.Novels
 {
     public class BasicNovelVM : ObservableObject
     {
@@ -10,7 +10,7 @@ namespace ViewModel
 
         public string Id
         {
-            get => _novel == null ? string.Empty : _novel.Id;
+            get => _novel == null ? string.Empty : _novel.Id;   
         }
 
         public string Title
