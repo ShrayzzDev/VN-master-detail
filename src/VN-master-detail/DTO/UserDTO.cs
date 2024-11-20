@@ -10,14 +10,14 @@ namespace DTO
     {
         public string username { get; set; } = "";
 
-        public string apiKey { get; set; } = "";
+        public string userId { get; set; } = "";
 
         public string[] permissions { get; set; } = [];
 
-        public UserDTO(string username, string apiKey, string[] permissions)
+        public UserDTO(string username, string userId, string[] permissions)
         {
             this.username = username;
-            this.apiKey = apiKey;
+            this.userId = userId;
             this.permissions = permissions;
         }
 

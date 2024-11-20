@@ -8,16 +8,18 @@ namespace Model
 {
     public class User
     {
+        public string UserId { get; set; }
+
         public string Username { get; set; }
 
-        public string ApiKey { get; set; }
+        public string ApiKey { get; set; } = "";
 
         public string[] Permissions { get; set; }
 
-        public User(string username, string apiKey, string[] permissions)
+        public User(string username, string userId, string[] permissions)
         {
             Username = username;
-            ApiKey = apiKey;
+            UserId = userId;
             Permissions = permissions;
         }
 

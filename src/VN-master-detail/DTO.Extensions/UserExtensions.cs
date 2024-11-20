@@ -13,7 +13,7 @@ namespace DTO.Extensions
         {
             return new User(
                 dto.username,
-                dto.apiKey,
+                dto.userId,
                 dto.permissions
             );
         }
