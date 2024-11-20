@@ -84,5 +84,10 @@ namespace APIRequestor
         {
             throw new NotImplementedException();
         }
+
+        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

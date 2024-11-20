@@ -10,7 +10,8 @@
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
-            Command="{Binding Novels.GetNovels}"
+            Command="{Binding Novels.SearchNovels}"
+            CommandParameter="{Binding Novels.SearchedName}"
             EventName="Appearing"/>
     </ContentPage.Behaviors>
     
@@ -29,7 +30,14 @@
             Grid.Column="1">
             <VerticalStackLayout>
                 <Entry
-                    Placeholder="Visual Novels"/>
+                    Text="{Binding Novels.SearchedName}"
+                    Placeholder="Visual Novels">
+                    <Entry.Behaviors>
+                        <toolkit:EventToCommandBehavior
+                            Command="{Binding Novels.SearchNovels}"
+                            EventName="TextChanged"/>
+                    </Entry.Behaviors>
+                </Entry>
                 <components:NovelList
                     Novels="{Binding Novels.List}"/>
             </VerticalStackLayout>

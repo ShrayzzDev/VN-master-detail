@@ -57,6 +57,9 @@ namespace DataManagers
             if (_user == null) return new List<SimpleUserNovel>();
             var retrieved = await _novelRequestor.GetNovelForUser(index, count, _user.UserId);
             return retrieved == null ? new List<SimpleUserNovel>() : retrieved.ToModels();
-        } 
+        }
+
+        public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name)
+            => (await _novelRequestor.GetNovelByOrder(index, count, criteria, name)).ToModels();
     }
 }

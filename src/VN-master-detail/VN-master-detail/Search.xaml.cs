@@ -1,3 +1,4 @@
+using System.Diagnostics;
 using ViewModel.Novels;
 
 namespace VN_master_detail

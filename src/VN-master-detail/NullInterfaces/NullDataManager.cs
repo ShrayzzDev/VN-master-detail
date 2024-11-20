@@ -31,6 +31,11 @@ namespace NullInterfaces
             return Task.FromResult((IEnumerable<BasicNovel>)[]);
         }
 
+        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
         {
             throw new NotImplementedException();

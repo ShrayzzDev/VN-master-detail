@@ -27,6 +27,30 @@ namespace Stub
                 [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
+            _basicNovels.Add(new BasicNovelDTO("v2",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Steins;Gate",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v2",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Steins;Gate 0",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v3",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Danganronpa",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
             _detailedNovels.Add(new DetailedNovelDTO("v1",
                 new ImageDTO("imageid", "dotnet_bot.png", [400, 400], 0, 0, 11, "dotnet_bot.png", [50, 50]),
                 "One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr. One of the greatest VN out there, you should play it fr.",
@@ -69,6 +93,13 @@ namespace Stub
         public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
             return Task.Run(() => _basicNovels
+                .SortByCriteria(criteria));
+        }
+
+        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
+        {
+            return Task.Run(() => _basicNovels
+                .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
                 .SortByCriteria(criteria));
         }
 

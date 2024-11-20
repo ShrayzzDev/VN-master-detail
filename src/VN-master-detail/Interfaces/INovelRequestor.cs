@@ -39,6 +39,17 @@ namespace Interfaces
         public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria);
 
         /// <summary>
+        /// Get a list of Novels based on the criteria
+        /// in the parameter
+        /// </summary>
+        /// <param name="index">Page</param>
+        /// <param name="count">Number of element per pages</param>
+        /// <param name="criteria">Chosen criteria</param>
+        /// <param name="name">What the name have to contain (not the EXACT name)</param>
+        /// <returns>A List of novel. May be empty</returns>
+        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria, string name);
+
+        /// <summary>
         /// Get a list of Novels where a certain attributes
         /// equals a certain value
         /// </summary>
