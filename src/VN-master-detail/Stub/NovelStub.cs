@@ -190,11 +190,24 @@ namespace Stub
         {
             return Task.Run(() =>
             {
-                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<SimpleUserNovelDTO> novels);
-                if (!userExists) return false;
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<SimpleUserNovelDTO>? novels);
+                if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (isIn) return false;
                 novels.Add(_basicNovels.First((n) => n.id.Equals(novels)).AsUserNovel());
+                return true;
+            });
+        }
+
+        public Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
+        {
+            return Task.Run(() =>
+            {
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<SimpleUserNovelDTO>? novels);
+                if (!userExists || novels is null) return false;
+                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                if (!isIn) return false;
+                novels.Remove(novels.First((n) => n.id.Equals(novelId)));
                 return true;
             });
         }

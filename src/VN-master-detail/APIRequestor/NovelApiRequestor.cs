@@ -99,5 +99,10 @@ namespace APIRequestor
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

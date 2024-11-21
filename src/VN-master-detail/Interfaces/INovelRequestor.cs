@@ -78,6 +78,14 @@ namespace Interfaces
         public Task<bool> AddNovelToUserList(string novelId, string apiToken);
 
         /// <summary>
+        /// Removes a novel from a user's personal list
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <param name="apiToken">Api token of the user</param>
+        /// <returns>If sucessfully removed.</returns>
+        public Task<bool> DeleteNovelFromUser(string novelId, string apiToken);
+
+        /// <summary>
         /// Checks if the user has a novel
         /// </summary>
         /// <param name="novelId">Id of the novel</param>

@@ -73,5 +73,11 @@ namespace DataManagers
             if (ConnectedUser == null) return Task.FromResult(false);
             return _novelRequestor.DoesUserHaveNovel(novelId, ConnectedUser.UserId);
         }
+
+        public async Task<bool> DeleteNovelFromUser(string novelId)
+        {
+            if (ConnectedUser == null) return false;
+            return await _novelRequestor.DeleteNovelFromUser(novelId, ConnectedUser.ApiKey);
+        }
     }
 }

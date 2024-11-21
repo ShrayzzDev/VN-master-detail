@@ -115,6 +115,8 @@ namespace ViewModel.Novels
 
         public ICommand AddNovelToUser { get; private set; }
 
+        public ICommand DeleteNovelFromUser { get; private set; }
+
         public DetailedNovelVM(IDataManager<User> dataManager)
         {
             _dataManager = dataManager;
@@ -137,8 +139,15 @@ namespace ViewModel.Novels
 
             AddNovelToUser = new AsyncRelayCommand(
                 async () => {
-                    Debug.Print("HASTUN MUKI");
                     await _dataManager.AddNovelToUserList(_novel.Id);
+                    IsInUserList = true;
+                },
+                canExecute: () => _dataManager.IsLoggedIn().Result
+            );
+
+            DeleteNovelFromUser = new AsyncRelayCommand(
+                async () => {
+                    await _dataManager.DeleteNovelFromUser(_novel.Id);
                     IsInUserList = true;
                 },
                 canExecute: () => _dataManager.IsLoggedIn().Result

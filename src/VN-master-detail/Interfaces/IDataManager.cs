@@ -88,6 +88,13 @@ namespace Interfaces
         public Task<bool> AddNovelToUserList(string novelId);
 
         /// <summary>
+        /// Deletes a novel from a user list.
+        /// </summary>
+        /// <param name="novelId"></param>
+        /// <returns>If successfully removed</returns>
+        public Task<bool> DeleteNovelFromUser(string novelId);
+
+        /// <summary>
         /// Checks if the given user has the given novel
         /// in his list.
         /// </summary>

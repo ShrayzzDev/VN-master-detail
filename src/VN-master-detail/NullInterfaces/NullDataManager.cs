@@ -18,6 +18,11 @@ namespace NullInterfaces
             throw new NotImplementedException();
         }
 
+        public Task<bool> DeleteNovelFromUser(string novelId)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> DoesUserHaveNovel(string novelId)
         {
             throw new NotImplementedException();
