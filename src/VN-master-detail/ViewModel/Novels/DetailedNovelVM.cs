@@ -148,7 +148,7 @@ namespace ViewModel.Novels
             DeleteNovelFromUser = new AsyncRelayCommand(
                 async () => {
                     await _dataManager.DeleteNovelFromUser(_novel.Id);
-                    IsInUserList = true;
+                    IsInUserList = false;
                 },
                 canExecute: () => _dataManager.IsLoggedIn().Result
             );

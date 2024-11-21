@@ -81,10 +81,12 @@
                     <Button
                         BackgroundColor="Red"
                         Text="Delete from user list"
-                        IsVisible="{Binding IsInUserList}"/>
+                        IsVisible="{Binding IsInUserList}"
+                        Command="{Binding DeleteNovelFromUser}"/>
                     <Button
                         BackgroundColor="Green"
                         Text="Add to user list"
+                        Command="{Binding AddNovelToUser}"
                         IsVisible="{Binding IsInUserList,
                                  Converter={x:StaticResource InversedBool}}"/>
                 </VerticalStackLayout>
