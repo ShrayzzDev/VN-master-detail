@@ -20,6 +20,7 @@
         <converter:SimpleProducerListConverter x:Key="DevConverter"/>
         <converter:DevStatusEnumConverter x:Key="DevStatusConverter"/>
         <converter:StringArrayConverter x:Key="StringArrConverter"/>
+        <toolkit:InvertedBoolConverter x:Key="InversedBool"/>
     </ContentPage.Resources>
 
     <Grid
@@ -78,8 +79,14 @@
                 <VerticalStackLayout
                     IsVisible="{Binding IsUserConnected}">
                     <Button
+                        BackgroundColor="Red"
+                        Text="Delete from user list"
+                        IsVisible="{Binding IsInUserList}"/>
+                    <Button
                         BackgroundColor="Green"
-                        Text="Add"/>
+                        Text="Add to user list"
+                        IsVisible="{Binding IsInUserList,
+                                 Converter={x:StaticResource InversedBool}}"/>
                 </VerticalStackLayout>
             </StackLayout>
         </ScrollView>

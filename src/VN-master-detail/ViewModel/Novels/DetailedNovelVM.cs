@@ -139,6 +139,7 @@ namespace ViewModel.Novels
                 async () => {
                     Debug.Print("HASTUN MUKI");
                     await _dataManager.AddNovelToUserList(_novel.Id);
+                    IsInUserList = true;
                 },
                 canExecute: () => _dataManager.IsLoggedIn().Result
             );
