@@ -8,13 +8,16 @@ namespace VN_master_detail
     {
         public BaseNovelListVM Novels { get; private set; }
 
-        public NavigationVM NavigationVM;
+        public NavigationVM NavigationVM { get; set; }
+
+        public UserVM User { get; set; }
 
         public AcceuilPage(BaseNovelListVM novels,
                            UserVM user)
         {
             Novels = novels;
             NavigationVM = new NavigationVM(user, Navigation);
+            User = user;
             BindingContext = this;
             InitializeComponent();
         }

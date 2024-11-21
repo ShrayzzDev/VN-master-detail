@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 
 namespace DTO
-{
+{   
     public class UserDTO
     {
         public string username { get; set; } = "";

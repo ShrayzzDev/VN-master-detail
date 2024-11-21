@@ -19,6 +19,11 @@ namespace ViewModel
             get => _dataManager.ConnectedUser == null ? string.Empty : _dataManager.ConnectedUser.Username;
         }
 
+        public string Id
+        {
+            get => _dataManager.ConnectedUser == null ? string.Empty : _dataManager.ConnectedUser.Username;
+        }
+
         public string[] Permissions
         {
             get => _dataManager.ConnectedUser == null ? [] : _dataManager.ConnectedUser.Permissions;

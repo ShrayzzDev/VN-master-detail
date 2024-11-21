@@ -57,10 +57,9 @@ namespace ViewModel.Novels
                 }
             );
 
-            GetUserNovels = new AsyncRelayCommand<string>(
-                async (id) =>
+            GetUserNovels = new AsyncRelayCommand(
+                async () =>
                 {
-                    if (id == null) return;
                     _list.Clear();
                     var retrived = await _manager.GetNovelsForUser(0, 10);
                     foreach(var novel in retrived)
