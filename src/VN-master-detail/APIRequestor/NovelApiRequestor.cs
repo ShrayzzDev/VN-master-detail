@@ -89,5 +89,15 @@ namespace APIRequestor
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> AddNovelToUserList(string novelId, string apiToken)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DoesUserHaveNovel(string novelId, string userid)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

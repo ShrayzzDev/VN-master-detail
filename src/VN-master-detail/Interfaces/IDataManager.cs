@@ -79,5 +79,22 @@ namespace Interfaces
         /// </summary>
         /// <returns>Nothing</returns>
         public Task Logout();
+
+        /// <summary>
+        /// Adds a novel to a user's personal list
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <returns>If sucessfully added</returns>
+        public Task<bool> AddNovelToUserList(string novelId);
+
+        /// <summary>
+        /// Checks if the given user has the given novel
+        /// in his list.
+        /// </summary>
+        /// <param name="userId"></param>
+        /// <param name="novelId"></param>
+        /// <returns></returns>
+        public Task<bool> DoesUserHaveNovel(string novelId);
+
     }
 }

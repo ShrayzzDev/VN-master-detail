@@ -68,5 +68,21 @@ namespace Interfaces
         /// <param name="userId">Id of the user</param>
         /// <returns></returns>
         public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId);
+
+        /// <summary>
+        /// Adds a novel to a user's personal list
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <param name="novelId">Api token of the user</param>
+        /// <returns>If sucessfully added</returns>
+        public Task<bool> AddNovelToUserList(string novelId, string apiToken);
+
+        /// <summary>
+        /// Checks if the user has a novel
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <param name="userid">Id of the user</param>
+        /// <returns></returns>
+        public Task<bool> DoesUserHaveNovel(string novelId, string userid);
     }
 }

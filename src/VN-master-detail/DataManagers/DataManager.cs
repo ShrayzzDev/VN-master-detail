@@ -54,12 +54,24 @@ namespace DataManagers
 
         public async Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
         {
-            if (_user == null) return new List<SimpleUserNovel>();
+            if (_user == null) return [];
             var retrieved = await _novelRequestor.GetNovelForUser(index, count, _user.UserId);
-            return retrieved == null ? new List<SimpleUserNovel>() : retrieved.ToModels();
+            return retrieved == null ? [] : retrieved.ToModels();
         }
 
         public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name)
             => (await _novelRequestor.GetNovelByOrder(index, count, criteria, name)).ToModels();
+
+        public async Task<bool> AddNovelToUserList(string novelId)
+        {
+            if (ConnectedUser == null) return false;
+            return await _novelRequestor.AddNovelToUserList(novelId, ConnectedUser.ApiKey);
+        }
+
+        public Task<bool> DoesUserHaveNovel(string novelId)
+        {
+            if (ConnectedUser == null) return Task.FromResult(false);
+            return _novelRequestor.DoesUserHaveNovel(novelId, ConnectedUser.UserId);
+        }
     }
 }

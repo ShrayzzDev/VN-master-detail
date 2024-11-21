@@ -13,6 +13,16 @@ namespace NullInterfaces
     {
         public User? ConnectedUser => null;
 
+        public Task<bool> AddNovelToUserList(string novelId)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<bool> DoesUserHaveNovel(string novelId)
+        {
+            throw new NotImplementedException();
+        }
+
         /// <inheritdoc/>
         public Task<DetailedNovel?> GetDetailedNovelById(string id)
         {

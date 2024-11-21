@@ -1,3 +1,4 @@
+using ViewModel;
 using ViewModel.Novels;
 
 namespace VN_master_detail;
@@ -12,6 +13,7 @@ public partial class NovelDetail : ContentPage
     {
         Novel = novel;
         NovelId = id;
+
         InitializeComponent();
     }
 }

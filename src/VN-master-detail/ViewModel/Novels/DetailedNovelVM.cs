@@ -5,6 +5,7 @@ using Model;
 using Model.Novel;
 using Model.Producer;
 using Model.Title;
+using System.Diagnostics;
 using System.Windows.Input;
 
 namespace ViewModel.Novels
@@ -14,6 +15,22 @@ namespace ViewModel.Novels
         private readonly IDataManager<User> _dataManager;
 
         private DetailedNovel _novel = new();
+
+        private bool _isUserConnected;
+
+        public bool IsUserConnected 
+        {
+            get => _isUserConnected;
+            private set => SetProperty(ref _isUserConnected, value);
+        }
+
+        private bool _isInUserList;
+
+        public bool IsInUserList 
+        {
+            get => _isInUserList;
+            private set => SetProperty(ref _isInUserList, value);
+        }
 
         public DetailedNovel Novel
         {
@@ -94,7 +111,9 @@ namespace ViewModel.Novels
             get => new() { image = _novel.Image };
         }
 
-        public ICommand RetrieveNovel { get; set; }
+        public ICommand RetrieveNovel { get; private set; }
+
+        public ICommand AddNovelToUser { get; private set; }
 
         public DetailedNovelVM(IDataManager<User> dataManager)
         {
@@ -110,8 +129,18 @@ namespace ViewModel.Novels
                     if (id == null) return;
                     var retrieved = await _dataManager.GetDetailedNovelById(id);
                     if (retrieved == null) return;
+                    IsUserConnected = await _dataManager.IsLoggedIn();
+                    IsInUserList = await _dataManager.DoesUserHaveNovel(id);
                     Novel = retrieved;
                 }
+            );
+
+            AddNovelToUser = new AsyncRelayCommand(
+                async () => {
+                    Debug.Print("HASTUN MUKI");
+                    await _dataManager.AddNovelToUserList(_novel.Id);
+                },
+                canExecute: () => _dataManager.IsLoggedIn().Result
             );
         }
     }
