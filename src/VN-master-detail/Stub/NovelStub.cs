@@ -130,7 +130,7 @@ namespace Stub
                 2000000,
                 500000
             ));
-            _userNovels.Add("u1", [
+            List<SimpleUserNovelDTO> userList = [
                 new SimpleUserNovelDTO("v1",
                     new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                     "One of the greatest VN out there, you should play it fr.",
@@ -141,19 +141,9 @@ namespace Stub
                     1,
                     99
                 )
-            ]);
-            _tokenUserNovels.Add("u1", [
-                new SimpleUserNovelDTO("v1",
-                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
-                    "One of the greatest VN out there, you should play it fr.",
-                    "Katawa Shoujo",
-                    100,
-                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
-                    100,
-                    1,
-                    99
-                )
-            ]);
+            ];
+            _userNovels.Add("u1", userList);
+            _tokenUserNovels.Add("jean-jean-jean-jean", userList);
         }
 
         public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
@@ -194,7 +184,7 @@ namespace Stub
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (isIn) return false;
-                novels.Add(_basicNovels.First((n) => n.id.Equals(novels)).AsUserNovel());
+                novels.Add(_basicNovels.First((n) => n.id.Equals(novelId)).AsUserNovel());
                 return true;
             });
         }

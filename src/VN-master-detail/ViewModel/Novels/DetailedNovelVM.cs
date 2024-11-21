@@ -138,18 +138,12 @@ namespace ViewModel.Novels
             );
 
             AddNovelToUser = new AsyncRelayCommand(
-                async () => {
-                    await _dataManager.AddNovelToUserList(_novel.Id);
-                    IsInUserList = true;
-                },
+                async () => IsInUserList = await _dataManager.AddNovelToUserList(_novel.Id),
                 canExecute: () => _dataManager.IsLoggedIn().Result
             );
 
             DeleteNovelFromUser = new AsyncRelayCommand(
-                async () => {
-                    await _dataManager.DeleteNovelFromUser(_novel.Id);
-                    IsInUserList = false;
-                },
+                async () => IsInUserList = await _dataManager.DeleteNovelFromUser(_novel.Id),
                 canExecute: () => _dataManager.IsLoggedIn().Result
             );
         }
