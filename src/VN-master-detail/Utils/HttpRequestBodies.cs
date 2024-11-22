@@ -30,6 +30,26 @@ namespace Utils
                                                                        "image.thumbnail, " +
                                                                        "image.thumbnail_dims\"";
 
+        public static readonly string BasicUserNovelFields = "\"fields\" : \"" +
+                                                                       "vn.title, " +
+                                                                       "vn.description, " +
+                                                                       "vn.average, " +
+                                                                       "vn.developers.id, " +
+                                                                       "vn.developers.name," +
+                                                                       "vn.developers.type, " +
+                                                                       "vn.developers.description, " +
+                                                                       "vn.image.id," +
+                                                                       "vn.image.url, " +
+                                                                       "vn.image.dims, " +
+                                                                       "vn.image.sexual, " +
+                                                                       "vn.image.violence, " +
+                                                                       "vn.image.votecount, " +
+                                                                       "vn.image.thumbnail, " +
+                                                                       "vn.image.thumbnail_dims, " +
+                                                                       "added, " +
+                                                                       "voted, " +
+                                                                       "vote\"";
+
         public static readonly string DetailedNovelFields = "\"fields\" : \"" +
                                                                        "alttile, " +
                                                                        "aliases, " +

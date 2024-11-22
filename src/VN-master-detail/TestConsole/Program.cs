@@ -15,6 +15,8 @@ while (choice != "99")
 {
     Console.WriteLine("Choose: ");
     Console.WriteLine("1. GetGameById");
+    Console.WriteLine("2. GetNovelByOrder");
+    Console.WriteLine("3. GetNovelsForUser");
     Console.WriteLine("");
     Console.WriteLine("99. Close");
     Console.WriteLine("----------------------");
@@ -34,6 +36,11 @@ while (choice != "99")
         case "2":
             var novels = await nRequestor.GetNovelByOrder(1, 10, Criteria.Stars);
             novels?.ToString();
+            break;
+
+        case "3":
+            var userNovels = await nRequestor.GetNovelForUser(1, 10, "u287204");
+            userNovels?.ToString();
             break;
 
         case "99":

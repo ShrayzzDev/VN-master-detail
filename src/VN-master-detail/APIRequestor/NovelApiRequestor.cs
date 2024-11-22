@@ -38,7 +38,7 @@ namespace APIRequestor
                 $"\"results\": {count}, " +
                 HttpRequestBodies.BasicNovelFields + "}")
             );
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
+
             if (response.IsSuccessStatusCode)
             {
                 novels = await response.Content.ReadFromJsonAsync<BasicResultsDTO>();
@@ -82,9 +82,22 @@ namespace APIRequestor
             return new BasicResultsDTO(novels, false);
         }
 
-        public Task<BasicUserResultsDTO?> GetNovelForUser(int index, int count, string userId)
+        public async Task<BasicUserResultsDTO?> GetNovelForUser(int index, int count, string userId)
         {
-            throw new NotImplementedException();
+            BasicUserResultsDTO? novels = null;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, "ulist", "{" +
+                $"\"user\": \"{userId}\", " +
+                $"\"page\": {index}, " +
+                $"\"results\": {count}, " +
+                HttpRequestBodies.BasicUserNovelFields + "}")
+            );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                novels = await response.Content.ReadFromJsonAsync<BasicUserResultsDTO>();
+            }
+            return novels;
         }
 
         public Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)

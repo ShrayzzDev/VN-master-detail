@@ -34,5 +34,17 @@ namespace DTO.Novel
             this.voted = voted;
             this.vote = vote;
         }
+
+        public BasicUserNovelDTO()
+            : this("", new ImageDTO(), "", "", 0, [], 0, 0, 0) { }
+
+        public override string ToString()
+        {
+            return id + '\n'
+                + title + "\n"
+                + average + "\n"
+                + voted + "\n"
+                + vote + "\n";
+        }
     }
 }
