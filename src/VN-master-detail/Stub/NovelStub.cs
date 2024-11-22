@@ -16,9 +16,9 @@ namespace Stub
 
         private readonly List<BasicNovelDTO> _basicNovels = [];
 
-        private readonly Dictionary<string, List<SimpleUserNovelDTO>> _userNovels = [];
+        private readonly Dictionary<string, List<BasicUserNovelDTO>> _userNovels = [];
 
-        private readonly Dictionary<string, List<SimpleUserNovelDTO>> _tokenUserNovels = [];
+        private readonly Dictionary<string, List<BasicUserNovelDTO>> _tokenUserNovels = [];
 
         public NovelStub()
         {
@@ -130,8 +130,8 @@ namespace Stub
                 2000000,
                 500000
             ));
-            List<SimpleUserNovelDTO> userList = [
-                new SimpleUserNovelDTO("v1",
+            List<BasicUserNovelDTO> userList = [
+                new BasicUserNovelDTO("v1",
                     new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                     "One of the greatest VN out there, you should play it fr.",
                     "Katawa Shoujo",
@@ -150,37 +150,41 @@ namespace Stub
             => Task.Run(() =>_detailedNovels
                 .Find(n => n.id.Equals(id)));
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
-            => Task.Run(() => _basicNovels
-                .SortByCriteria(criteria));
+        public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria)
+            => Task.Run(() => new BasicResultsDTO(_basicNovels
+                .SortByCriteria(criteria).ToList(), false));
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
-            => Task.Run(() => _basicNovels
+        public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria, string name)
+            => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
-                .SortByCriteria(criteria));
+                .SortByCriteria(criteria).ToList(),
+                (_basicNovels.Count / count) + 1 <= index));
 
         public Task<BasicNovelDTO?> GetNovelById(string id)
             => Task.Run(() => _basicNovels
                 .Find(n => n.id.Equals(id)));
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByCriteria(int index, int count, string which, string value)
+        public Task<BasicResultsDTO> GetNovelByCriteria(int index, int count, string which, string value)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId)
+        public Task<BasicUserResultsDTO> GetNovelForUser(int index, int count, string userId)
             => Task.Run(() =>
             {
                 if (_userNovels.TryGetValue(userId, out var novels))
-                    return novels.Skip(index * count).Take(count);
-                return (IEnumerable<SimpleUserNovelDTO?>?)null;
+                    return new BasicUserResultsDTO(
+                        novels.Skip(index * count).Take(count).ToList(),
+                        (novels.Count / count) + 1 <= index
+                    );
+                return new BasicUserResultsDTO(new List<BasicUserNovelDTO>(), false);
             });
 
         public Task<bool> AddNovelToUserList(string novelId, string apiToken)
         {
             return Task.Run(() =>
             {
-                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<SimpleUserNovelDTO>? novels);
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (isIn) return false;
@@ -193,7 +197,7 @@ namespace Stub
         {
             return Task.Run(() =>
             {
-                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<SimpleUserNovelDTO>? novels);
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (!isIn) return false;
@@ -215,7 +219,7 @@ namespace Stub
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<SimpleUserNovelDTO>? novels);
+                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (!isIn) return false;
@@ -228,7 +232,7 @@ namespace Stub
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<SimpleUserNovelDTO>? novels);
+                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return 0;
                 var isIn = novels.Exists(n => n.id.Equals(novelId));
                 if (!isIn) return 0;

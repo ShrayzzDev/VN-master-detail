@@ -11,9 +11,9 @@ namespace DTO.Extensions
 {
     public static class BasicNovelExtensions
     {
-        public static SimpleUserNovelDTO AsUserNovel(this BasicNovelDTO basic)
+        public static BasicUserNovelDTO AsUserNovel(this BasicNovelDTO basic)
         {
-            return new SimpleUserNovelDTO(
+            return new BasicUserNovelDTO(
                 basic.id,
                 basic.image,
                 basic.description,

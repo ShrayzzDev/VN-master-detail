@@ -28,7 +28,7 @@ namespace ViewModel.Novels
             get
             {
                 if (_novel == null) return 0;
-                if (_novel is SimpleUserNovel userNovel) return userNovel.Vote == null ? 0 : userNovel.Vote.Value;
+                if (_novel is BasicUserNovel userNovel) return userNovel.Vote == null ? 0 : userNovel.Vote.Value;
                 return _novel.Average;
             }
         }

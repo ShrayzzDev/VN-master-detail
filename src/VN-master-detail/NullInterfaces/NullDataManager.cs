@@ -14,71 +14,45 @@ namespace NullInterfaces
         public User? ConnectedUser => null;
 
         public Task<bool> AddNovelToUserList(string novelId)
-        {
-            throw new NotImplementedException();
-        }
+            => Task.FromResult(false);
 
         public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
-        {
-            throw new NotImplementedException();
-        }
+            => Task.FromResult(false);
 
         public Task<bool> DeleteNovelFromUser(string novelId)
-        {
-            throw new NotImplementedException();
-        }
+            => Task.FromResult(false);
 
         public Task<bool> DoesUserHaveNovel(string novelId)
-        {
-            throw new NotImplementedException();
-        }
+            => Task.FromResult(false);
 
         /// <inheritdoc/>
         public Task<DetailedNovel?> GetDetailedNovelById(string id)
-        {
-            return Task.FromResult((DetailedNovel?)null);
-        }
+            => Task.FromResult((DetailedNovel?)null);
 
         /// <inheritdoc/>
         public Task<BasicNovel?> GetNovelById(string id)
-        {
-            return Task.FromResult((BasicNovel?)null);
-        }
+            => Task.FromResult((BasicNovel?)null);
 
         /// <inheritdoc/>
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria)
-        {
-            return Task.FromResult((IEnumerable<BasicNovel>)[]);
-        }
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria)
+            => Task.FromResult(((IEnumerable<BasicNovel>)[], false));
 
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria, string name)
+            => Task.FromResult(((IEnumerable<BasicNovel>)[], false));
 
-        public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
-        {
-            throw new NotImplementedException();
-        }
+        public Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
+            => Task.FromResult(((IEnumerable<BasicUserNovel>)[], false));
 
         public Task<int> GetUserGradeToNovel(string novelId)
-        {
-            throw new NotImplementedException();
-        }
+             => Task.FromResult(10);
 
         public Task<bool> IsLoggedIn()
-        {
-            return Task.FromResult(false);
-        }
+            => Task.FromResult(false);
 
         public Task<bool> Login(string apiKey)
-        {
-            return Task.FromResult(false);
-        }
+            => Task.FromResult(false);
 
         public Task Logout()
-        {
-            return Task.FromResult(false);
-        }
+            => Task.FromResult(false);
     }
 }

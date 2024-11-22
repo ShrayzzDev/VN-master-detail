@@ -33,8 +33,8 @@ namespace Interfaces
         /// <param name="index">Page number</param>
         /// <param name="count">Amount of novel in the page</param>
         /// <param name="criteria">How to sort</param>
-        /// <returns>Enumerable of novels. May be empty.</returns>
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria);
 
         /// <summary>
         /// Retrieves a list of novel following given criteria.
@@ -43,16 +43,16 @@ namespace Interfaces
         /// <param name="count">Amount of novel in the page</param>
         /// <param name="criteria">How to sort</param>
         /// <param name="name">What the name have to contain (not the EXACT name)</param>
-        /// <returns>Enumerable of novels. May be empty.</returns>
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria, string name);
 
         /// <summary>
         /// Retrieves a list of novels in the user's personal list.
         /// </summary>
         /// <param name="index">Page number</param>
         /// <param name="count">Amount of novel in the page</param>
-        /// <returns>The list. May be empty.</returns>
-        public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count);
 
         /// <summary>
         /// Retrieves a detailed novel from it's Id

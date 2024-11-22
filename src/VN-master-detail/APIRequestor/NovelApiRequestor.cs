@@ -28,7 +28,7 @@ namespace APIRequestor
             return novel;
         }
 
-        public async Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria)
+        public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
             BasicResultsDTO? novels = null;
             HttpResponseMessage response = await client.SendAsync(
@@ -43,7 +43,7 @@ namespace APIRequestor
             {
                 novels = await response.Content.ReadFromJsonAsync<BasicResultsDTO>();
             }
-            return novels?.results;
+            return novels;
         }
 
         public async Task<BasicNovelDTO?> GetNovelById(string id)
@@ -60,7 +60,9 @@ namespace APIRequestor
             return novel;
         }
 
-        public async Task<IEnumerable<BasicNovelDTO?>?> GetNovelByCriteria(int index, int count, string which, string value)
+        // TODO : This requests wont work like that.
+        // I just need to get the project to compile
+        public async Task<BasicResultsDTO?> GetNovelByCriteria(int index, int count, string which, string value)
         {
             List<BasicNovelDTO?>? novels = null;
             HttpResponseMessage response = await client.SendAsync(
@@ -77,15 +79,15 @@ namespace APIRequestor
                     .ToListAsync();
                 novels.RemoveAll(item => item == null);
             }
-            return novels;
+            return new BasicResultsDTO(novels, false);
         }
 
-        public Task<IEnumerable<SimpleUserNovelDTO?>?> GetNovelForUser(int index, int count, string userId)
+        public Task<BasicUserResultsDTO?> GetNovelForUser(int index, int count, string userId)
         {
             throw new NotImplementedException();
         }
 
-        public Task<IEnumerable<BasicNovelDTO?>?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
+        public Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
         {
             throw new NotImplementedException();
         }

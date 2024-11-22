@@ -36,11 +36,11 @@ namespace DataManagers
         public async Task<BasicNovel?> GetNovelById(string id)
             => (await _novelRequestor.GetNovelById(id))?.ToModel();
 
-        public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria)
-            => (await _novelRequestor.GetNovelByOrder(index, count, criteria)).ToModels();
+        public async Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria)
+            => (await _novelRequestor.GetNovelByOrder(index, count, criteria)).ToTuple();
 
-        public async Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name)
-            => (await _novelRequestor.GetNovelByOrder(index, count, criteria, name)).ToModels();
+        public async Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria, string name)
+            => (await _novelRequestor.GetNovelByOrder(index, count, criteria, name)).ToTuple();
 
         public async Task<bool> Login(string apiKey)
         {
@@ -55,11 +55,10 @@ namespace DataManagers
         public Task<bool> IsLoggedIn()
             => Task.Run(() => _user != null);
 
-        public async Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
+        public async Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
         {
-            if (_user == null) return [];
-            var retrieved = await _novelRequestor.GetNovelForUser(index, count, _user.UserId);
-            return retrieved == null ? [] : retrieved.ToModels();
+            if (_user == null) return ([], false);
+            return (await _novelRequestor.GetNovelForUser(index, count, _user.UserId)).ToTuple();
         }
 
         public async Task<bool> AddNovelToUserList(string novelId)

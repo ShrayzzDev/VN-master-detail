@@ -10,9 +10,9 @@ namespace DTO.Extensions
 {
     public static class SimpleUserNovelExtensions
     {
-        public static SimpleUserNovel ToModel(this SimpleUserNovelDTO dto)
+        public static BasicUserNovel ToModel(this BasicUserNovelDTO dto)
         {
-            return new SimpleUserNovel(
+            return new BasicUserNovel(
                 dto.id,
                 dto.image == null ? new Model.Image() : dto.image.ToModel(),
                 dto.description,
@@ -25,12 +25,12 @@ namespace DTO.Extensions
             );
         }
 
-        public static IEnumerable<SimpleUserNovel> ToModels(this IEnumerable<SimpleUserNovelDTO?> dtos)
+        public static IEnumerable<BasicUserNovel> ToModels(this IEnumerable<BasicUserNovelDTO?> dtos)
         {
-            var list = new List<SimpleUserNovel>(dtos.Count());
+            var list = new List<BasicUserNovel>(dtos.Count());
             foreach (var dto in dtos)
             {
-                if (dto == null) list.Add(new SimpleUserNovel());
+                if (dto == null) list.Add(new BasicUserNovel());
                 else list.Add(dto.ToModel());
             }
             return list;
