@@ -18,6 +18,11 @@ namespace NullInterfaces
             throw new NotImplementedException();
         }
 
+        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
+        {
+            throw new NotImplementedException();
+        }
+
         public Task<bool> DeleteNovelFromUser(string novelId)
         {
             throw new NotImplementedException();
@@ -52,6 +57,11 @@ namespace NullInterfaces
         }
 
         public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetUserGradeToNovel(string novelId)
         {
             throw new NotImplementedException();
         }

@@ -210,5 +210,31 @@ namespace Stub
                 return novels.Exists((n) => n.id.Equals(novelId));
             });
         }
+
+        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        {
+            return Task.Run(() =>
+            {
+                var userExists = _userNovels.TryGetValue(userId, out List<SimpleUserNovelDTO>? novels);
+                if (!userExists || novels is null) return false;
+                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                if (!isIn) return false;
+                novels.First((n) => n.id.Equals(novelId)).vote = newGrade;
+                return true;
+            });
+        }
+
+        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        {
+            return Task.Run(() =>
+            {
+                var userExists = _userNovels.TryGetValue(userId, out List<SimpleUserNovelDTO>? novels);
+                if (!userExists || novels is null) return 0;
+                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                if (!isIn) return 0;
+                var novel = novels.First((n) => n.id.Equals(novelId));
+                return novel.vote == null ? 0 : novel.vote.Value;
+            });
+        }
     }
 }

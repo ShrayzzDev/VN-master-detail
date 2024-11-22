@@ -104,5 +104,15 @@ namespace APIRequestor
         {
             throw new NotImplementedException();
         }
+
+        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        {
+            throw new NotImplementedException();
+        }
+
+        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        {
+            throw new NotImplementedException();
+        }
     }
 }

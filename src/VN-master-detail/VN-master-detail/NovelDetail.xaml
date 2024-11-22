@@ -78,12 +78,37 @@
                        Margin="0,10,0,10"/>
                 <VerticalStackLayout
                     IsVisible="{Binding IsUserConnected}">
+                    <VerticalStackLayout
+                        IsVisible="{Binding IsInUserList}">
+                        <VerticalStackLayout.GestureRecognizers>
+                            <TapGestureRecognizer
+                                Command="{Binding ReverseEntry}"/>
+                        </VerticalStackLayout.GestureRecognizers>
+                        <Label
+                            FontSize="22"
+                            Margin="5"
+                            IsVisible="{Binding IsEntry,
+                                Converter={x:StaticResource InversedBool}}"
+                            Text="{Binding UserGrade,
+                                StringFormat='Your grade: {0}'}"/>
+                        <HorizontalStackLayout
+                            IsVisible="{Binding IsEntry}">
+                            <Entry
+                                Text="{Binding UserGrade}"
+                                Margin="5"/>
+                            <Button
+                                Text="Accept"
+                                Margin="5"
+                                Command="{Binding SetNovelGrade}"/>
+                        </HorizontalStackLayout>
+                        <Button
+                            BackgroundColor="Red"
+                            Text="Delete from user list"
+                            Command="{Binding DeleteNovelFromUser}"
+                            Margin="5"/>
+                    </VerticalStackLayout>
                     <Button
-                        BackgroundColor="Red"
-                        Text="Delete from user list"
-                        IsVisible="{Binding IsInUserList}"
-                        Command="{Binding DeleteNovelFromUser}"/>
-                    <Button
+                        Margin="5"
                         BackgroundColor="Green"
                         Text="Add to user list"
                         Command="{Binding AddNovelToUser}"

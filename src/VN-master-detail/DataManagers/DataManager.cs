@@ -79,5 +79,17 @@ namespace DataManagers
             if (ConnectedUser == null) return false;
             return await _novelRequestor.DeleteNovelFromUser(novelId, ConnectedUser.ApiKey);
         }
+
+        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
+        {
+            if (ConnectedUser == null) return Task.FromResult(false);
+            return _novelRequestor.ChangeUserGradeToNovel(novelId, ConnectedUser.UserId, newGrade);
+        }
+
+        public Task<int> GetUserGradeToNovel(string novelId)
+        {
+            if (ConnectedUser == null) return Task.FromResult(0);
+            return _novelRequestor.GetUserGradeToNovel(novelId, ConnectedUser.UserId);
+        }
     }
 }

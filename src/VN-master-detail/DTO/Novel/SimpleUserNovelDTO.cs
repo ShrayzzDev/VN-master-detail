@@ -20,12 +20,12 @@ namespace DTO.Novel
         /// When the user voted.
         /// Null if not.
         /// </summary>
-        public int? voted { get; private set; }
+        public int? voted { get; set; }
 
         /// <summary>
         /// Between 10-100
         /// </summary>
-        public int? vote { get; private set; }
+        public int? vote { get; set; }
 
         public SimpleUserNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
             : base(id, image, description, title, average, developpers)

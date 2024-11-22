@@ -16,6 +16,7 @@ namespace ViewModel.Novels
 
         private DetailedNovel _novel = new();
 
+        // TODO : Put this in another VM
         private bool _isUserConnected;
 
         public bool IsUserConnected 
@@ -24,12 +25,31 @@ namespace ViewModel.Novels
             private set => SetProperty(ref _isUserConnected, value);
         }
 
+
+        // TODO : Put this in another VM
         private bool _isInUserList;
 
         public bool IsInUserList 
         {
             get => _isInUserList;
             private set => SetProperty(ref _isInUserList, value);
+        }
+
+        // TODO : Put this in another VM
+        private int _userGrade = 0;
+
+        public int UserGrade
+        {
+            get => _userGrade;
+            set => SetProperty(ref _userGrade, value);
+        }
+
+        private bool _isEntry;
+
+        public bool IsEntry
+        {
+            get => _isEntry;
+            set => SetProperty(ref _isEntry, value);
         }
 
         public DetailedNovel Novel
@@ -117,6 +137,10 @@ namespace ViewModel.Novels
 
         public ICommand DeleteNovelFromUser { get; private set; }
 
+        public ICommand SetNovelGrade { get; private set; }
+
+        public ICommand ReverseEntry { get; private set; }
+
         public DetailedNovelVM(IDataManager<User> dataManager)
         {
             _dataManager = dataManager;
@@ -133,6 +157,7 @@ namespace ViewModel.Novels
                     if (retrieved == null) return;
                     IsUserConnected = await _dataManager.IsLoggedIn();
                     IsInUserList = await _dataManager.DoesUserHaveNovel(id);
+                    if (_isInUserList) UserGrade = await _dataManager.GetUserGradeToNovel(id);
                     Novel = retrieved;
                 }
             );
@@ -145,6 +170,19 @@ namespace ViewModel.Novels
             DeleteNovelFromUser = new AsyncRelayCommand(
                 async () => IsInUserList = await _dataManager.DeleteNovelFromUser(_novel.Id),
                 canExecute: () => _dataManager.IsLoggedIn().Result
+            );
+
+            SetNovelGrade = new AsyncRelayCommand(
+                async () =>
+                {
+                    if (_userGrade < 10 || _userGrade > 100) return;
+                    if (!await _dataManager.ChangeUserGradeToNovel(_novel.Id, _userGrade)) return;
+                    ReverseEntry.Execute(null);
+                }
+            );
+
+            ReverseEntry = new RelayCommand(
+                () => IsEntry = !IsEntry
             );
         }
     }

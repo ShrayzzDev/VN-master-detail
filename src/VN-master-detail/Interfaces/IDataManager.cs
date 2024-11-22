@@ -103,5 +103,20 @@ namespace Interfaces
         /// <returns></returns>
         public Task<bool> DoesUserHaveNovel(string novelId);
 
+        /// <summary>
+        /// Changes the grade a user gave to a Novel.
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <param name="newGrade"></param>
+        /// <returns></returns>
+        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade);
+
+        /// <summary>
+        /// Gets the grade a User has set to a novel.
+        /// </summary>
+        /// <param name="novelId">Id of the novel</param>
+        /// <returns></returns>
+        public Task<int> GetUserGradeToNovel(string novelId);
+
     }
 }
