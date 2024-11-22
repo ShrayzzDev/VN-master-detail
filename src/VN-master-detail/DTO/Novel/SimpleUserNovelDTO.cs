@@ -34,5 +34,8 @@ namespace DTO.Novel
             this.voted = voted;
             this.vote = vote;
         }
+
+        public SimpleUserNovelDTO()
+            : this("", new ImageDTO(), "", "", 0, [], 0, 0, 0) { }
     }
 }
