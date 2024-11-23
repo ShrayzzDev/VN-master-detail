@@ -130,5 +130,8 @@ namespace DTO.Novel
             this.length_votes = length_votes;
             this.votecount = votecount;
         }
+
+        public DetailedNovelDTO()
+            : this("", new ImageDTO(), "", "", [], [], 0, "", [], "", 0, "", [], [], 0, 0, 0, 0) { }
     }
 }

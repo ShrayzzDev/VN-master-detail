@@ -43,6 +43,21 @@ while (choice != "99")
             Console.WriteLine(userNovels?.ToString());
             break;
 
+        case "4":
+            Console.WriteLine("Which game ? (whithout starting v) ");
+            value = "v" + Console.ReadLine();
+            var novel = await nRequestor.GetDetailedNovelById(value);
+            if (novel is not null)
+            {
+                Console.WriteLine(novel.ToString());
+            }
+            else
+            {
+                Console.WriteLine("wrog !");
+            }
+            break;
+
+
         case "99":
             Console.WriteLine("Exiting . . .");
             break;

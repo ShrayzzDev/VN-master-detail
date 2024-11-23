@@ -53,7 +53,7 @@ namespace Utils
                                                                        "vote\"";
 
         public static readonly string DetailedNovelFields = "\"fields\" : \"" +
-                                                                       "alttile, " +
+                                                                       "alttitle, " +
                                                                        "aliases, " +
                                                                        "olang, " +
                                                                        "devstatus, " +
@@ -69,9 +69,10 @@ namespace Utils
                                                                        "titles.latin, " +
                                                                        "description, " +
                                                                        "average, " +
-                                                                       "developpers.id, " +
-                                                                       "developpers.name, developpers.type, " +
-                                                                       "developpers.description, " +
+                                                                       "developers.id, " +
+                                                                       "developers.name, " +
+                                                                       "developers.type, " +
+                                                                       "developers.description, " +
                                                                        "image.id, image.url, " +
                                                                        "image.dims, " +
                                                                        "image.sexual, " +

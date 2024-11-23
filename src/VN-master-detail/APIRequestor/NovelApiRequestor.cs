@@ -20,10 +20,11 @@ namespace APIRequestor
             DetailedNovelDTO? novel = null;
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
-                HttpRequestBodies.DetailedNovelFields));
+                "{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.DetailedNovelFields + "}"));
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
-                novel = await response.Content.ReadFromJsonAsync<DetailedNovelDTO>();
+                novel = (await response.Content.ReadFromJsonAsync<DetailedResultDTO>())?.results.First();
             }
             return novel;
         }
