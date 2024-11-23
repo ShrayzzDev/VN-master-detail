@@ -186,7 +186,7 @@ namespace Stub
             {
                 var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
-                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (isIn) return false;
                 novels.Add(_basicNovels.First((n) => n.id.Equals(novelId)).AsUserNovel());
                 return true;
@@ -199,9 +199,9 @@ namespace Stub
             {
                 var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
-                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;
-                novels.Remove(novels.First((n) => n.id.Equals(novelId)));
+                novels.Remove(novels.First((n) => n.vn.id.Equals(novelId)));
                 return true;
             });
         }
@@ -211,7 +211,7 @@ namespace Stub
             return Task.Run(() =>
             {
                 if (!_userNovels.TryGetValue(userid, out var novels)) return false;
-                return novels.Exists((n) => n.id.Equals(novelId));
+                return novels.Exists((n) => n.vn.id.Equals(novelId));
             });
         }
 
@@ -221,9 +221,9 @@ namespace Stub
             {
                 var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
-                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;
-                novels.First((n) => n.id.Equals(novelId)).vote = newGrade;
+                novels.First((n) => n.vn.id.Equals(novelId)).vote = newGrade;
                 return true;
             });
         }
@@ -234,9 +234,9 @@ namespace Stub
             {
                 var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return 0;
-                var isIn = novels.Exists(n => n.id.Equals(novelId));
+                var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return 0;
-                var novel = novels.First((n) => n.id.Equals(novelId));
+                var novel = novels.First((n) => n.vn.id.Equals(novelId));
                 return novel.vote == null ? 0 : novel.vote.Value;
             });
         }

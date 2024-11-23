@@ -92,7 +92,6 @@ namespace APIRequestor
                 $"\"results\": {count}, " +
                 HttpRequestBodies.BasicUserNovelFields + "}")
             );
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
                 novels = await response.Content.ReadFromJsonAsync<BasicUserResultsDTO>();

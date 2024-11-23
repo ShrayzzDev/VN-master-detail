@@ -8,8 +8,9 @@ using System.Threading.Tasks;
 
 namespace DTO.Novel
 {
-    public class BasicUserNovelDTO : BaseNovelDTO
+    public class BasicUserNovelDTO
     {
+        public string id { get; set; }
         /// <summary>
         /// When was the novel added to the list.
         /// NOTE : This is an Unix Timestamp.
@@ -27,12 +28,14 @@ namespace DTO.Novel
         /// </summary>
         public int? vote { get; set; }
 
+        public BaseNovelDTO vn { get; set; }
+
         public BasicUserNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
-            : base(id, image, description, title, average, developpers)
         {
             this.added = added;
             this.voted = voted;
             this.vote = vote;
+            vn = new BaseNovelDTO(id, image, description, title, average, developpers);
         }
 
         public BasicUserNovelDTO()
@@ -40,9 +43,9 @@ namespace DTO.Novel
 
         public override string ToString()
         {
-            return id + '\n'
-                + title + "\n"
-                + average + "\n"
+            return vn.id + '\n'
+                + vn.title + "\n"
+                + vn.average + "\n"
                 + voted + "\n"
                 + vote + "\n";
         }

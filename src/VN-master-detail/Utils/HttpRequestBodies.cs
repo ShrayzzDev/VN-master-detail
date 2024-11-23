@@ -14,6 +14,7 @@ namespace Utils
     public static class HttpRequestBodies
     {
         public static readonly string BasicNovelFields = "\"fields\" : \"" +
+                                                                       "id, " + 
                                                                        "title, " +
                                                                        "titles.title, " +
                                                                        "titles.latin, " +
@@ -31,6 +32,7 @@ namespace Utils
                                                                        "image.thumbnail_dims\"";
 
         public static readonly string BasicUserNovelFields = "\"fields\" : \"" +
+                                                                       "vn.id, " +
                                                                        "vn.title, " +
                                                                        "vn.description, " +
                                                                        "vn.average, " +

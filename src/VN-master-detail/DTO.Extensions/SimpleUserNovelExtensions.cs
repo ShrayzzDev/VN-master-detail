@@ -14,11 +14,11 @@ namespace DTO.Extensions
         {
             return new BasicUserNovel(
                 dto.id,
-                dto.image == null ? new Model.Image() : dto.image.ToModel(),
-                dto.description,
-                dto.title,
-                dto.average,
-                dto.developers.ToModels(),
+                dto.vn.image == null ? new Model.Image() : dto.vn.image.ToModel(),
+                dto.vn.description,
+                dto.vn.title,
+                dto.vn.average,
+                dto.vn.developers.ToModels(),
                 dto.added,
                 dto.voted,
                 dto.vote

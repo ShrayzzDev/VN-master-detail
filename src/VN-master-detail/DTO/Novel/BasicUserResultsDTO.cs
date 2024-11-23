@@ -16,7 +16,7 @@ namespace DTO.Novel
 
         public override string ToString()
         {
-            StringBuilder stringBuilder = new StringBuilder();
+            StringBuilder stringBuilder = new();
             foreach (var item in results)
             {
                 stringBuilder.Append(item.ToString());

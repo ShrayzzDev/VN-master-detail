@@ -35,12 +35,12 @@ while (choice != "99")
 
         case "2":
             var novels = await nRequestor.GetNovelByOrder(1, 10, Criteria.Stars);
-            novels?.ToString();
+            Console.WriteLine(novels?.ToString());
             break;
 
         case "3":
             var userNovels = await nRequestor.GetNovelForUser(1, 10, "u287204");
-            userNovels?.ToString();
+            Console.WriteLine(userNovels?.ToString());
             break;
 
         case "99":
