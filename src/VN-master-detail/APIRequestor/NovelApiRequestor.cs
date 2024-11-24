@@ -100,9 +100,23 @@ namespace APIRequestor
             return novels;
         }
 
-        public Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
+        public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
         {
-            throw new NotImplementedException();
+            BasicResultsDTO? novels = null;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
+                $"\"filters\": [\"title\", \"=\", \"{name}\"]" +
+                $"{{\"sort\": \"{criteria.AsString()}\", " +
+                $"\"page\": {index}, " +
+                $"\"results\": {count}, " +
+                HttpRequestBodies.BasicNovelFields + "}")
+            );
+
+            if (response.IsSuccessStatusCode)
+            {
+                novels = await response.Content.ReadFromJsonAsync<BasicResultsDTO>();
+            }
+            return novels;
         }
 
         public Task<bool> AddNovelToUserList(string novelId, string apiToken)

@@ -17,6 +17,8 @@ while (choice != "99")
     Console.WriteLine("1. GetGameById");
     Console.WriteLine("2. GetNovelByOrder");
     Console.WriteLine("3. GetNovelsForUser");
+    Console.WriteLine("4. GetDetailedNovel");
+    Console.WriteLine("5. GetNovelsByOrderWithName");
     Console.WriteLine("");
     Console.WriteLine("99. Close");
     Console.WriteLine("----------------------");
@@ -55,6 +57,11 @@ while (choice != "99")
             {
                 Console.WriteLine("wrog !");
             }
+            break;
+
+        case "5":
+            var novelsWithName = await nRequestor.GetNovelByOrder(1, 10, Criteria.Name, "katawa");
+            Console.WriteLine(novelsWithName?.ToString());
             break;
 
 
