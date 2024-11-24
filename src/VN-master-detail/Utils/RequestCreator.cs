@@ -22,8 +22,6 @@ namespace Utils
             if (!string.IsNullOrWhiteSpace(authtoken))
                 req.Headers.Authorization = new AuthenticationHeaderValue("token", authtoken);
 
-            Console.WriteLine(req.Headers);
-
             return req;
         }
     }

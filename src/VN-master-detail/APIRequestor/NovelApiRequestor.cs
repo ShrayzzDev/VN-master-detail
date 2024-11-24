@@ -8,7 +8,9 @@ using System.Net;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Net.Http.Json;
+using System.Reflection;
 using System.Text;
+using System.Xml.Linq;
 using Utils;
 
 namespace APIRequestor
@@ -124,9 +126,18 @@ namespace APIRequestor
             return novels;
         }
 
-        public Task<bool> AddNovelToUserList(string novelId, string apiToken)
+        public async Task<bool> AddNovelToUserList(string novelId, string apiToken)
         {
-            throw new NotImplementedException();
+            BasicResultsDTO? novels = null;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, $"ulist/{novelId}",
+                "{" + "}",
+                HttpMethod.Patch,
+                apiToken)
+            );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+            return response.IsSuccessStatusCode;
         }
 
         public Task<bool> DoesUserHaveNovel(string novelId, string userid)

@@ -19,7 +19,6 @@ namespace APIRequestor
             UserDTO? novel = null;
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "authinfo", "", HttpMethod.Get, ApiKey));
-            Console.WriteLine("raoueeeee: " + await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
                 novel = await response.Content.ReadFromJsonAsync<UserDTO>();

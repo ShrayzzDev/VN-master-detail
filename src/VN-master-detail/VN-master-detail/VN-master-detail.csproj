@@ -64,6 +64,7 @@
 	</ItemGroup>
 
 	<ItemGroup>
+	  <ProjectReference Include="..\APIRequestor\APIRequestor.csproj" />
 	  <ProjectReference Include="..\DataManagers\DataManagers.csproj" />
 	  <ProjectReference Include="..\Interfaces\Interfaces.csproj" />
 	  <ProjectReference Include="..\Model\Model.csproj" />

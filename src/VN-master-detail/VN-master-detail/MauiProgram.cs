@@ -1,4 +1,5 @@
-﻿using CommunityToolkit.Maui;
+﻿using APIRequestor;
+using CommunityToolkit.Maui;
 using Interfaces;
 using Microsoft.Extensions.Logging;
 using Model;
@@ -31,8 +32,8 @@ namespace VN_master_detail
             builder.Services.AddScoped<Login>();
 
             builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
-            builder.Services.AddScoped<INovelRequestor, NovelStub>();
-            builder.Services.AddScoped<IUserRequestor, UserStub>();
+            builder.Services.AddScoped<INovelRequestor, NovelApiRequestor>();
+            builder.Services.AddScoped<IUserRequestor, UserApiRequestor>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
