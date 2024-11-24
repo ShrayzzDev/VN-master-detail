@@ -7,6 +7,7 @@ using Stub;
 using Utils;
 
 INovelRequestor nRequestor = new NovelApiRequestor();
+IUserRequestor uRequestor = new UserApiRequestor();
 
 string? choice = "";
 string? value;
@@ -19,6 +20,7 @@ while (choice != "99")
     Console.WriteLine("3. GetNovelsForUser");
     Console.WriteLine("4. GetDetailedNovel");
     Console.WriteLine("5. GetNovelsByOrderWithName");
+    Console.WriteLine("6. Login");
     Console.WriteLine("");
     Console.WriteLine("99. Close");
     Console.WriteLine("----------------------");
@@ -62,6 +64,13 @@ while (choice != "99")
         case "5":
             var novelsWithName = await nRequestor.GetNovelByOrder(1, 10, Criteria.Name, "katawa");
             Console.WriteLine(novelsWithName?.ToString());
+            break;
+
+        case "6":
+            var key = Console.ReadLine();
+            Console.WriteLine(key);
+            var login = await uRequestor.Login(key ?? string.Empty);
+            Console.WriteLine(login?.ToString());
             break;
 
 

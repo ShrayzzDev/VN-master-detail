@@ -1,15 +1,16 @@
-﻿using System.Net.Mime;
+﻿using System.Net.Http.Headers;
+using System.Net.Mime;
 using System.Text;
 
 namespace Utils
 {
     public static class RequestCreator
     {
-        public static HttpRequestMessage GetHttpRequest(Uri baseUri, string route, string body)
+        public static HttpRequestMessage GetHttpRequest(Uri baseUri, string route, string body, HttpMethod method, string authtoken = "")
         {
             var req = new HttpRequestMessage
             {
-                Method = HttpMethod.Post,
+                Method = method,
                 RequestUri = new Uri(baseUri, route),
                 Content = new StringContent(
                     body,
@@ -17,7 +18,12 @@ namespace Utils
                     MediaTypeNames.Application.Json
                 )
             };
-            Console.WriteLine( req.RequestUri );
+
+            if (!string.IsNullOrWhiteSpace(authtoken))
+                req.Headers.Authorization = new AuthenticationHeaderValue("token", authtoken);
+
+            Console.WriteLine(req.Headers);
+
             return req;
         }
     }

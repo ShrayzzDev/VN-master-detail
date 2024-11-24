@@ -20,8 +20,8 @@ namespace APIRequestor
             DetailedNovelDTO? novel = null;
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
-                "{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.DetailedNovelFields + "}"));
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
+                "{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.DetailedNovelFields + "}",
+                HttpMethod.Post));  
             if (response.IsSuccessStatusCode)
             {
                 novel = (await response.Content.ReadFromJsonAsync<DetailedResultDTO>())?.results.First();
@@ -37,7 +37,8 @@ namespace APIRequestor
                 $"{{\"sort\": \"{criteria.AsString()}\", " +
                 $"\"page\": {index}, " +
                 $"\"results\": {count}, " +
-                HttpRequestBodies.BasicNovelFields + "}")
+                HttpRequestBodies.BasicNovelFields + "}",
+                HttpMethod.Post)
             );
 
             if (response.IsSuccessStatusCode)
@@ -52,7 +53,8 @@ namespace APIRequestor
             BasicNovelDTO? novel = null;
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn", 
-                UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.BasicNovelFields + "}"))
+                UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + id + "\"], " + HttpRequestBodies.BasicNovelFields + "}"),
+                HttpMethod.Post)
             );
             if (response.IsSuccessStatusCode)
             {
@@ -71,7 +73,8 @@ namespace APIRequestor
                 $"\"filters\": [\"{which}\", \"=\", \"{value }\"],\n" +
                 $"\"page\": {index},\n" +
                 $"\"result\": {count}," +
-                HttpRequestBodies.BasicNovelFields)
+                HttpRequestBodies.BasicNovelFields,
+                HttpMethod.Post)
             );
             if (response.IsSuccessStatusCode)
             {
@@ -91,7 +94,8 @@ namespace APIRequestor
                 $"\"user\": \"{userId}\", " +
                 $"\"page\": {index}, " +
                 $"\"results\": {count}, " +
-                HttpRequestBodies.BasicUserNovelFields + "}")
+                HttpRequestBodies.BasicUserNovelFields + "}",
+                HttpMethod.Post)
             );
             if (response.IsSuccessStatusCode)
             {
@@ -109,7 +113,8 @@ namespace APIRequestor
                 $"{{\"sort\": \"{criteria.AsString()}\", " +
                 $"\"page\": {index}, " +
                 $"\"results\": {count}, " +
-                HttpRequestBodies.BasicNovelFields + "}")
+                HttpRequestBodies.BasicNovelFields + "}",
+                HttpMethod.Post)
             );
 
             if (response.IsSuccessStatusCode)
