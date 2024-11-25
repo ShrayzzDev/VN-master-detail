@@ -175,9 +175,21 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
-        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        public async Task<int> GetUserGradeToNovel(string novelId, string userId)
         {
-            throw new NotImplementedException();
+            int grade = 0;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
+                UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + novelId + "\"], " +
+                "\"fields\" : \"vote" + "}"),
+                HttpMethod.Post)
+            );
+            if (response.IsSuccessStatusCode)
+            {
+                var result = await response.Content.ReadFromJsonAsync<VoteResult>();
+                grade = result == null ? 0 : result.vn.vote;
+            }
+            return grade;
         }
     }
 }
