@@ -50,7 +50,31 @@ namespace Stub
                 new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                 [new SimpleTitleDTO("latin", "title")],
                 "One of the greatest VN out there, you should play it fr.",
-                "Danganronpa",
+                "Danganronpa: Trigger Happy Havoc",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v5",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Danganronpa 2: Goodbye Despair",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v6",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Danganronpa V3: Killing Harmony",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v4",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "The Fruit of Grisaia",
                 [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
@@ -214,7 +238,7 @@ namespace Stub
                 new BasicUserNovelDTO("v9",
                     new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                     "One of the greatest VN out there, you should play it fr.",
-                    "The Labyrinth of Grisaia",
+                    "The Eden of Grisaia",
                     100,
                     [new SimpleProducerDTO("prodid", "name", "type", "description")],
                     100,
@@ -237,7 +261,9 @@ namespace Stub
         public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria, string name)
             => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
-                .SortByCriteria(criteria).ToList(),
+                .SortByCriteria(criteria)
+                .Skip(count * index)
+                .Take(count).ToList(),
                 (_basicNovels.Count / count) <= index));
 
         public Task<BasicNovelDTO?> GetNovelById(string id)
