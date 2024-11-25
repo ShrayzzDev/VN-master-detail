@@ -140,6 +140,86 @@ namespace Stub
                     100,
                     1,
                     99
+                ),
+                new BasicUserNovelDTO("v2",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Steins;Gate",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v3",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Steins;Gate 0",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v4",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa: Trigger Happy Havoc",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v5",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa 2 : Goodbye Despair",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v6",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa V3 : Killing Harmony",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v7",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Fruit of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v8",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Labyrinth of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v9",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Labyrinth of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
                 )
             ];
             _userNovels.Add("u1", userList);
@@ -158,7 +238,7 @@ namespace Stub
             => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
                 .SortByCriteria(criteria).ToList(),
-                (_basicNovels.Count / count) + 1 <= index));
+                (_basicNovels.Count / count) <= index));
 
         public Task<BasicNovelDTO?> GetNovelById(string id)
             => Task.Run(() => _basicNovels
@@ -173,11 +253,13 @@ namespace Stub
             => Task.Run(() =>
             {
                 if (_userNovels.TryGetValue(userId, out var novels))
+                {
                     return new BasicUserResultsDTO(
                         novels.Skip(index * count).Take(count).ToList(),
-                        (novels.Count / count) + 1 <= index
+                        ((novels.Count - 1) / count) <= index
                     );
-                return new BasicUserResultsDTO(new List<BasicUserNovelDTO>(), false);
+                }
+                return new BasicUserResultsDTO([], true);
             });
 
         public Task<bool> AddNovelToUserList(string novelId, string apiToken)

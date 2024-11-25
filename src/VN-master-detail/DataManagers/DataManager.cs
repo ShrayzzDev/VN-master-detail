@@ -57,7 +57,7 @@ namespace DataManagers
 
         public async Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
         {
-            if (_user == null) return ([], false);
+            if (_user == null) return ([], true);
             return (await _novelRequestor.GetNovelForUser(index, count, _user.UserId)).ToTuple();
         }
 

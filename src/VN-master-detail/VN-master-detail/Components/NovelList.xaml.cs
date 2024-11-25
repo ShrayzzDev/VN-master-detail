@@ -1,5 +1,7 @@
+using CommunityToolkit.Mvvm.Input;
 using NullInterfaces;
 using System.Collections.ObjectModel;
+using System.Windows.Input;
 using ViewModel.Novels;
 using VN_master_detail.ViewModel;
 

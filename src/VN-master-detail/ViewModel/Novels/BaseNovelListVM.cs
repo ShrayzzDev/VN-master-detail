@@ -38,7 +38,7 @@ namespace ViewModel.Novels
             set => SetProperty(ref _page, value);
         }
 
-        private int _count = 8;
+        private int _count = 6;
 
         public int Count
         {
@@ -77,6 +77,7 @@ namespace ViewModel.Novels
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
                     _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
             );
 
@@ -90,6 +91,7 @@ namespace ViewModel.Novels
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
                     _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
             );
 
@@ -98,12 +100,13 @@ namespace ViewModel.Novels
                 {
                     _list.Clear();
                     Debug.Print(SearchedName);
-                    var retrieved = await _manager.GetNovels(0, 10, DTO.Criteria.Name, SearchedName);
+                    var retrieved = await _manager.GetNovels(_page, _count, DTO.Criteria.Name, SearchedName);
                     foreach(var novel in retrieved.Item1)
                     {
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
                     _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
             );
 
@@ -117,8 +120,7 @@ namespace ViewModel.Novels
                     if (command == null) return;
                     Page += 1;
                     command.Execute(null);
-                    ((RelayCommand)NextPage).NotifyCanExecuteChanged();
-                    ((RelayCommand)PreviousPage).NotifyCanExecuteChanged();
+                    ((RelayCommand<ICommand>)PreviousPage).NotifyCanExecuteChanged();
                 },
                 (ingored) => !_isMaxPage
             );
@@ -130,8 +132,7 @@ namespace ViewModel.Novels
                     if (command == null) return;
                     Page -= 1;
                     command.Execute(null);
-                    ((RelayCommand)NextPage).NotifyCanExecuteChanged();
-                    ((RelayCommand)PreviousPage).NotifyCanExecuteChanged();
+                    ((RelayCommand<ICommand>)PreviousPage).NotifyCanExecuteChanged();
                 },
                 (ignored) => _page > 0
             );
