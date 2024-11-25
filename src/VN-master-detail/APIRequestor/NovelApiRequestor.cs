@@ -135,7 +135,6 @@ namespace APIRequestor
                 HttpMethod.Patch,
                 apiToken)
             );
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
 
             return response.IsSuccessStatusCode;
         }

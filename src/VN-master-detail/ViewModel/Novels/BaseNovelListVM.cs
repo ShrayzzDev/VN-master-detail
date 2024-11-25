@@ -99,7 +99,6 @@ namespace ViewModel.Novels
                 async () =>
                 {
                     _list.Clear();
-                    Debug.Print(SearchedName);
                     var retrieved = await _manager.GetNovels(_page, _count, DTO.Criteria.Name, SearchedName);
                     foreach(var novel in retrieved.Item1)
                     {
