@@ -145,9 +145,18 @@ namespace APIRequestor
             throw new NotImplementedException();
         }
 
-        public Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
+        public async Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
         {
-            throw new NotImplementedException();
+            BasicResultsDTO? novels = null;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, $"ulist/{novelId}",
+                "{" + "}",
+                HttpMethod.Delete,
+                apiToken)
+            );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+            return response.IsSuccessStatusCode;
         }
 
         public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)

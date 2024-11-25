@@ -12,6 +12,7 @@ IUserRequestor uRequestor = new UserApiRequestor();
 string? choice = "";
 string? value;
 string key = "";
+string novelId = string.Empty;
 
 while (choice != "99")
 {
@@ -23,6 +24,7 @@ while (choice != "99")
     Console.WriteLine("5. GetNovelsByOrderWithName");
     Console.WriteLine("6. Login");
     Console.WriteLine("7. AddNovelToUser");
+    Console.WriteLine("8. DeleteNovelFromUser");
     Console.WriteLine("");
     Console.WriteLine("99. Close");
     Console.WriteLine("----------------------");
@@ -80,10 +82,22 @@ while (choice != "99")
             Console.WriteLine("Enter your API Token");
             key  = Console.ReadLine() ?? string.Empty;
             Console.WriteLine("Which novel ? (without v)");
-            var novelId = "v" + Console.ReadLine();
+            novelId = "v" + Console.ReadLine();
             Console.WriteLine(novelId);
             if (await nRequestor.AddNovelToUserList(novelId, key))
                 Console.WriteLine("Added !");
+            else
+                Console.WriteLine("Problem !");
+            break;
+
+        case "8":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Which novel ? (without v)");
+            novelId = "v" + Console.ReadLine();
+            Console.WriteLine(novelId);
+            if (await nRequestor.DeleteNovelFromUser(novelId, key))
+                Console.WriteLine("Deleted !");
             else
                 Console.WriteLine("Problem !");
             break;
