@@ -97,10 +97,10 @@ namespace Interfaces
         /// Changes the grade a user gave to a Novel.
         /// </summary>
         /// <param name="novelId">Id of the novel</param>
-        /// <param name="userId">Id of the user</param>
+        /// <param name="apiToken">Id of the user</param>
         /// <param name="newGrade"></param>
         /// <returns></returns>
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade);
+        public Task<bool> ChangeUserGradeToNovel(string novelId, string apiToken, int newGrade);
 
         /// <summary>
         /// Gets the grade a User has set to a novel.

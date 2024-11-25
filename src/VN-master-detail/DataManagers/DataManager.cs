@@ -82,7 +82,7 @@ namespace DataManagers
         public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
         {
             if (ConnectedUser == null) return Task.FromResult(false);
-            return _novelRequestor.ChangeUserGradeToNovel(novelId, ConnectedUser.UserId, newGrade);
+            return _novelRequestor.ChangeUserGradeToNovel(novelId, ConnectedUser.ApiKey, newGrade);
         }
 
         public Task<int> GetUserGradeToNovel(string novelId)

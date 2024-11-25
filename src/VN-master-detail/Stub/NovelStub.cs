@@ -215,11 +215,11 @@ namespace Stub
             });
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        public Task<bool> ChangeUserGradeToNovel(string novelId, string apiToken, int newGrade)
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;

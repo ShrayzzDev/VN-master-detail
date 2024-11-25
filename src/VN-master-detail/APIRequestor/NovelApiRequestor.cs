@@ -159,9 +159,20 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        public async Task<bool> ChangeUserGradeToNovel(string novelId, string apiToken, int newGrade)
         {
-            throw new NotImplementedException();
+            BasicResultsDTO? novels = null;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, $"ulist/{novelId}",
+                "{" +
+                $"\"vote\": {newGrade}" +
+                "}",
+                HttpMethod.Patch,
+                apiToken)
+            );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+
+            return response.IsSuccessStatusCode;
         }
 
         public Task<int> GetUserGradeToNovel(string novelId, string userId)
