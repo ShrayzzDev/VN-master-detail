@@ -163,7 +163,8 @@ namespace APIRequestor
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, $"ulist/{novelId}",
                 "{" +
-                $"\"vote\": {newGrade}" +
+                $"\"vote\": {newGrade}," +
+                $"\"labels_set\": [{label}]," +
                 "}",
                 HttpMethod.Patch,
                 apiToken)

@@ -110,7 +110,7 @@ while (choice != "99")
             Console.WriteLine("New grade: ");
             var grade = int.Parse(Console.ReadLine());
             Console.WriteLine(novelId);
-            if (await nRequestor.ChangeUserNovel(novelId, key, grade, 1))
+            if (await nRequestor.ChangeUserNovel(novelId, key, grade, 3))
                 Console.WriteLine("Modified !");
             else
                 Console.WriteLine("Problem !");
