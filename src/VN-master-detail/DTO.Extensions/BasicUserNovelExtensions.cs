@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Extensions
 {
-    public static class SimpleUserNovelExtensions
+    public static class BasicUserNovelExtensions
     {
         public static BasicUserNovel ToModel(this BasicUserNovelDTO dto)
         {
