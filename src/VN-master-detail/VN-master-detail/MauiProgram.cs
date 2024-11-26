@@ -32,8 +32,8 @@ namespace VN_master_detail
             builder.Services.AddScoped<Login>();
 
             builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
-            builder.Services.AddScoped<INovelRequestor, NovelApiRequestor>();
-            builder.Services.AddScoped<IUserRequestor, UserApiRequestor>();
+            builder.Services.AddScoped<INovelRequestor, NovelStub>();
+            builder.Services.AddScoped<IUserRequestor, UserStub>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
