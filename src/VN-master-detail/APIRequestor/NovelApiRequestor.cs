@@ -164,7 +164,7 @@ namespace APIRequestor
                 RequestCreator.GetHttpRequest(client.BaseAddress, $"ulist/{novelId}",
                 "{" +
                 $"\"vote\": {newGrade}," +
-                $"\"labels_set\": [{label}]," +
+                $"\"labels_set\": [{label}]" +
                 "}",
                 HttpMethod.Patch,
                 apiToken)
@@ -174,19 +174,21 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
+        public async Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken)
         {
             (int, int) result = (0, 0);
             HttpResponseMessage response = await client.SendAsync(
-                RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
+                RequestCreator.GetHttpRequest(client.BaseAddress, "ulist",
                 UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + novelId + "\"], " +
-                "\"fields\" : \"vote" + "}"),
-                HttpMethod.Post)
+                "\"fields\" : \"vote, labels.label, labels.id" + "\"}"),
+                HttpMethod.Post,
+                apiToken)
             );
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
-                var retrieved = await response.Content.ReadFromJsonAsync<UserNovelsInfosResult>();
-                result = (retrieved == null ? 0 : retrieved.vn.vote, retrieved == null ? 0 : retrieved.vn.label.id);
+                var retrieved = (await response.Content.ReadFromJsonAsync<UserNovelInfosResult>());
+                result = (retrieved == null ? 0 : retrieved.results.First().vote, retrieved == null ? 0 : retrieved.results.First().labels.First().id);
             }
             return result;
         }
