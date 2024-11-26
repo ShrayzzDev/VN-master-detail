@@ -132,6 +132,13 @@ while (choice != "99")
             labels.ToList().ForEach(label => Console.WriteLine(label.label));
             break;
 
+        case "12":
+            Console.WriteLine("Enter your user id");
+            var userId = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine(await nRequestor.DoesUserHaveNovel("v5154", userId));
+            Console.WriteLine(await nRequestor.DoesUserHaveNovel("v2", userId));
+            break;
+
         case "99":
             Console.WriteLine("Exiting . . .");
             break;

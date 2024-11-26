@@ -139,9 +139,28 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
-        public Task<bool> DoesUserHaveNovel(string novelId, string userid)
+        public async Task<bool> DoesUserHaveNovel(string novelId, string userId)
         {
-            throw new NotImplementedException();
+            bool result = false;
+            HttpResponseMessage response = await client.SendAsync(
+                RequestCreator.GetHttpRequest(client.BaseAddress, "ulist", "{" +
+                $"\"user\": \"{userId}\", " +
+                $"\"filters\": [\"id\", \"=\", \"{novelId}\"], " +
+                $"\"results\": 1" + "}",
+                HttpMethod.Post)
+            );
+            Console.WriteLine("{" +
+                $"\"user\": \"{userId}\", " +
+                $"\"filters\": [\"id\", \"=\", \"{novelId}\"], " +
+                $"\"page\": 0, " +
+                $"\"results\": 1" + "}");
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
+            if (response.IsSuccessStatusCode)
+            {
+                var retrieved = await response.Content.ReadFromJsonAsync<BasicUserResultsDTO>();
+                result = retrieved == null ? false : retrieved.results.Any();
+            }
+            return result;
         }
 
         public async Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
