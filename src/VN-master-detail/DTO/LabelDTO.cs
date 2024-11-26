@@ -8,8 +8,16 @@ namespace DTO
 {
     public class LabelDTO
     {
-        public int id { get; set; }
+        public int id { get; set; } = -1;
 
-        public string name { get; set; }
+        public string name { get; set; } = string.Empty;
+
+        public LabelDTO(int id, string name)
+        {
+            this.id = id;
+            this.name = name;
+        }
+
+        public LabelDTO() { }
     }
 }

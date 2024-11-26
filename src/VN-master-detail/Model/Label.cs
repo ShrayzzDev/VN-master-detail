@@ -11,5 +11,8 @@ namespace Model
         public int Id = id;
 
         public string Name = name;
+
+        public Label()
+            :this(0, "") { }
     }
 }

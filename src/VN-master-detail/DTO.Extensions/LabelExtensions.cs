@@ -15,5 +15,15 @@ namespace DTO.Extensions
                 dto.name
             );
         }
+
+        public static IEnumerable<Model.Label> ToModels(this IEnumerable<LabelDTO> dtos)
+        {
+            var list = new List<Model.Label>();
+            foreach (var dto in dtos)
+            {
+                list.Add(dto.ToModel());
+            }
+            return list;
+        }
     }
 }

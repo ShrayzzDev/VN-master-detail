@@ -20,6 +20,8 @@ namespace Stub
 
         private readonly Dictionary<string, List<BasicUserNovelDTO>> _tokenUserNovels = [];
 
+        private readonly Dictionary<string, Dictionary<string, int>> _userNovelLabels = [];
+
         public NovelStub()
         {
             _basicNovels.Add(new BasicNovelDTO("v1",
@@ -248,6 +250,16 @@ namespace Stub
             ];
             _userNovels.Add("u1", userList);
             _tokenUserNovels.Add("jean-jean-jean-jean", userList);
+            var dict = new Dictionary<string, int>()
+            {
+                { "v1", 0 },
+                { "v2", 1 },
+                { "v3", 0 },
+                { "v4", 1 },
+                { "v5", 0 },
+                { "v6", 1 },
+            };
+            _userNovelLabels.Add("u1", dict);
         }
 
         public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
@@ -323,7 +335,7 @@ namespace Stub
             });
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        public Task<bool> ChangeUserNovel(string novelId, string userId, int newGrade, int label)
         {
             return Task.Run(() =>
             {
@@ -332,20 +344,29 @@ namespace Stub
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;
                 novels.First((n) => n.vn.id.Equals(novelId)).vote = newGrade;
+                if (_userNovelLabels.TryGetValue(userId, out var dict) && dict != null && dict.TryGetValue(novelId, out _))
+                {
+                    _userNovelLabels[userId][novelId] = label;
+                }
                 return true;
             });
         }
 
-        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        public Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
         {
             return Task.Run(() =>
             {
                 var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
-                if (!userExists || novels is null) return 0;
+                if (!userExists || novels is null) return (0, 0);
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
-                if (!isIn) return 0;
+                if (!isIn) return (0, 0);
                 var novel = novels.First((n) => n.vn.id.Equals(novelId));
-                return novel.vote == null ? 0 : novel.vote.Value;
+                int labelId = 0;
+                if (_userNovelLabels.TryGetValue(userId, out var dict) && dict != null && dict.TryGetValue(novelId, out var value))
+                {
+                    labelId = value;
+                }
+                return novel.vote == null ? (0, 0) : (novel.vote.Value, labelId);
             });
         }
     }

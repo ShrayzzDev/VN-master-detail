@@ -149,12 +149,12 @@ namespace APIRequestor
             throw new NotImplementedException();
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string userId, int newGrade)
+        public Task<bool> ChangeUserNovel(string novelId, string userId, int newGrade, int label)
         {
             throw new NotImplementedException();
         }
 
-        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        public Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
         {
             throw new NotImplementedException();
         }

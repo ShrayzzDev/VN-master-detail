@@ -16,6 +16,20 @@ namespace Stub
             {"jean-jean-jean-jean", new UserDTO("Jean","u1",[]) }
         };
 
+        private Dictionary<string, IEnumerable<LabelDTO>> _labels = new()
+        {
+            {"jean-jean-jean-jean", [new(1, "Playing"), new(2,"Finished")] }
+        };
+
+        public Task<IEnumerable<LabelDTO>> GetLabels(string apiKey)
+        {
+            return Task.Run(() =>
+            {
+                if (_labels.TryGetValue(apiKey, out IEnumerable<LabelDTO>? labels))
+                    return labels;
+                return [];
+            });
+        }
 
         public Task<UserDTO?> Login(string ApiKey)
         {

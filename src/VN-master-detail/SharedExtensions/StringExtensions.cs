@@ -4,6 +4,8 @@ namespace SharedExtensions
 {
     public static class StringExtensions
     {
+        // TODO : Fix it, understood wrong the length of
+        // acutal API Keys given by VNDB. This wont work.
         public static string ToUsableKey(this string value)
         {
             // Means that either way, it is a wrong key so returning nothing.
