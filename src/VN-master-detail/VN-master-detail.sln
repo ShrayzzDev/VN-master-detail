@@ -8,6 +8,9 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Model", "Model", "{EA38A473-C5AC-4DEA-AF1F-CBF14FFF27EA}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "DTO", "DTO", "{34F2C230-A854-4E2D-BA26-56C3184E9082}"
+	ProjectSection(SolutionItems) = preProject
+		LabelResultDTO.cs = LabelResultDTO.cs
+	EndProjectSection
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DTO", "DTO\DTO.csproj", "{F9B94050-75C6-4381-987A-391D2DB92C94}"
 EndProject

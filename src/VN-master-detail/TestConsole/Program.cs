@@ -110,7 +110,7 @@ while (choice != "99")
             Console.WriteLine("New grade: ");
             var grade = int.Parse(Console.ReadLine());
             Console.WriteLine(novelId);
-            if (await nRequestor.ChangeUserGradeToNovel(novelId, key, grade))
+            if (await nRequestor.ChangeUserNovel(novelId, key, grade, 1))
                 Console.WriteLine("Modified !");
             else
                 Console.WriteLine("Problem !");
@@ -123,6 +123,13 @@ while (choice != "99")
             novelId = "v" + Console.ReadLine();
             Console.WriteLine(novelId);
             Console.WriteLine(await nRequestor.GetUserNovelInfos(novelId, key));
+            break;
+
+        case "11":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            var labels = await uRequestor.GetLabels(key);
+            labels.ToList().ForEach(label => Console.WriteLine(label.label));
             break;
 
         case "99":

@@ -12,7 +12,7 @@ namespace DTO.Extensions
         {
             return new Model.Label(
                 dto.id,
-                dto.name
+                dto.label
             );
         }
 

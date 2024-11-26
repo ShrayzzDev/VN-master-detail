@@ -10,12 +10,12 @@ namespace DTO
     {
         public int id { get; set; } = -1;
 
-        public string name { get; set; } = string.Empty;
+        public string label { get; set; } = string.Empty;
 
         public LabelDTO(int id, string name)
         {
             this.id = id;
-            this.name = name;
+            this.label = name;
         }
 
         public LabelDTO() { }
