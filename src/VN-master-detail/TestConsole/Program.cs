@@ -122,10 +122,7 @@ while (choice != "99")
             Console.WriteLine("Which novel ? (without v)");
             novelId = "v" + Console.ReadLine();
             Console.WriteLine(novelId);
-            if (await nRequestor.GetUserGradeToNovel(novelId, key, grade))
-                Console.WriteLine("Modified !");
-            else
-                Console.WriteLine("Problem !");
+            Console.WriteLine(await nRequestor.GetUserGradeToNovel(novelId, key));
             break;
 
         case "99":
