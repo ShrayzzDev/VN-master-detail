@@ -32,6 +32,7 @@ namespace DTO.Novel
 
         public BasicUserNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
         {
+            this.id = id;
             this.added = added;
             this.voted = voted;
             this.vote = vote;
