@@ -38,8 +38,39 @@
                             EventName="TextChanged"/>
                     </Entry.Behaviors>
                 </Entry>
-                <components:NovelList
-                    Novels="{Binding Novels.List}"/>
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <components:NovelList
+                        Novels="{Binding Novels.List}"/>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Padding="5"
+                        Grid.Row="1">
+                        <Button
+                            Text="&lt;--"
+                            Command="{Binding Novels.PreviousPage}"
+                            CommandParameter="{Binding Novels.SearchNovels}"
+                            Margin="5"/>
+                        <Label
+                            Text="{Binding Novels.Page}"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Margin="5"/>
+                        <Button
+                            Text="-->"
+                            Command="{Binding Novels.NextPage}"
+                            CommandParameter="{Binding Novels.SearchNovels}"
+                            Margin="5"/>
+                    </HorizontalStackLayout>
+                </Grid>
             </VerticalStackLayout>
         </ScrollView>
     </Grid>

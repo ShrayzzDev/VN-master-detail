@@ -135,7 +135,6 @@ namespace APIRequestor
                 HttpMethod.Patch,
                 apiToken)
             );
-            Console.WriteLine(await response.Content.ReadAsStringAsync());
 
             return response.IsSuccessStatusCode;
         }
@@ -158,8 +157,7 @@ namespace APIRequestor
 
             return response.IsSuccessStatusCode;
         }
-
-        public async Task<bool> ChangeUserGradeToNovel(string novelId, string apiToken, int newGrade)
+        public async Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label)
         {
             BasicResultsDTO? novels = null;
             HttpResponseMessage response = await client.SendAsync(
@@ -175,9 +173,9 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
-        public async Task<int> GetUserGradeToNovel(string novelId, string userId)
+        public async Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
         {
-            int grade = 0;
+            (int, int) result = (0, 0);
             HttpResponseMessage response = await client.SendAsync(
                 RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
                 UTF8Converter.GetUTF8String("{\"filters\": [\"id\", \"=\", \"" + novelId + "\"], " +
@@ -186,10 +184,10 @@ namespace APIRequestor
             );
             if (response.IsSuccessStatusCode)
             {
-                var result = await response.Content.ReadFromJsonAsync<VoteResult>();
-                grade = result == null ? 0 : result.vn.vote;
+                var retrieved = await response.Content.ReadFromJsonAsync<UserNovelsInfosResult>();
+                result = (retrieved == null ? 0 : retrieved.vn.vote, retrieved == null ? 0 : retrieved.vn.label.id);
             }
-            return grade;
+            return result;
         }
     }
 }

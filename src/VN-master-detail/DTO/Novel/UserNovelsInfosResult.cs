@@ -6,8 +6,8 @@ using System.Threading.Tasks;
 
 namespace DTO.Novel
 {
-    public class Vote
+    public class UserNovelsInfosResult
     {
-        public int vote { get; set; }
+        public UserNovelInfosResults vn { get; set; }
     }
 }

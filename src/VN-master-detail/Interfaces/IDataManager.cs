@@ -1,5 +1,6 @@
 ﻿using DTO;
 using DTO.Novel;
+using Model;
 using Model.Novel;
 using System;
 using System.Collections.Generic;
@@ -107,16 +108,23 @@ namespace Interfaces
         /// Changes the grade a user gave to a Novel.
         /// </summary>
         /// <param name="novelId">Id of the novel</param>
-        /// <param name="newGrade"></param>
+        /// <param name="newGrade">New grade to novel</param>
+        /// <param name="label">New label to novel</param>
         /// <returns></returns>
-        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade);
+        public Task<bool> ChangeUserNovel(string novelId, int newGrade, int labelId);
 
         /// <summary>
         /// Gets the grade a User has set to a novel.
         /// </summary>
         /// <param name="novelId">Id of the novel</param>
         /// <returns></returns>
-        public Task<int> GetUserGradeToNovel(string novelId);
+        public Task<(int, int)> GetUserNovelInfos(string novelId);
+
+        /// <summary>
+        /// Gets available labels for user
+        /// </summary>
+        /// <returns>The labels. May be empty</returns>
+        public Task<IEnumerable<Label>> GetLabels();
 
     }
 }

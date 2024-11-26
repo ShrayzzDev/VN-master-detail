@@ -6,8 +6,10 @@ using System.Threading.Tasks;
 
 namespace DTO.Novel
 {
-    public class VoteResult
+    public class UserNovelInfosResults
     {
-        public Vote vn { get; set; }
+        public int vote { get; set; }
+
+        public LabelDTO label { get; set; }
     }
 }

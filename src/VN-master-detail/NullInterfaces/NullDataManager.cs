@@ -16,7 +16,7 @@ namespace NullInterfaces
         public Task<bool> AddNovelToUserList(string novelId)
             => Task.FromResult(false);
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
+        public Task<bool> ChangeUserNovel(string novelId, int newGrade, int labelId)
             => Task.FromResult(false);
 
         public Task<bool> DeleteNovelFromUser(string novelId)
@@ -28,6 +28,9 @@ namespace NullInterfaces
         /// <inheritdoc/>
         public Task<DetailedNovel?> GetDetailedNovelById(string id)
             => Task.FromResult((DetailedNovel?)null);
+
+        public Task<IEnumerable<Label>> GetLabels()
+            => Task.FromResult(Enumerable.Empty<Label>());
 
         /// <inheritdoc/>
         public Task<BasicNovel?> GetNovelById(string id)
@@ -43,8 +46,8 @@ namespace NullInterfaces
         public Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
             => Task.FromResult(((IEnumerable<BasicUserNovel>)[], false));
 
-        public Task<int> GetUserGradeToNovel(string novelId)
-             => Task.FromResult(10);
+        public Task<(int, int)> GetUserNovelInfos(string novelId)
+             => Task.FromResult((10, 0));
 
         public Task<bool> IsLoggedIn()
             => Task.FromResult(false);

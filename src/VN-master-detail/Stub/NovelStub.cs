@@ -20,6 +20,8 @@ namespace Stub
 
         private readonly Dictionary<string, List<BasicUserNovelDTO>> _tokenUserNovels = [];
 
+        private readonly Dictionary<string, Dictionary<string, int>> _userNovelLabels = [];
+
         public NovelStub()
         {
             _basicNovels.Add(new BasicNovelDTO("v1",
@@ -50,7 +52,31 @@ namespace Stub
                 new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
                 [new SimpleTitleDTO("latin", "title")],
                 "One of the greatest VN out there, you should play it fr.",
-                "Danganronpa",
+                "Danganronpa: Trigger Happy Havoc",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v5",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Danganronpa 2: Goodbye Despair",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v6",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "Danganronpa V3: Killing Harmony",
+                [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                100
+            ));
+            _basicNovels.Add(new BasicNovelDTO("v4",
+                new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                [new SimpleTitleDTO("latin", "title")],
+                "One of the greatest VN out there, you should play it fr.",
+                "The Fruit of Grisaia",
                 [new SimpleProducerDTO("prodid", "name", "type", "description")],
                 100
             ));
@@ -140,10 +166,100 @@ namespace Stub
                     100,
                     1,
                     99
+                ),
+                new BasicUserNovelDTO("v2",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Steins;Gate",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v3",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Steins;Gate 0",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v4",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa: Trigger Happy Havoc",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v5",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa 2 : Goodbye Despair",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v6",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "Danganronpa V3 : Killing Harmony",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v7",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Fruit of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v8",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Labyrinth of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
+                ),
+                new BasicUserNovelDTO("v9",
+                    new ImageDTO("1", STUB_URL, [400, 400], 0, 0, 11, STUB_URL, [50, 50]),
+                    "One of the greatest VN out there, you should play it fr.",
+                    "The Eden of Grisaia",
+                    100,
+                    [new SimpleProducerDTO("prodid", "name", "type", "description")],
+                    100,
+                    1,
+                    99
                 )
             ];
             _userNovels.Add("u1", userList);
             _tokenUserNovels.Add("jean-jean-jean-jean", userList);
+            var dict = new Dictionary<string, int>()
+            {
+                { "v1", 0 },
+                { "v2", 1 },
+                { "v3", 0 },
+                { "v4", 1 },
+                { "v5", 0 },
+                { "v6", 1 },
+            };
+            _userNovelLabels.Add("jean-jean-jean-jean", dict);
         }
 
         public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
@@ -157,8 +273,10 @@ namespace Stub
         public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria, string name)
             => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
-                .SortByCriteria(criteria).ToList(),
-                (_basicNovels.Count / count) + 1 <= index));
+                .SortByCriteria(criteria)
+                .Skip(count * index)
+                .Take(count).ToList(),
+                (_basicNovels.Count / count) <= index));
 
         public Task<BasicNovelDTO?> GetNovelById(string id)
             => Task.Run(() => _basicNovels
@@ -173,11 +291,13 @@ namespace Stub
             => Task.Run(() =>
             {
                 if (_userNovels.TryGetValue(userId, out var novels))
+                {
                     return new BasicUserResultsDTO(
                         novels.Skip(index * count).Take(count).ToList(),
-                        (novels.Count / count) + 1 <= index
+                        ((novels.Count - 1) / count) <= index
                     );
-                return new BasicUserResultsDTO(new List<BasicUserNovelDTO>(), false);
+                }
+                return new BasicUserResultsDTO([], true);
             });
 
         public Task<bool> AddNovelToUserList(string novelId, string apiToken)
@@ -215,7 +335,7 @@ namespace Stub
             });
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, string apiToken, int newGrade)
+        public Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label)
         {
             return Task.Run(() =>
             {
@@ -224,20 +344,29 @@ namespace Stub
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;
                 novels.First((n) => n.vn.id.Equals(novelId)).vote = newGrade;
+                if (_userNovelLabels.TryGetValue(apiToken, out var dict) && dict != null && dict.TryGetValue(novelId, out _))
+                {
+                    _userNovelLabels[apiToken][novelId] = label;
+                }
                 return true;
             });
         }
 
-        public Task<int> GetUserGradeToNovel(string novelId, string userId)
+        public Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken)
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
-                if (!userExists || novels is null) return 0;
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
+                if (!userExists || novels is null) return (0, 0);
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
-                if (!isIn) return 0;
+                if (!isIn) return (0, 0);
                 var novel = novels.First((n) => n.vn.id.Equals(novelId));
-                return novel.vote == null ? 0 : novel.vote.Value;
+                int labelId = 0;
+                if (_userNovelLabels.TryGetValue(apiToken, out var dict) && dict != null && dict.TryGetValue(novelId, out var value))
+                {
+                    labelId = value;
+                }
+                return novel.vote == null ? (0, 0) : (novel.vote.Value, labelId);
             });
         }
     }

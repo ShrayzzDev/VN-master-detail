@@ -57,7 +57,7 @@ namespace DataManagers
 
         public async Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
         {
-            if (_user == null) return ([], false);
+            if (_user == null) return ([], true);
             return (await _novelRequestor.GetNovelForUser(index, count, _user.UserId)).ToTuple();
         }
 
@@ -79,16 +79,22 @@ namespace DataManagers
             return await _novelRequestor.DeleteNovelFromUser(novelId, ConnectedUser.ApiKey);
         }
 
-        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade)
+        public Task<bool> ChangeUserNovel(string novelId, int newGrade, int labelId)
         {
             if (ConnectedUser == null) return Task.FromResult(false);
-            return _novelRequestor.ChangeUserGradeToNovel(novelId, ConnectedUser.ApiKey, newGrade);
+            return _novelRequestor.ChangeUserNovel(novelId, ConnectedUser.ApiKey, newGrade, labelId);
         }
 
-        public Task<int> GetUserGradeToNovel(string novelId)
+        public Task<(int, int)> GetUserNovelInfos(string novelId)
         {
-            if (ConnectedUser == null) return Task.FromResult(0);
-            return _novelRequestor.GetUserGradeToNovel(novelId, ConnectedUser.UserId);
+            if (ConnectedUser == null) return Task.FromResult((0,0));
+            return _novelRequestor.GetUserNovelInfos(novelId, ConnectedUser.ApiKey);
+        }
+
+        public async Task<IEnumerable<Label>> GetLabels()
+        {
+            if (_user == null) return Enumerable.Empty<Label>();
+            return (await _userRequestor.GetLabels(_user.ApiKey)).ToModels();
         }
     }
 }

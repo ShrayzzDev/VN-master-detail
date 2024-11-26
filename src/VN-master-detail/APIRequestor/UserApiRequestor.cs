@@ -14,6 +14,11 @@ namespace APIRequestor
 
     public class UserApiRequestor : MainRequestor, IUserRequestor
     {
+        public Task<IEnumerable<LabelDTO>> GetLabels(string apiKey)
+        {
+            throw new NotImplementedException();
+        }
+
         public async Task<UserDTO?> Login(string ApiKey)
         {
             UserDTO? novel = null;
