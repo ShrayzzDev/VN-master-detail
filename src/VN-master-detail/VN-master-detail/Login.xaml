@@ -3,7 +3,8 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.Login"
              Title="Login"
-             x:Name="root">
+             x:Name="root"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
     
     <VerticalStackLayout
         VerticalOptions="Center"
@@ -11,15 +12,20 @@
         BindingContext="{x:Reference root}">
         <Label
             Text="Enter your API Token here : "
+            TextColor="{DynamicResource PrimaryTextColor}"
             FontSize="35"
             Margin="10"/>
         <Entry
             Placeholder="API Token"
             WidthRequest="600"
+            TextColor="{DynamicResource PrimaryTextColor}"
+            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
             Text="{Binding LoginVM.ApiKey}"
             Margin="10"/>
         <Button
             Text="Login"
+            TextColor="{DynamicResource PrimaryBtnTextColor}"
+            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
             Command="{Binding LoginVM.Login}"
             Margin="10"/>
     </VerticalStackLayout>

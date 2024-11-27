@@ -3,10 +3,10 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.Resources.Themes.DarkTheme">
 
-    <Color x:Key="PrimaryBackgroundColor">#707070</Color>
-    <Color x:Key="SecondaryBackgroundColor">#A0A0A0</Color>
+    <Color x:Key="PrimaryBackgroundColor">#404040</Color>
+    <Color x:Key="SecondaryBackgroundColor">#707070</Color>
 
-    <Color x:Key="PrimaryTextColor">#FFFFFF</Color>
+    <Color x:Key="PrimaryTextColor">#EEEEEE</Color>
     <Color x:Key="PrimaryBtnTextColor">#E0E0E0</Color>
 
 </ResourceDictionary>
