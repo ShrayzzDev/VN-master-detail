@@ -10,6 +10,8 @@ namespace VN_master_detail
 
         public NavigationVM NavigationVM { get; set; }
 
+        public ThemeVM Themes { get; set; }
+
         public UserVM User { get; set; }
 
         // We need to inject the theme so it initialize
@@ -20,6 +22,7 @@ namespace VN_master_detail
                            ThemeVM theme)
         {
             Novels = novels;
+            Themes = theme;
             NavigationVM = new NavigationVM(user, Navigation);
             User = user;
             BindingContext = this;
