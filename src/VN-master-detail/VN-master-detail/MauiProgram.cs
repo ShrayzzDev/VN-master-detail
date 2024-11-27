@@ -25,7 +25,7 @@ namespace VN_master_detail
                 });
 
             builder.Services.AddScoped<BaseNovelListVM>();
-            builder.Services.AddScoped<ThemeVM>();
+            builder.Services.AddSingleton<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
 
             builder.Services.AddScoped<AcceuilPage>();
