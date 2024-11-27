@@ -6,7 +6,8 @@
              x:Class="VN_master_detail.Search"
              Title="Search"
              x:Name="root"
-             BindingContext="{x:Reference root}">
+             BindingContext="{x:Reference root}"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -55,17 +56,23 @@
                         Grid.Row="1">
                         <Button
                             Text="&lt;--"
+                            TextColor="{DynamicResource PrimaryBtnTextColor}"
+                            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                             Command="{Binding Novels.PreviousPage}"
                             CommandParameter="{Binding Novels.SearchNovels}"
                             Margin="5"/>
                         <Label
                             Text="{Binding Novels.Page}"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
                             FontSize="20"
                             FontAttributes="Bold"
                             VerticalOptions="Center"
                             Margin="5"/>
                         <Button
                             Text="-->"
+                            TextColor="{DynamicResource PrimaryBtnTextColor}"
+                            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                             Command="{Binding Novels.NextPage}"
                             CommandParameter="{Binding Novels.SearchNovels}"
                             Margin="5"/>
