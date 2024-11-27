@@ -2,27 +2,55 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.Profile"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Profile"
              x:Name="root"
              BindingContext="{x:Reference root}">
-    <HorizontalStackLayout
+
+    <VerticalStackLayout
         HorizontalOptions="Center"
-        BindingContext="{Binding ProfileVM}">
-        <ImageButton
-            Source="dotnet_bot.png"
-            HeightRequest="40"
-            Command="{Binding Navigation.GoToHome}"/>
+        VerticalOptions="Center">
+        <HorizontalStackLayout
+            BindingContext="{Binding ProfileVM}">
+            <ImageButton
+                Source="dotnet_bot.png"
+                HeightRequest="40"
+                Command="{Binding Navigation.GoToHome}"/>
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <Label
+                    Text="{Binding User.Username, StringFormat='Username: {0}'}"
+                    FontSize="25"
+                    Margin="10"/>
+                <Button
+                    BackgroundColor="Red"
+                    Text="Log out"
+                    FontSize="18"
+                    Command="{Binding Logout}"
+                    Margin="10"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
         <VerticalStackLayout
             HorizontalOptions="Center"
-            VerticalOptions="Center">
+            BindingContext="{Binding ThemeVM}">
             <Label
-                Text="{Binding User.Username, StringFormat='Username: {0}'}"
-                FontSize="25"/>
-            <Button
-                BackgroundColor="Red"
-                Text="Log out"
-                FontSize="18"
-                Command="{Binding Logout}"/>
+                Margin="10"
+                FontSize="25"
+                FontAttributes="Bold"
+                Text="Settings"/>
+            <Picker
+                Margin="10"
+                ItemsSource="{Binding Themes}"
+                SelectedItem="{Binding CurrentTheme}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        Command="{Binding ChangeTheme}"
+                        EventName="SelectedIndexChanged"/>
+                </Picker.Behaviors>
+            </Picker>
         </VerticalStackLayout>
-    </HorizontalStackLayout>
+        
+    </VerticalStackLayout>
+    
 </ContentPage>

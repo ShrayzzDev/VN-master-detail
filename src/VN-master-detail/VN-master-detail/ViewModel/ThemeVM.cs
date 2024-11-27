@@ -16,7 +16,7 @@ namespace VN_master_detail.ViewModel
             "Dark"
         ];
 
-        public readonly ReadOnlyCollection<string> Themes;
+        public ReadOnlyCollection<string> Themes { get; private set; }
 
         private string _theme;
 
@@ -47,7 +47,7 @@ namespace VN_master_detail.ViewModel
             var mergedDictionaries = Application.Current?.Resources.MergedDictionaries;
             if (mergedDictionaries != null)
             {
-                foreach(var dico in mergedDictionaries.Where(d => d is ICustomTheme))
+                foreach(var dico in mergedDictionaries.Where(d => d is ICustomTheme).ToList())
                 {
                     mergedDictionaries.Remove(dico);
                 }

@@ -6,6 +6,7 @@ using Model;
 using Stub;
 using ViewModel;
 using ViewModel.Novels;
+using VN_master_detail.ViewModel;
 
 namespace VN_master_detail
 {
@@ -24,6 +25,7 @@ namespace VN_master_detail
                 });
 
             builder.Services.AddScoped<BaseNovelListVM>();
+            builder.Services.AddScoped<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
 
             builder.Services.AddScoped<AcceuilPage>();
