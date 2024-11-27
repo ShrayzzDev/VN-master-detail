@@ -5,7 +5,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Profile"
              x:Name="root"
-             BindingContext="{x:Reference root}">
+             BindingContext="{x:Reference root}"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
 
     <VerticalStackLayout
         HorizontalOptions="Center"
@@ -14,6 +15,7 @@
             BindingContext="{Binding ProfileVM}">
             <ImageButton
                 Source="dotnet_bot.png"
+                BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
                 HeightRequest="40"
                 Command="{Binding Navigation.GoToHome}"/>
             <VerticalStackLayout
@@ -21,12 +23,14 @@
                 VerticalOptions="Center">
                 <Label
                     Text="{Binding User.Username, StringFormat='Username: {0}'}"
+                    TextColor="{DynamicResource PrimaryTextColor}"
                     FontSize="25"
                     Margin="10"/>
                 <Button
                     BackgroundColor="Red"
                     Text="Log out"
                     FontSize="18"
+                    TextColor="{DynamicResource PrimaryBtnTextColor}"
                     Command="{Binding Logout}"
                     Margin="10"/>
             </VerticalStackLayout>
@@ -36,10 +40,13 @@
             BindingContext="{Binding ThemeVM}">
             <Label
                 Margin="10"
+                TextColor="{DynamicResource PrimaryTextColor}"
                 FontSize="25"
                 FontAttributes="Bold"
                 Text="Settings"/>
             <Picker
+                TextColor="{DynamicResource PrimaryTextColor}"
+                BackgroundColor="{DynamicResource SecondatyBackgroundColor}"
                 Margin="10"
                 ItemsSource="{Binding Themes}"
                 SelectedItem="{Binding CurrentTheme}">
