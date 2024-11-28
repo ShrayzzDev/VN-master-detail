@@ -21,14 +21,22 @@
             <VerticalStackLayout
                 HorizontalOptions="Center"
                 VerticalOptions="Center">
-                <Label
-                    Text="{Binding User.Username, StringFormat='Username: {0}'}"
-                    TextColor="{DynamicResource PrimaryTextColor}"
-                    FontSize="25"
-                    Margin="10"/>
+                <HorizontalStackLayout>
+                    <Label
+                        Text="{Binding Username, Source={StaticResource appResources}, StringFormat='{0}: '}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        FontSize="25"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="{Binding User.Username, StringFormat=' {0}'}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        FontSize="25"
+                        Margin="10"
+                        VerticalOptions="Center"/>
+                </HorizontalStackLayout>
                 <Button
                     BackgroundColor="Red"
-                    Text="Log out"
+                    Text="{Binding LogOut, Source={StaticResource appResources}}"
                     FontSize="18"
                     TextColor="{DynamicResource PrimaryBtnTextColor}"
                     Command="{Binding Logout}"
@@ -43,7 +51,7 @@
                 TextColor="{DynamicResource PrimaryTextColor}"
                 FontSize="25"
                 FontAttributes="Bold"
-                Text="Settings"/>
+                Text="{Binding Settings, Source={StaticResource appResources}}"/>
             <Picker
                 TextColor="{DynamicResource PrimaryTextColor}"
                 BackgroundColor="{DynamicResource SecondatyBackgroundColor}"
