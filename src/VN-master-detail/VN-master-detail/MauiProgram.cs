@@ -24,7 +24,7 @@ namespace VN_master_detail
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddScoped<BaseNovelListVM>();
+            builder.Services.AddTransient<BaseNovelListVM>();
             builder.Services.AddSingleton<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
 
