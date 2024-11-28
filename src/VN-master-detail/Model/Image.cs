@@ -14,7 +14,7 @@ namespace Model
 
         public int[] dims { get; set; }
 
-        public short sexual { get; set; }
+        public float sexual { get; set; }
 
         public short violence { get; set; }
 
@@ -24,7 +24,7 @@ namespace Model
 
         public int[] thumbnail_dims { get; set; }
 
-        public Image(string id, string url, int[] dims, short sexual, short violence, int votecount, string thumbnail, int[] thumbnail_dims)
+        public Image(string id, string url, int[] dims, float sexual, short violence, int votecount, string thumbnail, int[] thumbnail_dims)
         {
             this.id = id;
             this.url = url;

@@ -116,14 +116,20 @@ namespace APIRequestor
         {
             BasicResultsDTO? novels = null;
             HttpResponseMessage response = await client.SendAsync(
-                RequestCreator.GetHttpRequest(client.BaseAddress, "vn",
-                $"\"filters\": [\"title\", \"=\", \"{name}\"]" +
-                $"{{\"sort\": \"{criteria.AsString()}\", " +
+                RequestCreator.GetHttpRequest(client.BaseAddress, "vn", "{" +
+                $"\"filters\": [\"search\", \"=\", \"{name}\"], " +
+                $"\"sort\": \"{criteria.AsString()}\", " +
                 $"\"page\": {index}, " +
                 $"\"results\": {count}, " +
                 HttpRequestBodies.BasicNovelFields + "}",
                 HttpMethod.Post)
             );
+            Console.WriteLine("{" +
+                $"\"filters\": [\"title\", \"=\", \"{name}\"], " +
+                $"\"sort\": \"{criteria.AsString()}\", " +
+                $"\"page\": {index}, " +
+                $"\"results\": {count}, " +
+                HttpRequestBodies.BasicNovelFields + "}");
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {

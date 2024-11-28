@@ -21,9 +21,11 @@ namespace Utils
                                                                        "description, " +
                                                                        "average, " +
                                                                        "developers.id, " +
-                                                                       "developers.name, developers.type, " +
+                                                                       "developers.name, " +
+                                                                       "developers.type, " +
                                                                        "developers.description, " +
-                                                                       "image.id, image.url, " +
+                                                                       "image.id, " +
+                                                                       "image.url, " +
                                                                        "image.dims, " +
                                                                        "image.sexual, " +
                                                                        "image.violence, " +
