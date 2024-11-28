@@ -14,6 +14,14 @@ namespace VN_master_detail.ViewModel
 {
     public class AppResourcesVM : ObservableObject
     {
+        private UserPreferences _preferences = new UserPreferences();
+
+        public List<string> AvailableLangages { get; set; } =
+        [
+            "fr-FR",
+            "en"
+        ];
+
         public CultureInfo Culture 
         {
             get => AppResources.Culture;
@@ -32,7 +40,13 @@ namespace VN_master_detail.ViewModel
             }
         }
 
-        public string CurrentCulture { get; set; }
+        private string _culture;
+
+        public string CurrentCulture 
+        {
+            get => _culture;
+            set => SetProperty(ref _culture, value);
+        }
 
         public ICommand ChangeCulture { get; private init; }
 
@@ -52,7 +66,7 @@ namespace VN_master_detail.ViewModel
 
         public AppResourcesVM()
         {
-            CurrentCulture = CultureInfo.CurrentUICulture.Name;
+            CurrentCulture =_preferences.GetCulture();
             ChangeCulture = new RelayCommand(
                 () =>
                 {
@@ -62,6 +76,7 @@ namespace VN_master_detail.ViewModel
                         "en" => new CultureInfo("en"),
                         _ => new CultureInfo("en")
                     };
+                    _preferences.SetCulture(Culture.Name);
                 }
             );
         }
