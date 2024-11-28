@@ -22,10 +22,12 @@ namespace VN_master_detail.ViewModel
                 if (AppResources.Culture == value) return;
                 AppResources.Culture = value;
                 OnPropertyChanged(nameof(Culture));
+                OnPropertyChanged(nameof(EnterAPIKey));
                 OnPropertyChanged(nameof(Username));
                 OnPropertyChanged(nameof(Settings));
                 OnPropertyChanged(nameof(LogOut));
                 OnPropertyChanged(nameof(Search));
+                OnPropertyChanged(nameof(Login));
                 OnPropertyChanged(nameof(Home));
             }
         }
