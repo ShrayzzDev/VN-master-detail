@@ -88,11 +88,6 @@
 	  <Compile Update="NovelDetail.xaml.cs">
 	    <DependentUpon>NovelDetail.xaml</DependentUpon>
 	  </Compile>
-	  <Compile Update="Resources\Localization\AppResources.fr-FR.Designer.cs">
-	    <DependentUpon>AppResources.fr-FR.resx</DependentUpon>
-	    <DesignTime>True</DesignTime>
-	    <AutoGen>True</AutoGen>
-	  </Compile>
 	  <Compile Update="Resources\Localization\AppResources.Designer.cs">
 	    <DesignTime>True</DesignTime>
 	    <AutoGen>True</AutoGen>

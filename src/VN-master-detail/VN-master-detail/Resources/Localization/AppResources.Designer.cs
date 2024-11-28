@@ -61,6 +61,24 @@ namespace VN_master_detail.Resources.Localization {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à English.
+        /// </summary>
+        internal static string English {
+            get {
+                return ResourceManager.GetString("English", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à French.
+        /// </summary>
+        internal static string French {
+            get {
+                return ResourceManager.GetString("French", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à Home.
         /// </summary>
         internal static string Home {
