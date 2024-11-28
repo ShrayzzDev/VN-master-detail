@@ -9,12 +9,13 @@ namespace SharedExtensions
         public static string ToUsableKey(this string value)
         {
             // Means that either way, it is a wrong key so returning nothing.
-            if (value.Length != 19 && value.Length != 16) return string.Empty;
+            if (value.Length % 4 != 0) return string.Empty;
             // Even if it wrong, we cant really parse a key that contain them.
             if (value.Contains('-')) return value;
 
-            var arr = Enumerable.Range(0, 4)
+            var arr = Enumerable.Range(0, value.Length/4)
                 .Select(i => value.Substring(i * 4, 4));
+            var str = string.Join('-', arr);
             return string.Join('-', arr);
         }
     }

@@ -124,7 +124,7 @@ namespace APIRequestor
                 HttpRequestBodies.BasicNovelFields + "}",
                 HttpMethod.Post)
             );
-
+            Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
                 novels = await response.Content.ReadFromJsonAsync<BasicResultsDTO>();

@@ -36,11 +36,11 @@ namespace VN_master_detail.ViewModel
         {
             Login = new AsyncRelayCommand(
                 async () => {
-                    var usableKey = ApiKey.ToUsableKey();
-                    if (await User.Login(usableKey))
+                    // var usableKey = ApiKey.ToUsableKey();
+                    if (await User.Login(ApiKey))
                     {
                         await _page.DisplayAlert(_resources.Success, _resources.YouAreConnected, _resources.Done);
-                        _userPreferences.SetLoggedUser(usableKey);
+                        _userPreferences.SetLoggedUser(ApiKey);
                         await Shell.Current.GoToAsync("//Home");
                         return;
                     }
