@@ -6,12 +6,13 @@ namespace VN_master_detail;
 
 public partial class Login : ContentPage
 {
-	public LoginVM LoginVM {  get; set; }
+	public LoginVM LoginVM { get; set; }
 
 	public Login(UserVM user,
+				 AppResourcesVM appResourcesVM,
 				 IUserPreferences userPreferences)
 	{
-		LoginVM = new LoginVM(this, user, userPreferences);
+		LoginVM = new LoginVM(this, user, appResourcesVM, userPreferences);
 		InitializeComponent();
 	}
 }

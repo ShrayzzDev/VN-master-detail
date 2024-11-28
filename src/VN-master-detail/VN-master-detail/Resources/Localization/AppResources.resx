@@ -117,11 +117,17 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="Done" xml:space="preserve">
+    <value>Done</value>
+  </data>
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
   <data name="EnterAPIKey" xml:space="preserve">
     <value>Enter your API Token here </value>
+  </data>
+  <data name="Error" xml:space="preserve">
+    <value>Error</value>
   </data>
   <data name="French" xml:space="preserve">
     <value>French</value>
@@ -141,7 +147,16 @@
   <data name="Settings" xml:space="preserve">
     <value>Settings</value>
   </data>
+  <data name="Success" xml:space="preserve">
+    <value>Success</value>
+  </data>
   <data name="Username" xml:space="preserve">
     <value>Username</value>
+  </data>
+  <data name="WrongCredentials" xml:space="preserve">
+    <value>Credentials incorect, please retry.</value>
+  </data>
+  <data name="YouAreConnected" xml:space="preserve">
+    <value>You have been sucessfully conencted </value>
   </data>
 </root>

@@ -30,13 +30,18 @@ namespace VN_master_detail.ViewModel
                 if (AppResources.Culture == value) return;
                 AppResources.Culture = value;
                 OnPropertyChanged(nameof(Culture));
+                OnPropertyChanged(nameof(WrongCredentials));
+                OnPropertyChanged(nameof(YouAreConnected));
                 OnPropertyChanged(nameof(EnterAPIKey));
                 OnPropertyChanged(nameof(Username));
                 OnPropertyChanged(nameof(Settings));
+                OnPropertyChanged(nameof(Success));
                 OnPropertyChanged(nameof(LogOut));
                 OnPropertyChanged(nameof(Search));
+                OnPropertyChanged(nameof(Error));
                 OnPropertyChanged(nameof(Login));
                 OnPropertyChanged(nameof(Home));
+                OnPropertyChanged(nameof(Done));
             }
         }
 
@@ -63,6 +68,16 @@ namespace VN_master_detail.ViewModel
         public string EnterAPIKey => AppResources.EnterAPIKey;
 
         public string Login => AppResources.Login;
+
+        public string Done => AppResources.Done;
+
+        public string YouAreConnected => AppResources.YouAreConnected;
+
+        public string Success => AppResources.Success;
+
+        public string Error => AppResources.Error;
+
+        public string WrongCredentials => AppResources.WrongCredentials;
 
         public AppResourcesVM()
         {

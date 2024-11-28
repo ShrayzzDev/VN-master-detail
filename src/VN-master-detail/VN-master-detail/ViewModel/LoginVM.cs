@@ -8,6 +8,8 @@ namespace VN_master_detail.ViewModel
 {
     public class LoginVM
     {
+        private AppResourcesVM _resources;
+
         public string ApiKey { get; set; }
 
         public UserVM User { get; }
@@ -20,11 +22,13 @@ namespace VN_master_detail.ViewModel
 
         public LoginVM(Page page,
                        UserVM user,
+                       AppResourcesVM resources,
                        IUserPreferences userPreferences)
         {
             _page = page;
             User = user;
             _userPreferences = userPreferences;
+            _resources = resources;
             InitCommand();
         }
 
@@ -35,12 +39,12 @@ namespace VN_master_detail.ViewModel
                     var usableKey = ApiKey.ToUsableKey();
                     if (await User.Login(usableKey))
                     {
-                        await _page.DisplayAlert("Success !", "You have been sucessfully conencted !", "Done");
+                        await _page.DisplayAlert(_resources.Success, _resources.YouAreConnected, _resources.Done);
                         _userPreferences.SetLoggedUser(usableKey);
                         await Shell.Current.GoToAsync("//Home");
                         return;
                     }
-                    await _page.DisplayAlert("Error", "Credentials incorect, please retry.", "Ok");
+                    await _page.DisplayAlert(_resources.Error, _resources.WrongCredentials, _resources.Done);
                 }
             );
         }

@@ -25,6 +25,7 @@ namespace VN_master_detail
                 });
 
             builder.Services.AddTransient<BaseNovelListVM>();
+            builder.Services.AddScoped<AppResourcesVM>();
             builder.Services.AddSingleton<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
 
