@@ -41,7 +41,12 @@ namespace VN_master_detail.ViewModel
         public string Search => AppResources.Search;
 
         public string Username => AppResources.Username;
+
         public string Settings => AppResources.Settings;
+
+        public string EnterAPIKey => AppResources.EnterAPIKey;
+
+        public string Login => AppResources.Login;
 
         public AppResourcesVM()
         {
@@ -55,7 +60,6 @@ namespace VN_master_detail.ViewModel
                         "en" => new CultureInfo("en"),
                         _ => new CultureInfo("en")
                     };
-                    Debug.Print("a");
                 }
             );
         }

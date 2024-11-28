@@ -70,6 +70,15 @@ namespace VN_master_detail.Resources.Localization {
         }
         
         /// <summary>
+        ///   Recherche une chaîne localisée semblable à Enter your API Token here .
+        /// </summary>
+        internal static string EnterAPIKey {
+            get {
+                return ResourceManager.GetString("EnterAPIKey", resourceCulture);
+            }
+        }
+        
+        /// <summary>
         ///   Recherche une chaîne localisée semblable à French.
         /// </summary>
         internal static string French {
@@ -84,6 +93,15 @@ namespace VN_master_detail.Resources.Localization {
         internal static string Home {
             get {
                 return ResourceManager.GetString("Home", resourceCulture);
+            }
+        }
+        
+        /// <summary>
+        ///   Recherche une chaîne localisée semblable à Login.
+        /// </summary>
+        internal static string Login {
+            get {
+                return ResourceManager.GetString("Login", resourceCulture);
             }
         }
         

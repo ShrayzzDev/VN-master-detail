@@ -11,7 +11,7 @@
         HorizontalOptions="Center"
         BindingContext="{x:Reference root}">
         <Label
-            Text="Enter your API Token here : "
+            Text="{Binding EnterAPIKey, Source={StaticResource appResources}, StringFormat='{0}: '}"
             TextColor="{DynamicResource PrimaryTextColor}"
             FontSize="35"
             Margin="10"/>
@@ -23,7 +23,7 @@
             Text="{Binding LoginVM.ApiKey}"
             Margin="10"/>
         <Button
-            Text="Login"
+            Text="{Binding Login, Source={StaticResource appResources}}"
             TextColor="{DynamicResource PrimaryBtnTextColor}"
             BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
             Command="{Binding LoginVM.Login}"

@@ -120,11 +120,17 @@
   <data name="English" xml:space="preserve">
     <value>English</value>
   </data>
+  <data name="EnterAPIKey" xml:space="preserve">
+    <value>Enter your API Token here </value>
+  </data>
   <data name="French" xml:space="preserve">
     <value>French</value>
   </data>
   <data name="Home" xml:space="preserve">
     <value>Home</value>
+  </data>
+  <data name="Login" xml:space="preserve">
+    <value>Login</value>
   </data>
   <data name="LogOut" xml:space="preserve">
     <value>Log out</value>
