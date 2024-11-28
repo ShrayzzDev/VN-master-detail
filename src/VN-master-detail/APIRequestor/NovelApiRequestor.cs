@@ -17,6 +17,7 @@ namespace APIRequestor
 {
     public class NovelApiRequestor : MainRequestor, INovelRequestor
     {
+        /// <inheritdoc/>
         public async Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
         {
             DetailedNovelDTO? novel = null;
@@ -31,6 +32,7 @@ namespace APIRequestor
             return novel;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
             BasicResultsDTO? novels = null;
@@ -50,6 +52,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicNovelDTO?> GetNovelById(string id)
         {
             BasicNovelDTO? novel = null;
@@ -67,6 +70,7 @@ namespace APIRequestor
 
         // TODO : This requests wont work like that.
         // I just need to get the project to compile
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByCriteria(int index, int count, string which, string value)
         {
             List<BasicNovelDTO?>? novels = null;
@@ -88,6 +92,7 @@ namespace APIRequestor
             return new BasicResultsDTO(novels, false);
         }
 
+        /// <inheritdoc/>
         public async Task<BasicUserResultsDTO?> GetNovelForUser(int index, int count, string userId)
         {
             BasicUserResultsDTO? novels = null;
@@ -106,6 +111,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
         {
             BasicResultsDTO? novels = null;
@@ -126,6 +132,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<bool> AddNovelToUserList(string novelId, string apiToken)
         {
             BasicResultsDTO? novels = null;
@@ -139,6 +146,7 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
+        /// <inheritdoc/>
         public async Task<bool> DoesUserHaveNovel(string novelId, string userId)
         {
             bool result = false;
@@ -149,11 +157,6 @@ namespace APIRequestor
                 $"\"results\": 1" + "}",
                 HttpMethod.Post)
             );
-            Console.WriteLine("{" +
-                $"\"user\": \"{userId}\", " +
-                $"\"filters\": [\"id\", \"=\", \"{novelId}\"], " +
-                $"\"page\": 0, " +
-                $"\"results\": 1" + "}");
             Console.WriteLine(await response.Content.ReadAsStringAsync());
             if (response.IsSuccessStatusCode)
             {
@@ -163,6 +166,7 @@ namespace APIRequestor
             return result;
         }
 
+        /// <inheritdoc/>
         public async Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
         {
             BasicResultsDTO? novels = null;
@@ -176,6 +180,8 @@ namespace APIRequestor
 
             return response.IsSuccessStatusCode;
         }
+
+        /// <inheritdoc/>
         public async Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label)
         {
             BasicResultsDTO? novels = null;
@@ -193,6 +199,7 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
+        /// <inheritdoc/>
         public async Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken)
         {
             (int, int) result = (0, 0);

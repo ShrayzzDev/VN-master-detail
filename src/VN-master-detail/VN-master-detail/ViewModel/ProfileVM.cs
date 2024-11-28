@@ -25,6 +25,7 @@ namespace VN_master_detail.ViewModel
                 async () =>
                 {
                     await User.Logout();
+                    Preferences.Set("ApiKey",string.Empty);
                     Navigation.GoToHome.Execute(null);
                 }
             );

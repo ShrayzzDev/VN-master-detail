@@ -6,6 +6,7 @@ using Model;
 using Stub;
 using ViewModel;
 using ViewModel.Novels;
+using VN_master_detail.ViewModel;
 
 namespace VN_master_detail
 {
@@ -23,7 +24,9 @@ namespace VN_master_detail
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
 
-            builder.Services.AddScoped<BaseNovelListVM>();
+            builder.Services.AddTransient<BaseNovelListVM>();
+            builder.Services.AddScoped<AppResourcesVM>();
+            builder.Services.AddSingleton<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
 
             builder.Services.AddScoped<AcceuilPage>();
@@ -32,8 +35,10 @@ namespace VN_master_detail
             builder.Services.AddScoped<Login>();
 
             builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
-            builder.Services.AddScoped<INovelRequestor, NovelStub>();
-            builder.Services.AddScoped<IUserRequestor, UserStub>();
+            builder.Services.AddScoped<INovelRequestor, NovelApiRequestor>();
+            builder.Services.AddScoped<IUserRequestor, UserApiRequestor>();
+
+            builder.Services.AddScoped<IUserPreferences, UserPreferences>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif

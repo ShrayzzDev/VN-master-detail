@@ -6,7 +6,8 @@
              xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              x:Name="root"
              Title="NovelDetail"
-             BindingContext="{x:Reference root}">
+             BindingContext="{x:Reference root}"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -33,6 +34,7 @@
             <ColumnDefinition Width="10*"></ColumnDefinition>
         </Grid.ColumnDefinitions>
         <Image
+            BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
             Source="{Binding Image.Url}"
             HeightRequest="{Binding Image.Dims[0]}"
             WidthRequest="{Binding Image.Dims[1]}"
@@ -43,38 +45,46 @@
             <StackLayout
                 Padding="20,60,200,40">
                 <Label Text="{Binding Title, StringFormat='Title : {0}'}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        FontSize="30"
                        LineBreakMode="WordWrap"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding Titles,
                            StringFormat='Other known Titles : {0}',
                            Converter={StaticResource TitlesConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        LineBreakMode="WordWrap"
                        FontSize="18"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding Aliases,
                            StringFormat='Also known as : {0}',
                            Converter={StaticResource StringArrConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        LineBreakMode="WordWrap"/>
                 <Label Text="{Binding Description}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        LineBreakMode="WordWrap"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding Developpers,
                            StringFormat='This novel was made by : {0}',
                            Converter={StaticResource DevConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        FontSize="18"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding DevStatus,
                            StringFormat='This novel currently {0}',
                            Converter={StaticResource DevStatusConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding Platforms,
                            StringFormat='Available on : {0}',
                            Converter={StaticResource StringArrConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        Margin="0,10,0,10"/>
                 <Label Text="{Binding Languages,
                            StringFormat='Playable in : {0}',
                            Converter={StaticResource StringArrConverter}}"
+                       TextColor="{DynamicResource PrimaryTextColor}"
                        Margin="0,10,0,10"/>
                 <VerticalStackLayout
                     IsVisible="{Binding IsUserConnected}">
@@ -90,6 +100,7 @@
                                 Margin="0,5,5,5"
                                 IsVisible="{Binding IsEntry,
                                     Converter={x:StaticResource InversedBool}}"
+                                TextColor="{DynamicResource PrimaryTextColor}"
                                 Text="{Binding UserGrade,
                                     StringFormat='Your vote: {0}'}"/>
                             <HorizontalStackLayout
@@ -97,11 +108,13 @@
                                 VerticalOptions="Center">
                                 <Label
                                     Text="Your vote: "
+                                    TextColor="{DynamicResource PrimaryTextColor}"
                                     VerticalOptions="Center"
                                     FontSize="18"
                                     Margin="0,0,3,0"/>
                                 <Entry
                                     Text="{Binding UserGrade}"
+                                    TextColor="{DynamicResource PrimaryTextColor}"
                                     Margin="5"/>
                             </HorizontalStackLayout>
                         </HorizontalStackLayout>
@@ -112,14 +125,17 @@
                             </HorizontalStackLayout.GestureRecognizers>
                             <Label
                                 Text="Label: "
+                                TextColor="{DynamicResource PrimaryTextColor}"
                                 VerticalOptions="Center"/>
                             <Label
                                 Text="{Binding SelectedLabel.Name}"
+                                TextColor="{DynamicResource PrimaryTextColor}"
                                 VerticalOptions="Center"
                                 IsVisible="{Binding IsEntry,
                                     Converter={x:StaticResource InversedBool}}"
                                 Margin="0,5,5,5"/>
                             <Picker
+                                TextColor="{DynamicResource PrimaryTextColor}"
                                 ItemsSource="{Binding Labels}"
                                 ItemDisplayBinding="{Binding Name}"
                                 SelectedIndex="{Binding SelectedLabelId}"
@@ -128,6 +144,8 @@
                         </HorizontalStackLayout>
                         <Button
                             Text="Save Changes"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                             Margin="0,10,5,10"
                             Command="{Binding SetNovelGrade}"/>
                         <Button

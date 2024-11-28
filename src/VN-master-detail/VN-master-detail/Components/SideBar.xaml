@@ -16,14 +16,19 @@
             Direction="Column"
             JustifyContent="SpaceEvenly">
             <Button
-                Text="Recherche"
+                Text="{Binding Search, Source={StaticResource appResources}}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                 Command="{Binding NavigationVM.GoToSearch}"/>
             <Button
-                Text="Acceuil"
+                Text="{Binding Home, Source={StaticResource appResources}}"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
                 Command="{Binding NavigationVM.GoToHome}"/>
         </FlexLayout>
         <ImageButton
             Grid.Row="1"
+            BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
             Source="dotnet_bot.png"
             Command="{Binding NavigationVM.GoToLogin}"/>
     </Grid>

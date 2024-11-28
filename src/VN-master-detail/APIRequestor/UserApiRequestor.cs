@@ -14,6 +14,7 @@ namespace APIRequestor
 
     public class UserApiRequestor : MainRequestor, IUserRequestor
     {
+        /// <inheritdoc/>
         public async Task<IEnumerable<LabelDTO>> GetLabels(string apiKey)
         {
             IEnumerable<LabelDTO>? labels = null;
@@ -28,6 +29,7 @@ namespace APIRequestor
             return labels ?? [];
         }
 
+        /// <inheritdoc/>
         public async Task<UserDTO?> Login(string ApiKey)
         {
             UserDTO? user = null;

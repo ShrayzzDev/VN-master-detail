@@ -262,14 +262,17 @@ namespace Stub
             _userNovelLabels.Add("jean-jean-jean-jean", dict);
         }
 
+        /// <inheritdoc/>
         public Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
             => Task.Run(() =>_detailedNovels
                 .Find(n => n.id.Equals(id)));
 
+        /// <inheritdoc/>
         public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria)
             => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .SortByCriteria(criteria).ToList(), false));
 
+        /// <inheritdoc/>
         public Task<BasicResultsDTO> GetNovelByOrder(int index, int count, Criteria criteria, string name)
             => Task.Run(() => new BasicResultsDTO(_basicNovels
                 .Where(n => n.title.Contains(name) || n.titles.Where(t => t.title.Contains(name) || t.latin.Contains(name)).Any())
@@ -278,15 +281,18 @@ namespace Stub
                 .Take(count).ToList(),
                 (_basicNovels.Count / count) <= index));
 
+        /// <inheritdoc/>
         public Task<BasicNovelDTO?> GetNovelById(string id)
             => Task.Run(() => _basicNovels
                 .Find(n => n.id.Equals(id)));
 
+        /// <inheritdoc/>
         public Task<BasicResultsDTO> GetNovelByCriteria(int index, int count, string which, string value)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<BasicUserResultsDTO> GetNovelForUser(int index, int count, string userId)
             => Task.Run(() =>
             {
@@ -300,6 +306,7 @@ namespace Stub
                 return new BasicUserResultsDTO([], true);
             });
 
+        /// <inheritdoc/>
         public Task<bool> AddNovelToUserList(string novelId, string apiToken)
         {
             return Task.Run(() =>
@@ -313,6 +320,7 @@ namespace Stub
             });
         }
 
+        /// <inheritdoc/>
         public Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
         {
             return Task.Run(() =>
@@ -326,6 +334,7 @@ namespace Stub
             });
         }
 
+        /// <inheritdoc/>
         public Task<bool> DoesUserHaveNovel(string novelId, string userid)
         {
             return Task.Run(() =>
@@ -334,7 +343,8 @@ namespace Stub
                 return novels.Exists((n) => n.vn.id.Equals(novelId));
             });
         }
-
+        
+        /// <inheritdoc/>
         public Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label)
         {
             return Task.Run(() =>
@@ -352,6 +362,7 @@ namespace Stub
             });
         }
 
+        /// <inheritdoc/>
         public Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken)
         {
             return Task.Run(() =>

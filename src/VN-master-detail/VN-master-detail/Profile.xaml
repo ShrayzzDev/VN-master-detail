@@ -2,27 +2,82 @@
 <ContentPage xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="VN_master_detail.Profile"
+             xmlns:toolkit="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
              Title="Profile"
              x:Name="root"
-             BindingContext="{x:Reference root}">
-    <HorizontalStackLayout
+             BindingContext="{x:Reference root}"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
+
+    <VerticalStackLayout
         HorizontalOptions="Center"
-        BindingContext="{Binding ProfileVM}">
-        <ImageButton
-            Source="dotnet_bot.png"
-            HeightRequest="40"
-            Command="{Binding Navigation.GoToHome}"/>
+        VerticalOptions="Center">
+        <HorizontalStackLayout
+            BindingContext="{Binding ProfileVM}">
+            <ImageButton
+                Source="dotnet_bot.png"
+                BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
+                HeightRequest="40"
+                Command="{Binding Navigation.GoToHome}"/>
+            <VerticalStackLayout
+                HorizontalOptions="Center"
+                VerticalOptions="Center">
+                <HorizontalStackLayout>
+                    <Label
+                        Text="{Binding Username, Source={StaticResource appResources}, StringFormat='{0}: '}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        FontSize="25"
+                        VerticalOptions="Center"/>
+                    <Label
+                        Text="{Binding User.Username, StringFormat=' {0}'}"
+                        TextColor="{DynamicResource PrimaryTextColor}"
+                        FontSize="25"
+                        Margin="10"
+                        VerticalOptions="Center"/>
+                </HorizontalStackLayout>
+                <Button
+                    BackgroundColor="Red"
+                    Text="{Binding LogOut, Source={StaticResource appResources}}"
+                    FontSize="18"
+                    TextColor="{DynamicResource PrimaryBtnTextColor}"
+                    Command="{Binding Logout}"
+                    Margin="10"/>
+            </VerticalStackLayout>
+        </HorizontalStackLayout>
         <VerticalStackLayout
             HorizontalOptions="Center"
-            VerticalOptions="Center">
+            BindingContext="{Binding ThemeVM}">
             <Label
-                Text="{Binding User.Username, StringFormat='Username: {0}'}"
-                FontSize="25"/>
-            <Button
-                BackgroundColor="Red"
-                Text="Log out"
-                FontSize="18"
-                Command="{Binding Logout}"/>
+                Margin="10"
+                TextColor="{DynamicResource PrimaryTextColor}"
+                FontSize="25"
+                FontAttributes="Bold"
+                Text="{Binding Settings, Source={StaticResource appResources}}"/>
+            <Picker
+                TextColor="{DynamicResource PrimaryTextColor}"
+                BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
+                Margin="10"
+                ItemsSource="{Binding Themes}"
+                SelectedItem="{Binding CurrentTheme}">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        Command="{Binding ChangeTheme}"
+                        EventName="SelectedIndexChanged"/>
+                </Picker.Behaviors>
+            </Picker>
+            <Picker
+                TextColor="{DynamicResource PrimaryTextColor}"
+                BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
+                SelectedItem="{Binding CurrentCulture, Source={StaticResource appResources}}"
+                ItemsSource="{Binding AvailableLangages, Source={StaticResource appResources}}"
+                Margin="10">
+                <Picker.Behaviors>
+                    <toolkit:EventToCommandBehavior
+                        Command="{Binding ChangeCulture, Source={StaticResource appResources}}"
+                        EventName="SelectedIndexChanged"/>
+                </Picker.Behaviors>
+            </Picker>
         </VerticalStackLayout>
-    </HorizontalStackLayout>
+        
+    </VerticalStackLayout>
+    
 </ContentPage>

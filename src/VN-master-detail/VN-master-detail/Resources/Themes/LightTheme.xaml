@@ -1,0 +1,13 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="VN_master_detail.Resources.Themes.LightTheme">
+
+    <Color x:Key="PrimaryBackgroundColor">#FFFFFF</Color>
+    <Color x:Key="SecondaryBackgroundColor">#A0A0A0</Color>
+    
+    <Color x:Key="PrimaryTextColor">#000000</Color>
+    <Color x:Key="PrimaryBtnTextColor">#000000</Color>
+   
+    
+</ResourceDictionary>
