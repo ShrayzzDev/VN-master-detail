@@ -1,3 +1,4 @@
+using Interfaces;
 using ViewModel;
 using VN_master_detail.ViewModel;
 
@@ -7,9 +8,10 @@ public partial class Login : ContentPage
 {
 	public LoginVM LoginVM {  get; set; }
 
-	public Login(UserVM user)
+	public Login(UserVM user,
+				 IUserPreferences userPreferences)
 	{
-		LoginVM = new LoginVM(this, user);
+		LoginVM = new LoginVM(this, user, userPreferences);
 		InitializeComponent();
 	}
 }

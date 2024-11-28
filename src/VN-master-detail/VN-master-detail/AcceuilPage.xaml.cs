@@ -17,6 +17,8 @@ namespace VN_master_detail
         // We need to inject the theme so it initialize
         // and apply the themes, without needing to go to
         // the profile page.
+        // Same for LoginVM, needs to set the preferences
+        // if there was a previous connection.
         public AcceuilPage(BaseNovelListVM novels,
                            UserVM user,
                            ThemeVM theme)

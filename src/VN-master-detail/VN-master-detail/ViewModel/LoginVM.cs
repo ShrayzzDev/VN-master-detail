@@ -1,4 +1,5 @@
 ﻿using CommunityToolkit.Mvvm.Input;
+using Interfaces;
 using SharedExtensions;
 using System.Windows.Input;
 using ViewModel;
@@ -11,15 +12,19 @@ namespace VN_master_detail.ViewModel
 
         public UserVM User { get; }
 
-        private Page _page;
+        private readonly Page _page;
+
+        private readonly IUserPreferences _userPreferences;
 
         public ICommand Login { get; set; }
 
         public LoginVM(Page page,
-                       UserVM user)
+                       UserVM user,
+                       IUserPreferences userPreferences)
         {
             _page = page;
             User = user;
+            _userPreferences = userPreferences;
             InitCommand();
         }
 
@@ -27,10 +32,12 @@ namespace VN_master_detail.ViewModel
         {
             Login = new AsyncRelayCommand(
                 async () => {
-                    if (await User.Login(ApiKey.ToUsableKey()))
+                    var usableKey = ApiKey.ToUsableKey();
+                    if (await User.Login(usableKey))
                     {
                         await _page.DisplayAlert("Success !", "You have been sucessfully conencted !", "Done");
-                        await Shell.Current.GoToAsync("//Home") ;
+                        _userPreferences.SetLoggedUser(usableKey);
+                        await Shell.Current.GoToAsync("//Home");
                         return;
                     }
                     await _page.DisplayAlert("Error", "Credentials incorect, please retry.", "Ok");

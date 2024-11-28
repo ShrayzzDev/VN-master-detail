@@ -23,11 +23,14 @@ namespace DataManagers
 
         private readonly IUserRequestor _userRequestor;
 
+        private readonly IUserPreferences _userPreferences;
         public DataManager(INovelRequestor novelRequestor,
-            IUserRequestor userRequestor)
+                           IUserRequestor userRequestor,
+                           IUserPreferences userPreferences)
         {
             _novelRequestor = novelRequestor;
             _userRequestor = userRequestor;
+            _userPreferences = userPreferences;
         }
 
         public async Task<DetailedNovel?> GetDetailedNovelById(string id)
@@ -57,7 +60,12 @@ namespace DataManagers
 
         public async Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count)
         {
-            if (_user == null) return ([], true);
+            if (_user == null)
+            {
+                var api = _userPreferences.GetLoggedUser();
+                if (api == string.Empty || !await Login(api))
+                    return ([], true);
+            }
             return (await _novelRequestor.GetNovelForUser(index, count, _user.UserId)).ToTuple();
         }
 

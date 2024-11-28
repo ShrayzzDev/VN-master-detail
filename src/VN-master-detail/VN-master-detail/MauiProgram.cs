@@ -36,6 +36,8 @@ namespace VN_master_detail
             builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
             builder.Services.AddScoped<INovelRequestor, NovelStub>();
             builder.Services.AddScoped<IUserRequestor, UserStub>();
+
+            builder.Services.AddScoped<IUserPreferences, UserPreferences>();
 #if DEBUG
             builder.Logging.AddDebug();
 #endif
