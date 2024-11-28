@@ -14,11 +14,13 @@ namespace APIRequestor
 
     public class UserApiRequestor : MainRequestor, IUserRequestor
     {
+        /// <inheritdoc/>
         public Task<IEnumerable<LabelDTO>> GetLabels(string apiKey)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public async Task<UserDTO?> Login(string ApiKey)
         {
             UserDTO? novel = null;

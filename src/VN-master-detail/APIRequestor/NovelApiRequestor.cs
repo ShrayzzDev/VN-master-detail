@@ -17,6 +17,7 @@ namespace APIRequestor
 {
     public class NovelApiRequestor : MainRequestor, INovelRequestor
     {
+        /// <inheritdoc/>
         public async Task<DetailedNovelDTO?> GetDetailedNovelById(string id)
         {
             DetailedNovelDTO? novel = null;
@@ -31,6 +32,7 @@ namespace APIRequestor
             return novel;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria)
         {
             BasicResultsDTO? novels = null;
@@ -50,6 +52,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicNovelDTO?> GetNovelById(string id)
         {
             BasicNovelDTO? novel = null;
@@ -67,6 +70,7 @@ namespace APIRequestor
 
         // TODO : This requests wont work like that.
         // I just need to get the project to compile
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByCriteria(int index, int count, string which, string value)
         {
             List<BasicNovelDTO?>? novels = null;
@@ -88,6 +92,7 @@ namespace APIRequestor
             return new BasicResultsDTO(novels, false);
         }
 
+        /// <inheritdoc/>
         public async Task<BasicUserResultsDTO?> GetNovelForUser(int index, int count, string userId)
         {
             BasicUserResultsDTO? novels = null;
@@ -106,6 +111,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<BasicResultsDTO?> GetNovelByOrder(int index, int count, Criteria criteria, string name)
         {
             BasicResultsDTO? novels = null;
@@ -126,6 +132,7 @@ namespace APIRequestor
             return novels;
         }
 
+        /// <inheritdoc/>
         public async Task<bool> AddNovelToUserList(string novelId, string apiToken)
         {
             BasicResultsDTO? novels = null;
@@ -139,21 +146,25 @@ namespace APIRequestor
             return response.IsSuccessStatusCode;
         }
 
+        /// <inheritdoc/>
         public Task<bool> DoesUserHaveNovel(string novelId, string userid)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<bool> DeleteNovelFromUser(string novelId, string apiToken)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<bool> ChangeUserNovel(string novelId, string userId, int newGrade, int label)
         {
             throw new NotImplementedException();
         }
 
+        /// <inheritdoc/>
         public Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
         {
             throw new NotImplementedException();
