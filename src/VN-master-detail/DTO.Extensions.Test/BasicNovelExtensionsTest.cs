@@ -12,6 +12,8 @@ namespace DTO.Extensions.Test
                                                           "title", [], 50) };
             yield return new object[] { new BasicNovelDTO("other", new ImageDTO(), Array.Empty<SimpleTitleDTO>(), "description",
                                                           "title", [], 50) };
+            yield return new object[] { new BasicNovelDTO("other", null, Array.Empty<SimpleTitleDTO>(), "description",
+                                                          "title", [], 50) };
             yield return new object[] { new BasicNovelDTO("id", new ImageDTO(), Array.Empty<SimpleTitleDTO>(), "other",
                                                           "title", [], 50) };
             yield return new object[] { new BasicNovelDTO("id", new ImageDTO(), Array.Empty<SimpleTitleDTO>(), "description",
