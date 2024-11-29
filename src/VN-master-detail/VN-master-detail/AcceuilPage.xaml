@@ -6,7 +6,8 @@
              x:Class="VN_master_detail.AcceuilPage"
              Title="Home"
              x:Name="root"
-             BindingContext="{x:Reference root}">
+             BindingContext="{x:Reference root}"
+             BackgroundColor="{DynamicResource PrimaryBackgroundColor}">
     
     <ContentPage.Behaviors>
         <toolkit:EventToCommandBehavior
@@ -27,8 +28,48 @@
             AcceuilBtnColor="DarkCyan"/>
         <ScrollView
             Grid.Column="1">
-            <components:NovelList
-                Novels="{Binding Novels.List}"/>
+            <VerticalStackLayout
+                Padding="0,45,0,0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="9*"/>
+                        <RowDefinition Height="1*"/>
+                    </Grid.RowDefinitions>
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <components:NovelList
+                        Novels="{Binding Novels.List}"/>
+                    <HorizontalStackLayout
+                        HorizontalOptions="Center"
+                        VerticalOptions="End"
+                        Padding="5"
+                        Grid.Row="1">
+                        <Button
+                            Text="&lt;--"
+                            TextColor="{DynamicResource PrimaryBtnTextColor}"
+                            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
+                            Command="{Binding Novels.PreviousPage}"
+                            CommandParameter="{Binding Novels.GetUserNovels}"
+                            Margin="5"/>
+                        <Label
+                            Text="{Binding Novels.Page}"
+                            TextColor="{DynamicResource PrimaryTextColor}"
+                            BackgroundColor="{DynamicResource PrimaryBackgroundColor}"
+                            FontSize="20"
+                            FontAttributes="Bold"
+                            VerticalOptions="Center"
+                            Margin="5"/>
+                        <Button
+                            Text="-->"
+                            TextColor="{DynamicResource PrimaryBtnTextColor}"
+                            BackgroundColor="{DynamicResource SecondaryBackgroundColor}"
+                            Command="{Binding Novels.NextPage}"
+                            CommandParameter="{Binding Novels.GetUserNovels}"
+                            Margin="5"/>
+                    </HorizontalStackLayout>
+                </Grid>
+            </VerticalStackLayout>
         </ScrollView>
     </Grid>
 

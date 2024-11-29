@@ -14,6 +14,7 @@ namespace Utils
     public static class HttpRequestBodies
     {
         public static readonly string BasicNovelFields = "\"fields\" : \"" +
+                                                                       "id, " + 
                                                                        "title, " +
                                                                        "titles.title, " +
                                                                        "titles.latin, " +
@@ -30,8 +31,29 @@ namespace Utils
                                                                        "image.thumbnail, " +
                                                                        "image.thumbnail_dims\"";
 
+        public static readonly string BasicUserNovelFields = "\"fields\" : \"" +
+                                                                       "vn.id, " +
+                                                                       "vn.title, " +
+                                                                       "vn.description, " +
+                                                                       "vn.average, " +
+                                                                       "vn.developers.id, " +
+                                                                       "vn.developers.name," +
+                                                                       "vn.developers.type, " +
+                                                                       "vn.developers.description, " +
+                                                                       "vn.image.id," +
+                                                                       "vn.image.url, " +
+                                                                       "vn.image.dims, " +
+                                                                       "vn.image.sexual, " +
+                                                                       "vn.image.violence, " +
+                                                                       "vn.image.votecount, " +
+                                                                       "vn.image.thumbnail, " +
+                                                                       "vn.image.thumbnail_dims, " +
+                                                                       "added, " +
+                                                                       "voted, " +
+                                                                       "vote\"";
+
         public static readonly string DetailedNovelFields = "\"fields\" : \"" +
-                                                                       "alttile, " +
+                                                                       "alttitle, " +
                                                                        "aliases, " +
                                                                        "olang, " +
                                                                        "devstatus, " +
@@ -47,9 +69,10 @@ namespace Utils
                                                                        "titles.latin, " +
                                                                        "description, " +
                                                                        "average, " +
-                                                                       "developpers.id, " +
-                                                                       "developpers.name, developpers.type, " +
-                                                                       "developpers.description, " +
+                                                                       "developers.id, " +
+                                                                       "developers.name, " +
+                                                                       "developers.type, " +
+                                                                       "developers.description, " +
                                                                        "image.id, image.url, " +
                                                                        "image.dims, " +
                                                                        "image.sexual, " +

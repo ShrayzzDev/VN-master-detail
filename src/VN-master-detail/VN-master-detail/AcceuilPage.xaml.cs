@@ -10,12 +10,21 @@ namespace VN_master_detail
 
         public NavigationVM NavigationVM { get; set; }
 
+        public ThemeVM Themes { get; set; }
+
         public UserVM User { get; set; }
 
+        // We need to inject the theme so it initialize
+        // and apply the themes, without needing to go to
+        // the profile page.
+        // Same for LoginVM, needs to set the preferences
+        // if there was a previous connection.
         public AcceuilPage(BaseNovelListVM novels,
-                           UserVM user)
+                           UserVM user,
+                           ThemeVM theme)
         {
             Novels = novels;
+            Themes = theme;
             NavigationVM = new NavigationVM(user, Navigation);
             User = user;
             BindingContext = this;

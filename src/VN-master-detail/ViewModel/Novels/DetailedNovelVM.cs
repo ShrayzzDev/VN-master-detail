@@ -5,16 +5,39 @@ using Model;
 using Model.Novel;
 using Model.Producer;
 using Model.Title;
+using System.Collections.ObjectModel;
 using System.Diagnostics;
 using System.Windows.Input;
 
 namespace ViewModel.Novels
 {
+    // TODO : This VM does too much.
+    // There should probably be a DetailPage vm ig ?
     public class DetailedNovelVM : ObservableObject
     {
         private readonly IDataManager<User> _dataManager;
 
         private DetailedNovel _novel = new();
+
+        private readonly ObservableCollection<LabelVM> _labels = [];
+
+        public ReadOnlyObservableCollection<LabelVM> Labels { get; set; }
+
+        private LabelVM _selectedLabel = new();
+
+        public LabelVM SelectedLabel 
+        {
+            get => _selectedLabel;
+            set => SetProperty(ref _selectedLabel, value);
+        }
+
+        private int _selectLabelid = 0;
+
+        public int SelectedLabelId 
+        {
+            get => _selectLabelid;
+            set => SetProperty(ref _selectLabelid, value);
+        }
 
         // TODO : Put this in another VM
         private bool _isUserConnected;
@@ -144,7 +167,20 @@ namespace ViewModel.Novels
         public DetailedNovelVM(IDataManager<User> dataManager)
         {
             _dataManager = dataManager;
+            Labels = new ReadOnlyObservableCollection<LabelVM>(_labels);
             InitCommand();
+        }
+
+        private async Task GetUserNovelsInfos(string id)
+        {
+            var result = await _dataManager.GetUserNovelInfos(id);
+            UserGrade = result.Item1;
+            foreach (var label in await _dataManager.GetLabels())
+            {
+                _labels.Add(new LabelVM() { label = label });
+            }
+            SelectedLabelId = result.Item2;
+            SelectedLabel = _labels[SelectedLabelId];
         }
 
         private void InitCommand()
@@ -157,7 +193,8 @@ namespace ViewModel.Novels
                     if (retrieved == null) return;
                     IsUserConnected = await _dataManager.IsLoggedIn();
                     IsInUserList = await _dataManager.DoesUserHaveNovel(id);
-                    if (_isInUserList) UserGrade = await _dataManager.GetUserGradeToNovel(id);
+                    if (_isInUserList)
+                        await GetUserNovelsInfos(id);
                     Novel = retrieved;
                 }
             );
@@ -176,7 +213,7 @@ namespace ViewModel.Novels
                 async () =>
                 {
                     if (_userGrade < 10 || _userGrade > 100) return;
-                    if (!await _dataManager.ChangeUserGradeToNovel(_novel.Id, _userGrade)) return;
+                    if (!await _dataManager.ChangeUserNovel(_novel.Id, _userGrade, SelectedLabelId)) return;
                     ReverseEntry.Execute(null);
                 }
             );

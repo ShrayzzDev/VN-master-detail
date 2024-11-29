@@ -29,13 +29,13 @@ namespace DTO.Test.Novels
         public static void CtorTest(string id, ImageDTO? image, string description, string title, float? average, 
                                     SimpleProducerDTO[] developpers, int added, int? voted, int? vote)
         {
-            var novel = new SimpleUserNovelDTO(id, image, description, title, average, developpers, added, voted, vote);
+            var novel = new BasicUserNovelDTO(id, image, description, title, average, developpers, added, voted, vote);
 
             Assert.Equal(id, novel.id);
-            Assert.Equal(image, novel.image);
-            Assert.Equal(description, novel.description);
-            Assert.Equal(title, novel.title);
-            Assert.Equal(average, novel.average);
+            Assert.Equal(image, novel.vn.image);
+            Assert.Equal(description, novel.vn.description);
+            Assert.Equal(title, novel.vn.title);
+            Assert.Equal(average, novel.vn.average);
             Assert.Equal(added, novel.added);
             Assert.Equal(voted, novel.voted);
             Assert.Equal(vote, novel.vote);
@@ -43,13 +43,13 @@ namespace DTO.Test.Novels
 
         public static void DefaultCtorTest()
         {
-            var novel = new SimpleUserNovelDTO();
+            var novel = new BasicUserNovelDTO();
 
             Assert.Equal("", novel.id);
-            Assert.Equal("", novel.description);
-            Assert.Equal("", novel.title);
-            Assert.Equal(0, novel.average);
-            Assert.Equal([], novel.developers);
+            Assert.Equal("", novel.vn.description);
+            Assert.Equal("", novel.vn.title);
+            Assert.Equal(0, novel.vn.average);
+            Assert.Equal([], novel.vn.developers);
             Assert.Equal(0, novel.added);
             Assert.Equal(0, novel.voted);
             Assert.Equal(0, novel.vote);

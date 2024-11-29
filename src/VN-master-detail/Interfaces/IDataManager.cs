@@ -1,5 +1,6 @@
 ﻿using DTO;
 using DTO.Novel;
+using Model;
 using Model.Novel;
 using System;
 using System.Collections.Generic;
@@ -33,8 +34,8 @@ namespace Interfaces
         /// <param name="index">Page number</param>
         /// <param name="count">Amount of novel in the page</param>
         /// <param name="criteria">How to sort</param>
-        /// <returns>Enumerable of novels. May be empty.</returns>
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria);
 
         /// <summary>
         /// Retrieves a list of novel following given criteria.
@@ -43,16 +44,16 @@ namespace Interfaces
         /// <param name="count">Amount of novel in the page</param>
         /// <param name="criteria">How to sort</param>
         /// <param name="name">What the name have to contain (not the EXACT name)</param>
-        /// <returns>Enumerable of novels. May be empty.</returns>
-        public Task<IEnumerable<BasicNovel>> GetNovels(int index, int count, Criteria criteria, string name);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicNovel>, bool)> GetNovels(int index, int count, Criteria criteria, string name);
 
         /// <summary>
         /// Retrieves a list of novels in the user's personal list.
         /// </summary>
         /// <param name="index">Page number</param>
         /// <param name="count">Amount of novel in the page</param>
-        /// <returns>The list. May be empty.</returns>
-        public Task<IEnumerable<SimpleUserNovel>> GetNovelsForUser(int index, int count);
+        /// <returns>The list and if there's more. List may be empty.</returns>
+        public Task<(IEnumerable<BasicUserNovel>, bool)> GetNovelsForUser(int index, int count);
 
         /// <summary>
         /// Retrieves a detailed novel from it's Id
@@ -107,16 +108,23 @@ namespace Interfaces
         /// Changes the grade a user gave to a Novel.
         /// </summary>
         /// <param name="novelId">Id of the novel</param>
-        /// <param name="newGrade"></param>
+        /// <param name="newGrade">New grade to novel</param>
+        /// <param name="label">New label to novel</param>
         /// <returns></returns>
-        public Task<bool> ChangeUserGradeToNovel(string novelId, int newGrade);
+        public Task<bool> ChangeUserNovel(string novelId, int newGrade, int labelId);
 
         /// <summary>
         /// Gets the grade a User has set to a novel.
         /// </summary>
         /// <param name="novelId">Id of the novel</param>
         /// <returns></returns>
-        public Task<int> GetUserGradeToNovel(string novelId);
+        public Task<(int, int)> GetUserNovelInfos(string novelId);
+
+        /// <summary>
+        /// Gets available labels for user
+        /// </summary>
+        /// <returns>The labels. May be empty</returns>
+        public Task<IEnumerable<Label>> GetLabels();
 
     }
 }

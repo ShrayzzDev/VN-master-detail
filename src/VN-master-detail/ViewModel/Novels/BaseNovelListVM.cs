@@ -30,11 +30,33 @@ namespace ViewModel.Novels
 
         }
 
+        private int _page = 0;
+
+        public int Page
+        {
+            get => _page;
+            set => SetProperty(ref _page, value);
+        }
+
+        private int _count = 6;
+
+        public int Count
+        {
+            get => _count;
+            set => SetProperty(ref _count, value);
+        }
+
+        private bool _isMaxPage;
+
         public ICommand GetNovels { get; private set; }
 
         public ICommand GetUserNovels { get; private set; }
 
         public ICommand SearchNovels { get; private set; }
+
+        public ICommand NextPage { get; private set; }
+
+        public ICommand PreviousPage { get; private set; }
 
         public BaseNovelListVM(IDataManager<User> manager)
         {
@@ -49,11 +71,13 @@ namespace ViewModel.Novels
                 async () =>
                 {
                     _list.Clear();
-                    var retrieved = await _manager.GetNovels(0, 10, DTO.Criteria.Name);
-                    foreach (var novel in retrieved)
+                    var retrieved = await _manager.GetNovels(_page, _count, DTO.Criteria.Name);
+                    foreach (var novel in retrieved.Item1)
                     {
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
+                    _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
             );
 
@@ -61,11 +85,13 @@ namespace ViewModel.Novels
                 async () =>
                 {
                     _list.Clear();
-                    var retrived = await _manager.GetNovelsForUser(0, 10);
-                    foreach(var novel in retrived)
+                    var retrieved = await _manager.GetNovelsForUser(_page, _count);
+                    foreach(var novel in retrieved.Item1)
                     {
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
+                    _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
             );
 
@@ -73,13 +99,41 @@ namespace ViewModel.Novels
                 async () =>
                 {
                     _list.Clear();
-                    Debug.Print(SearchedName);
-                    var retrieved = await _manager.GetNovels(0, 10, DTO.Criteria.Name, SearchedName);
-                    foreach(var novel in retrieved)
+                    var retrieved = await _manager.GetNovels(_page, _count, DTO.Criteria.Name, SearchedName);
+                    foreach(var novel in retrieved.Item1)
                     {
                         _list.Add(new BaseNovelVM() { _novel = novel });
                     }
+                    _isMaxPage = retrieved.Item2;
+                    ((RelayCommand<ICommand>)NextPage).NotifyCanExecuteChanged();
                 }
+            );
+
+            // Command passed should be either GetUserNovels OR
+            // SearchNovels. Since this is used in both the search
+            // and the home pages, we cant just call one or another directly
+            // without making another command, or passing it as a parameter.
+            NextPage = new RelayCommand<ICommand>(
+                (command) =>
+                {
+                    if (command == null) return;
+                    Page += 1;
+                    command.Execute(null);
+                    ((RelayCommand<ICommand>)PreviousPage).NotifyCanExecuteChanged();
+                },
+                (ingored) => !_isMaxPage
+            );
+
+            // Same thing
+            PreviousPage = new RelayCommand<ICommand>(
+                (command) =>
+                {
+                    if (command == null) return;
+                    Page -= 1;
+                    command.Execute(null);
+                    ((RelayCommand<ICommand>)PreviousPage).NotifyCanExecuteChanged();
+                },
+                (ignored) => _page > 0
             );
         }
     }
