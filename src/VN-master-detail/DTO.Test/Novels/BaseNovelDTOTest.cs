@@ -1,10 +1,15 @@
-using DTO.Novel;
+﻿using DTO.Novel;
 using DTO.Producer;
 using DTO.Title;
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
 
 namespace DTO.Test.Novels
 {
-    public static class BasicNovelDTOTest
+    public class BaseNovelDTOTest
     {
         private static readonly int[] dims = [1, 1];
 
@@ -13,7 +18,6 @@ namespace DTO.Test.Novels
             yield return new object[] {
                 "id",
                 new ImageDTO("a", "a", dims, 1, 1, 1, "a", dims),
-                new SimpleTitleDTO[] { new("lating", "title") },
                 "description",
                 "title",
                 Array.Empty<SimpleProducerDTO>(),
@@ -22,7 +26,6 @@ namespace DTO.Test.Novels
             yield return new object[] {
                 "other",
                 new ImageDTO("a", "a", dims, 1, 1, 1, "a", dims),
-                new SimpleTitleDTO[] { new("lating", "title") },
                 "other",
                 "title",
                 Array.Empty<SimpleProducerDTO>(),
@@ -31,7 +34,6 @@ namespace DTO.Test.Novels
             yield return new object[] {
                 "id",
                 new ImageDTO("a", "a", dims, 1, 1, 1, "a", dims),
-                new SimpleTitleDTO[] { new("lating", "title") },
                 "descriptions",
                 "other",
                 Array.Empty<SimpleProducerDTO>(),
@@ -42,9 +44,9 @@ namespace DTO.Test.Novels
 
         [Theory]
         [MemberData(nameof(CtorTestData))]
-        public static void TestCtor(string id, ImageDTO? image, SimpleTitleDTO[] titles, string description, string title, SimpleProducerDTO[] developpers, int? average)
+        public static void TestCtor(string id, ImageDTO? image, string description, string title, SimpleProducerDTO[] developpers, int? average)
         {
-            var novel = new BasicNovelDTO(id, image, titles, description, title, developpers, average);
+            var novel = new BaseNovelDTO(id, image, description, title, average, developpers);
 
             Assert.Equal(id, novel.id);
             Assert.Equal(description, novel.description);
@@ -55,12 +57,20 @@ namespace DTO.Test.Novels
         [Fact]
         public static void TestDefaultCtor()
         {
-            var novel = new BasicNovelDTO();
+            var novel = new BaseNovelDTO();
 
             Assert.Equal(string.Empty, novel.id);
             Assert.Equal(string.Empty, novel.title);
             Assert.Equal(string.Empty, novel.description);
-            Assert.Equal(10, novel.average);
         }
+
+        [Theory]
+        [InlineData(9)]
+        [InlineData(101)]
+        [InlineData(float.MinValue)]
+        [InlineData(float.MaxValue)]
+        public static void TestAverageThrows(float average)
+            => Assert.Throws<ArgumentException>(() =>
+                new BaseNovelDTO("", new ImageDTO(), "", "", average, []));
     }
 }

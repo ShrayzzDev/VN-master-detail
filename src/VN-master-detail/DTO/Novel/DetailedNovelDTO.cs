@@ -132,6 +132,6 @@ namespace DTO.Novel
         }
 
         public DetailedNovelDTO()
-            : this("", new ImageDTO(), "", "", [], [], 0, "", [], "", 0, "", [], [], 0, 0, 0, 0) { }
+            : this("", new ImageDTO(), "", "", [], [], 10, "", [], "", 0, "", [], [], 0, 0, 0, 0) { }
     }
 }

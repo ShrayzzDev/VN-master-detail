@@ -27,7 +27,7 @@ namespace DTO.Novel
         /// Average note given by the users
         /// Between 10 and 100 
         /// </summary>
-        public float? average { get; set; } = 0;
+        public float? average { get; set; } = 10;
 
         public BaseNovelDTO(string id, ImageDTO? image, string description, string title, float? average, SimpleProducerDTO[] developpers)
         {
@@ -35,6 +35,8 @@ namespace DTO.Novel
             this.image = image;
             this.description = description;
             this.title = title;
+            if (average != null && average > 100) throw new ArgumentException("Average can't be over 100");
+            if (average != null && average < 10) throw new ArgumentException("Average can't be under 10");
             this.average = average;
             developers = developpers;
         }

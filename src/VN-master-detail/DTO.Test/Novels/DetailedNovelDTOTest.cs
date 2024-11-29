@@ -14,55 +14,55 @@ namespace DTO.Test.Novels
         public static IEnumerable<object[]> CtorTestData()
         {
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "other", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "other", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "other", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MaxValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 100, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "other", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "other", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "other",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "other",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MaxValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "other", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MaxValue,
                                         int.MinValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MaxValue, int.MinValue, int.MinValue };
             yield return new object[] { "id", new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MaxValue, int.MinValue };
             yield return new object[] { "id",   new ImageDTO(), "description", "title", Array.Empty<SimpleTitleDTO>(),
-                                        Array.Empty<SimpleProducerDTO>(), int.MinValue, "alttitle", Array.Empty<string>(), "olang",
+                                        Array.Empty<SimpleProducerDTO>(), 10, "alttitle", Array.Empty<string>(), "olang",
                                         int.MinValue, "released", Array.Empty<string>(), Array.Empty<string>(), int.MinValue,
                                         int.MinValue, int.MinValue, int.MaxValue };
         }
@@ -101,7 +101,7 @@ namespace DTO.Test.Novels
             Assert.Equal("", novel.title);
             Assert.Equal([], novel.titles);
             Assert.Equal([], novel.developers);
-            Assert.Equal(0, novel.average);
+            Assert.Equal(10, novel.average);
             Assert.Equal("", novel.alttitle);
             Assert.Equal([], novel.aliases);
             Assert.Equal("", novel.olang);

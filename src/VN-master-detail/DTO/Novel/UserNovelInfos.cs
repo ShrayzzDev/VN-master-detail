@@ -8,10 +8,10 @@ namespace DTO.Novel
 {
     public class UserNovelInfos
     {
-        public string id { get; set; }
+        public string id { get; set; } = "";
 
         public int vote { get; set; }
 
-        public List<LabelDTO> labels { get; set; }
+        public List<LabelDTO> labels { get; set; } = [];
     }
 }

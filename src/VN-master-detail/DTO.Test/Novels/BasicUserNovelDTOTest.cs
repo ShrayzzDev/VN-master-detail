@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace DTO.Test.Novels
 {
-    public static class SimpleUserNovelDTOTest
+    public static class BasicUserNovelDTOTest
     {
         public static IEnumerable<object[]> CtorTestData()
         {

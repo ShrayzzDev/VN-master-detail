@@ -33,7 +33,9 @@ namespace Model.Novel
             Image = image;
             Description = description;
             Title = title;
-            this.Average = average == null ? 0 : average.Value;
+            if (average != null && average > 100) throw new ArgumentException("Average can't be over 100");
+            if (average != null && average < 10) throw new ArgumentException("Average can't be under 10");
+            Average = average == null ? 10 : average.Value;
             Developpers = developpers;
         }
 
