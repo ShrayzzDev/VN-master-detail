@@ -24,7 +24,7 @@ namespace DTO
 
         public int[] thumbnail_dims { get; set; } = [0,0];
 
-        public ImageDTO(string id, string url, int[] dims, short? sexual, short violence, int votecount, string thumbnail, int[] thumbnail_dims)
+        public ImageDTO(string id, string url, int[] dims, float? sexual, short violence, int votecount, string thumbnail, int[] thumbnail_dims)
         {
             this.id = id;
             this.url = url;
