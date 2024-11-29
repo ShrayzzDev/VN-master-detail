@@ -15,7 +15,7 @@ namespace DTO.Extensions
                 dto.id,
                 dto.url,
                 dto.dims,
-                dto.sexual,
+                dto.sexual == null ? 0 : dto.sexual.Value,
                 dto.violence,
                 dto.votecount,
                 dto.thumbnail,

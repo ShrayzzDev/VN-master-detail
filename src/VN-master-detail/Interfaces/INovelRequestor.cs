@@ -101,7 +101,7 @@ namespace Interfaces
         /// <param name="newGrade">New grade to give to the novel</param>
         /// <param name="label">Label id</param>
         /// <returns></returns>
-        public Task<bool> ChangeUserNovel(string novelId, string userId, int newGrade, int label);
+        public Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label);
 
         /// <summary>
         /// Gets the grade a User has set to a novel.
@@ -109,6 +109,6 @@ namespace Interfaces
         /// <param name="novelId">Id of the novel</param>
         /// <param name="userId">Id of the user</param>
         /// <returns>The given vote and the id of the currently given label</returns>
-        public Task<(int, int)> GetUserNovelInfos(string novelId, string userId);
+        public Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken);
     }
 }

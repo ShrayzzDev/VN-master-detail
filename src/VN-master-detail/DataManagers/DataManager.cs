@@ -104,14 +104,14 @@ namespace DataManagers
         public Task<bool> ChangeUserNovel(string novelId, int newGrade, int labelId)
         {
             if (ConnectedUser == null) return Task.FromResult(false);
-            return _novelRequestor.ChangeUserNovel(novelId, ConnectedUser.UserId, newGrade, labelId);
+            return _novelRequestor.ChangeUserNovel(novelId, ConnectedUser.ApiKey, newGrade, labelId);
         }
 
         /// <inheritdoc/>
         public Task<(int, int)> GetUserNovelInfos(string novelId)
         {
             if (ConnectedUser == null) return Task.FromResult((0,0));
-            return _novelRequestor.GetUserNovelInfos(novelId, ConnectedUser.UserId);
+            return _novelRequestor.GetUserNovelInfos(novelId, ConnectedUser.ApiKey);
         }
 
         /// <inheritdoc/>

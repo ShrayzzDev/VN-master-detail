@@ -12,6 +12,7 @@ IUserRequestor uRequestor = new UserApiRequestor();
 string? choice = "";
 string? value;
 string key = "";
+string novelId = string.Empty;
 
 while (choice != "99")
 {
@@ -23,6 +24,7 @@ while (choice != "99")
     Console.WriteLine("5. GetNovelsByOrderWithName");
     Console.WriteLine("6. Login");
     Console.WriteLine("7. AddNovelToUser");
+    Console.WriteLine("8. DeleteNovelFromUser");
     Console.WriteLine("");
     Console.WriteLine("99. Close");
     Console.WriteLine("----------------------");
@@ -80,12 +82,61 @@ while (choice != "99")
             Console.WriteLine("Enter your API Token");
             key  = Console.ReadLine() ?? string.Empty;
             Console.WriteLine("Which novel ? (without v)");
-            var novelId = "v" + Console.ReadLine();
+            novelId = "v" + Console.ReadLine();
             Console.WriteLine(novelId);
             if (await nRequestor.AddNovelToUserList(novelId, key))
                 Console.WriteLine("Added !");
             else
                 Console.WriteLine("Problem !");
+            break;
+
+        case "8":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Which novel ? (without v)");
+            novelId = "v" + Console.ReadLine();
+            Console.WriteLine(novelId);
+            if (await nRequestor.DeleteNovelFromUser(novelId, key))
+                Console.WriteLine("Deleted !");
+            else
+                Console.WriteLine("Problem !");
+            break;
+
+        case "9":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Which novel ? (without v)");
+            novelId = "v" + Console.ReadLine();
+            Console.WriteLine("New grade: ");
+            var grade = int.Parse(Console.ReadLine());
+            Console.WriteLine(novelId);
+            if (await nRequestor.ChangeUserNovel(novelId, key, grade, 3))
+                Console.WriteLine("Modified !");
+            else
+                Console.WriteLine("Problem !");
+            break;
+
+        case "10":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine("Which novel ? (without v)");
+            novelId = "v" + Console.ReadLine();
+            Console.WriteLine(novelId);
+            Console.WriteLine(await nRequestor.GetUserNovelInfos(novelId, key));
+            break;
+
+        case "11":
+            Console.WriteLine("Enter your API Token");
+            key = Console.ReadLine() ?? string.Empty;
+            var labels = await uRequestor.GetLabels(key);
+            labels.ToList().ForEach(label => Console.WriteLine(label.label));
+            break;
+
+        case "12":
+            Console.WriteLine("Enter your user id");
+            var userId = Console.ReadLine() ?? string.Empty;
+            Console.WriteLine(await nRequestor.DoesUserHaveNovel("v5154", userId));
+            Console.WriteLine(await nRequestor.DoesUserHaveNovel("v2", userId));
             break;
 
         case "99":

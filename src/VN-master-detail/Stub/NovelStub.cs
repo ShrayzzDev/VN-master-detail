@@ -259,7 +259,7 @@ namespace Stub
                 { "v5", 0 },
                 { "v6", 1 },
             };
-            _userNovelLabels.Add("u1", dict);
+            _userNovelLabels.Add("jean-jean-jean-jean", dict);
         }
 
         /// <inheritdoc/>
@@ -343,37 +343,37 @@ namespace Stub
                 return novels.Exists((n) => n.vn.id.Equals(novelId));
             });
         }
-
+        
         /// <inheritdoc/>
-        public Task<bool> ChangeUserNovel(string novelId, string userId, int newGrade, int label)
+        public Task<bool> ChangeUserNovel(string novelId, string apiToken, int newGrade, int label)
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return false;
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return false;
                 novels.First((n) => n.vn.id.Equals(novelId)).vote = newGrade;
-                if (_userNovelLabels.TryGetValue(userId, out var dict) && dict != null && dict.TryGetValue(novelId, out _))
+                if (_userNovelLabels.TryGetValue(apiToken, out var dict) && dict != null && dict.TryGetValue(novelId, out _))
                 {
-                    _userNovelLabels[userId][novelId] = label;
+                    _userNovelLabels[apiToken][novelId] = label;
                 }
                 return true;
             });
         }
 
         /// <inheritdoc/>
-        public Task<(int, int)> GetUserNovelInfos(string novelId, string userId)
+        public Task<(int, int)> GetUserNovelInfos(string novelId, string apiToken)
         {
             return Task.Run(() =>
             {
-                var userExists = _userNovels.TryGetValue(userId, out List<BasicUserNovelDTO>? novels);
+                var userExists = _tokenUserNovels.TryGetValue(apiToken, out List<BasicUserNovelDTO>? novels);
                 if (!userExists || novels is null) return (0, 0);
                 var isIn = novels.Exists(n => n.vn.id.Equals(novelId));
                 if (!isIn) return (0, 0);
                 var novel = novels.First((n) => n.vn.id.Equals(novelId));
                 int labelId = 0;
-                if (_userNovelLabels.TryGetValue(userId, out var dict) && dict != null && dict.TryGetValue(novelId, out var value))
+                if (_userNovelLabels.TryGetValue(apiToken, out var dict) && dict != null && dict.TryGetValue(novelId, out var value))
                 {
                     labelId = value;
                 }

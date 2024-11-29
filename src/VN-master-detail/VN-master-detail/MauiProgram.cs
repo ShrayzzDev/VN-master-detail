@@ -23,26 +23,26 @@ namespace VN_master_detail
                     fonts.AddFont("OpenSans-Regular.ttf", "OpenSansRegular");
                     fonts.AddFont("OpenSans-Semibold.ttf", "OpenSansSemibold");
                 });
-
+            
             builder.Services.AddTransient<BaseNovelListVM>();
             builder.Services.AddScoped<AppResourcesVM>();
             builder.Services.AddSingleton<ThemeVM>();
             builder.Services.AddScoped<UserVM>();
-
+            
             builder.Services.AddScoped<AcceuilPage>();
             builder.Services.AddScoped<Profile>();
             builder.Services.AddScoped<Search>();
             builder.Services.AddScoped<Login>();
-
+            
             builder.Services.AddSingleton<IDataManager<User>, DataManagers.DataManager>();
-            builder.Services.AddScoped<INovelRequestor, NovelStub>();
-            builder.Services.AddScoped<IUserRequestor, UserStub>();
-
+            builder.Services.AddScoped<INovelRequestor, NovelApiRequestor>();
+            builder.Services.AddScoped<IUserRequestor, UserApiRequestor>();
+            
             builder.Services.AddScoped<IUserPreferences, UserPreferences>();
-#if DEBUG
+#if DEBUG   
             builder.Logging.AddDebug();
-#endif
-
+#endif      
+            
             return builder.Build();
         }
     }
